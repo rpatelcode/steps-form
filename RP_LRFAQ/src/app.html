@@ -1,0 +1,335 @@
+<!--
+IMPORTANT:
+Any resources from this project should be referenced using SRC_PATH preprocessor var.
+See examples below in the boilerplate code
+-->
+
+<!--
+1. HEADER
+Everything inside this cot-app:head tag will be loaded at the end of the page's HEAD tag.
+It should contain stylesheet references (and possibly other stuff) that this application requires.
+-->
+<!-- cot-app:head -->
+
+<!-- @if !IS_EMBEDDED -->
+<!-- standalone apps may want to set some meta tags in here -->
+<title>RP_LRFAQ</title>
+<meta property="og:title" content="Lobbyist Registrar quick and easy interactive questionnaire | City of Toronto">
+<meta name="DC.title" content="LRFAQ">
+<meta name="WT.sp" content="LRFAQ">
+<meta property="og:description" content="LRFAQ - Lobbyist Registrar quick and easy interactive questionnaire | City of Toronto">
+<meta name="DC.description" lang="en" content="Lobbyist Registrar quick and easy interactive questionnaire">
+<meta name="description" content="Lobbyist Registrar quick and easy interactive questionnaire | City of Toronto">
+<meta name="keywords" content="Lobbyist Registrar, questionnaire">
+<meta name="Author" content="City of Toronto">
+<meta name="Owner" content="City of Toronto">
+<meta name="DC.language" content="en-CA">
+<meta name="DC.subject" content="The Lobbyist Registrar is responsible for promoting and enhancing the integrity of the City’s decision-making through public disclosure of lobbying activities and regulation of lobbyists conduct.">
+<meta charset="UTF-8">
+<!--@endif-->
+
+<!-- From here to the next endbuild tag, all the files will be concatenated into a single file called main.css: -->
+<!--@exec startBuildTagWithCacheBuster('styles/main.css')-->
+<!-- CoreJS uses the following core:css/endinject tag to inject bower_components stylesheet file references: -->
+<!-- core:css -->
+<!-- endinject -->
+
+<!-- place your application stylesheet references here: -->
+<link rel="stylesheet" type="text/css" href="<!-- @echo SRC_PATH -->/styles/main.css">
+
+<!-- endbuild -->
+
+<!-- From here to the next endbuild tag, all the files will be concatenated into a single print-only file called core_print.css: -->
+<!--@exec startBuildTagWithCacheBuster('styles/core_print.css', 'media="print"')-->
+<!-- CoreJS uses the following core_print:css/endinject tag to inject bower_components print-only stylesheet file references: -->
+<!-- core_print:css -->
+<!-- endinject -->
+
+<!-- place any application print-only stylesheet references here -->
+
+<!-- endbuild -->
+<!-- cot-app:head end-->
+
+<!--
+2. BODY
+Everything inside this cot-app:body tag will be loaded inside the webpage
+It should contain the HTML elements that make up the visual portion of this application.
+IMPORTANT:
+Remember to use unique element IDs and class names so that this app doesn't interfere with other parts of the cframe/website
+-->
+<!-- cot-app:body -->
+<div class="row">
+  <div class="col-xs-12 col-md-9">
+  <article><h2>Do I Need to Register as a Lobbyist?</h2></article></div>
+  <div id="start-again" class="col-xs-12 col-md-3 hidden">
+          <button id="back" class="btn btn-default" onclick="back()">Back</button>
+          <button class="btn btn-default" onclick="showquestion(0)">Start Over</button>
+  </div>
+</div>
+
+
+
+<div class="row">
+<div id="start" class="media col-xs-12 col-md-12 text-center">
+    <div class="media-body ">
+
+        <h3>Answer this quick and easy interactive questionnaire to find out</h3>
+        <button class="btn btn-primary btn-block btn-md" onclick="showquestion(1)">START</button>
+
+
+    </div>
+</div>
+
+
+<!-- Questions -->
+
+<div id="q1" class="media col-xs-12 col-md-12 hidden">
+    <div class="media-body text-center">
+
+        <p>Will you be directly communicating with City of Toronto Public Office Holders (POH) on subject matters listed in the definition of Lobby, <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" target="_blank"> §. 140-1</a>, of the Lobbying By-law?</p>
+      <button class="btn btn-primary" onclick="showquestion(2)">Yes</button>
+      <button class="btn btn-primary" onclick="showquestion(8)">No</button>
+
+    </div>
+</div>
+
+<div id="q2" class="media col-xs-12 col-md-12 hidden">
+    <div class="media-body">
+
+      <p>Does any of the following apply to you?</p>
+        <ul>
+            <li>Are you communicating on behalf of an individual, corporation, organization or other person, or a partnership that employed you?</li>
+            <li>Are you a sole proprietor communicating on behalf of your business?</li>
+            <li>Are you a partner in a business communicating on behalf of your partnership?</li>
+        </ul><br>
+        <div class="text-center"><button class="btn btn-primary" onclick="showquestion(3)">Yes</button>
+      <button class="btn btn-primary" onclick="showquestion(4)">No</button>
+        </div>
+
+    </div>
+</div>
+<div id="q3" class="media col-xs-12 col-md-12 hidden">
+    <div class="media-body">
+
+      <p>Are you subject to any of the exemptions found in sections <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" target="_blank"> § 140-3</a> to <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" target="_blank"> § 140-6</a> of the Lobbying By-law?</p>
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action" onclick="scenario.push('3');$('#q3').addClass('hidden');$('#rst4').fadeIn(3000).removeClass('hidden');">Are you a government or public sector official acting in your official capacity?</a>
+          <a href="#" class="list-group-item list-group-item-action" onclick="scenario.push('3');$('#q3').addClass('hidden');$('#rst4').fadeIn(3000).removeClass('hidden');">Are you speaking during Council, Standing Committee, Public meeting, open house or media even sponsored by the City?</a>
+          <a href="#" class="list-group-item list-group-item-action" onclick="scenario.push('3');$('#q3').addClass('hidden');$('#rst4').fadeIn(3000).removeClass('hidden');">Are you requesting information?</a>
+          <a href="#" class="list-group-item list-group-item-action" onclick="scenario.push('3');$('#q3').addClass('hidden');$('#rst4').fadeIn(3000).removeClass('hidden');">Are you providing compliments or complaints about a program or service?</a>
+          <a href="#" class="list-group-item list-group-item-action" onclick="showquestion(21)">Are you a not-for-profit subject to exceptions in § 140-4 of the Lobbying By-law?</a>
+          <a href="#" class="list-group-item list-group-item-action" onclick="scenario.push('3');$('#q3').addClass('hidden');$('#rst1').fadeIn(3000).removeClass('hidden');">None of the above apply to me</a>
+        </div>
+    </div>
+</div>
+<div id="q4" class="media col-xs-12 col-md-12 text-center hidden">
+    <div class="media-body">
+
+      <p>Are you communicating for payment and on behalf of a client (an individual, corporation, or other person, or a partnership or organization)?</p>
+      <button class="btn btn-primary" onclick="showquestion(5)">Yes</button>
+      <button class="btn btn-primary" onclick="showquestion(6)">No</button>
+    </div>
+</div>
+<div id="q5" class="media col-xs-12 col-md-12 hidden">
+    <div class="media-body">
+
+      <p>Are you subject to any of the exemptions found in sections <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" target="_blank"> § 140-3</a> to <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" target="_blank"> § 140-6</a> of the Lobbying By-law?</p>
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action" onclick="scenario.push('5');$('#q5').addClass('hidden');$('#rst4').fadeIn(3000).removeClass('hidden');">Are you a government or public sector official acting in your official capacity?</a>
+          <a href="#" class="list-group-item list-group-item-action" onclick="scenario.push('5');$('#q5').addClass('hidden');$('#rst4').fadeIn(3000).removeClass('hidden');">Are you speaking during Council, Standing Committee, Public meeting, open house or media even sponsored by the City?</a>
+          <a href="#" class="list-group-item list-group-item-action" onclick="scenario.push('5');$('#q5').addClass('hidden');$('#rst4').fadeIn(3000).removeClass('hidden');">Are you requesting information?</a>
+          <a href="#" class="list-group-item list-group-item-action" onclick="scenario.push('5');$('#q5').addClass('hidden');$('#rst4').fadeIn(3000).removeClass('hidden');">Are you providing compliments or complaints about a program or service?</a>
+          <a href="#" class="list-group-item list-group-item-action" onclick="showquestion(21)">Are you a not-for-profit subject to exceptions in § 140-4 of the Lobbying By-law?</a>
+          <a href="#" class="list-group-item list-group-item-action" onclick="scenario.push('5');$('#q5').addClass('hidden');$('#rst2').fadeIn(3000).removeClass('hidden');">None of the above apply to me</a>
+        </div>
+    </div>
+</div>
+<div id="q6" class="media col-xs-12 col-md-12 hidden">
+    <div class="media-body">
+
+      <p>Does any of the following apply to you?</p>
+        <ul>
+            <li>Are you an individual, corporation, organization or other person, or a partnership, who or that, without payment, lobbying or causing an employee to lobby a POH on behalf of or for the benefit of the interests of a for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" target="_blank">Restricted definition</a>)?</li>
+            <li>Are you a director of a for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" target="_blank">Restricted definition</a>) lobbying or causing an employee to lobby a POH on behalf of, or for benefit of the interests of, the for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" target="_blank">Restricted definition</a>)?</li>
+            <li>Are you a shareholder of a for-profit entity, lobbying or causing an employee to lobby a POH on behalf of, or for benefit of the interests of, the for-profit entity?</li>
+        </ul><br>
+        <div class="text-center">
+            <button class="btn btn-primary" onclick="showquestion(7)">Yes</button>
+            <button class="btn btn-primary" onclick="scenario.push('6');$('#q6').addClass('hidden');$('#rst4').fadeIn(3000).removeClass('hidden');">No</button>
+        </div>
+
+    </div>
+</div>
+<div id="q7" class="media col-xs-12 col-md-12 hidden">
+    <div class="media-body">
+
+      <p>Are you subject to any of the exemptions found in sections <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" target="_blank"> § 140-3</a> to <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" target="_blank"> § 140-6</a> of the Lobbying By-law?</p>
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action" onclick="scenario.push('7');$('#q7').addClass('hidden');$('#rst4').fadeIn(3000).removeClass('hidden');">Are you a government or public sector official acting in your official capacity?</a>
+          <a href="#" class="list-group-item list-group-item-action" onclick="scenario.push('7');$('#q7').addClass('hidden');$('#rst4').fadeIn(3000).removeClass('hidden');">Are you speaking during Council, Standing Committee, Public meeting, open house or media even sponsored by the City?</a>
+          <a href="#" class="list-group-item list-group-item-action" onclick="scenario.push('7');$('#q7').addClass('hidden');$('#rst4').fadeIn(3000).removeClass('hidden');">Are you requesting information?</a>
+          <a href="#" class="list-group-item list-group-item-action" onclick="scenario.push('7');$('#q7').addClass('hidden');$('#rst4').fadeIn(3000).removeClass('hidden');">Are you providing compliments or complaints about a program or service?</a>
+          <a href="#" class="list-group-item list-group-item-action" onclick="showquestion(21)">Are you a not-for-profit subject to exceptions in § 140-4 of the Lobbying By-law?</a>
+          <a href="#" class="list-group-item list-group-item-action" onclick="scenario.push('7');$('#q7').addClass('hidden');$('#rst3').fadeIn(3000).removeClass('hidden');">None of the above apply to me</a>
+        </div>
+    </div>
+</div>
+<div id="q8" class="media col-xs-12 col-md-12 text-center hidden">
+    <div class="media-body">
+
+      <p>Are you appealing to members of the public through the mass media or by direct communication to communicate with a Public Office Holder?</p>
+      <button class="btn btn-primary" onclick="showquestion(2)">Yes</button>
+      <button class="btn btn-primary" onclick="showquestion(9)">No</button>
+    </div>
+</div>
+<div id="q9" class="media col-xs-12 col-md-12 text-center hidden">
+    <div class="media-body">
+
+      <p>Are you arranging a meeting between a Public Office Holder and another person?</p>
+      <button class="btn btn-primary" onclick="showquestion(10)">Yes</button>
+      <button class="btn btn-primary" onclick="scenario.push('9');$('#q9').addClass('hidden');$('#rst4').fadeIn(3000).removeClass('hidden');">No</button>
+    </div>
+</div>
+<div id="q10" class="media col-xs-12 col-md-12 text-center hidden">
+    <div class="media-body">
+
+      <p>Are you communicating for payment and on behalf of a client (an individual, corporation, or other person, or a partnership or organization)?</p>
+      <button class="btn btn-primary" onclick="scenario.push('10');$('#q10').addClass('hidden');$('#rst2').fadeIn(3000).removeClass('hidden');">Yes</button>
+      <button class="btn btn-primary" onclick="showquestion(11)">No</button>
+    </div>
+</div>
+<div id="q11" class="media col-xs-12 col-md-12 hidden">
+    <div class="media-body">
+
+      <p>Does any of the following apply to you?</p>
+        <ul>
+            <li>Are you an individual, corporation, organization or other person, or a partnership, who or that, without payment, lobbying or causing an employee to lobby a Public Office Holder on behalf of or for the benefit of the interests of a for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" target="_blank">Restricted definition</a>)?</li>
+            <li>Are you a director of a for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" target="_blank">Restricted definition</a>) lobbying or causing an employee to lobby a Public Office Holder on behalf of, or for benefit of the interests of, the for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" target="_blank">Restricted definition</a>)?</li>
+            <li>Are you a shareholder of a for-profit entity, lobbying or causing an employee to lobby a Public Office Holder on behalf of, or for benefit of the interests of, the for-profit entity?</li>
+        </ul><br>
+        <div class="text-center">
+            <button class="btn btn-primary" onclick="scenario.push('11');$('#q11').addClass('hidden');$('#rst3').fadeIn(3000).removeClass('hidden');">Yes</button>
+            <button class="btn btn-primary" onclick="scenario.push('11');$('#q11').addClass('hidden');$('#rst4').fadeIn(3000).removeClass('hidden');">No</button></div>
+        </div>
+</div>
+<!-- Link case-->
+<div id="q21" class="media col-xs-12 col-md-12 text-center hidden">
+    <div class="media-body">
+
+      <p>Are you a Consultant Lobbyist communicating on behalf of a not-for-profit?</p>
+      <button class="btn btn-primary" onclick="scenario.push('21');$('#q21').addClass('hidden');$('#rst6').fadeIn(3000).removeClass('hidden');">Yes</button>
+      <button class="btn btn-primary" onclick="showquestion(22)">No</button>
+    </div>
+</div>
+<div id="q22" class="media col-xs-12 col-md-12 text-center hidden">
+    <div class="media-body">
+
+      <p>Are you a member, person on the staff of the member, or officer or employee of a not-for-profit corporation or other not-for-profit corporation or other not-for-profit organization acting in your official capacity?</p>
+      <button class="btn btn-primary" onclick="showquestion(23)">Yes</button>
+      <button class="btn btn-primary" onclick="scenario.push('22');$('#q22').addClass('hidden');$('#rst6').fadeIn(3000).removeClass('hidden');">No</button>
+    </div>
+</div>
+<div id="q23" class="media col-xs-12 col-md-12 text-center hidden">
+    <div class="media-body">
+
+      <p>Are you an employee, a director, or a volunteer lobbying on behalf of a not-for-profit organization related to one or all of the following? (Professions, labour groups, business, industry, or for-profit entities)</p>
+      <button class="btn btn-primary" onclick="scenario.push('23');$('#q23').addClass('hidden');$('#rst6').fadeIn(3000).removeClass('hidden');">Yes</button>
+      <button class="btn btn-primary" onclick="showquestion(24)">No</button>
+    </div>
+</div>
+<div id="q24" class="media col-xs-12 col-md-12 text-center hidden">
+    <div class="media-body">
+
+      <p>Is the not-for-profit organization funded by a for-profit entity to advance their finance/commercial interests?</p>
+      <button class="btn btn-primary" onclick="scenario.push('24');$('#q24').addClass('hidden');$('#rst6').fadeIn(3000).removeClass('hidden');">Yes</button>
+      <button class="btn btn-primary" onclick="showquestion(25)">No</button>
+    </div>
+</div>
+<div id="q25" class="media col-xs-12 col-md-12 text-center hidden">
+    <div class="media-body">
+
+      <p>Is the not-for-profit communicating with Public Office Holders with respect to a grant application, award, or other financial benefit outside of the established administrative review, approval or appeal processes for the grant application, award or other financial benefit?</p>
+      <button class="btn btn-primary" onclick="showquestion(26)">Yes</button>
+      <button class="btn btn-primary" onclick="scenario.push('25');$('#q25').addClass('hidden');$('#rst5').fadeIn(3000).removeClass('hidden');">No</button>
+    </div>
+</div>
+<div id="q26" class="media col-xs-12 col-md-12 text-center hidden">
+    <div class="media-body">
+
+      <p>Is the not-for-profit a “Community Services Sector” organization that is not related to professions, labour groups, business, industry or for-profit entities?</p>
+      <button class="btn btn-primary" onclick="scenario.push('26');$('#q26').addClass('hidden');$('#rst5').fadeIn(3000).removeClass('hidden');">Yes</button>
+      <button class="btn btn-primary" onclick="scenario.push('26');$('#q26').addClass('hidden');$('#rst6').fadeIn(3000).removeClass('hidden');">No</button>
+    </div>
+</div>
+<!-- END Questions -->
+<!-- Results -->
+<div id="rst1" class="media col-xs-12 col-md-12 text-center hidden">
+    <div class="media-body">
+      <h2>You are required to register as an In-house Lobbyist. Contact Lobbyist Registrar Office for more information </h2>
+    </div>
+    <p><br><br><i>Disclaimer : This chart is a guide to assist registrants using the Lobbyist Registry system; any discrepancy between the chart and Municipal Code Chapter 140, Municipal Code Chapter 140 shall govern.</i></p>
+</div>
+<div id="rst2" class="media col-xs-12 col-md-12 text-center hidden">
+    <div class="media-body">
+      <h2>You are required to register as a Consultant Lobbyist. Contact Lobbyist Registrar Office for more information </h2>
+    </div>
+    <p><br><br><i>Disclaimer : This chart is a guide to assist registrants using the Lobbyist Registry system; any discrepancy between the chart and Municipal Code Chapter 140, Municipal Code Chapter 140 shall govern.</i></p>
+</div>
+<div id="rst3" class="media col-xs-12 col-md-12 text-center hidden">
+    <div class="media-body">
+      <h2>You are required to register as a Voluntary Lobbyist. Contact Lobbyist Registrar Office for more information </h2>
+    </div>
+    <p><br><br><i>Disclaimer : This chart is a guide to assist registrants using the Lobbyist Registry system; any discrepancy between the chart and Municipal Code Chapter 140, Municipal Code Chapter 140 shall govern.</i></p>
+</div>
+<div id="rst4" class="media col-xs-12 col-md-12 text-center hidden">
+    <div class="media-body">
+      <h2>You are NOT a Lobbyist. Contact Lobbyist Registrar Office for more information </h2>
+    </div>
+    <p><br><br><i>Disclaimer : This chart is a guide to assist registrants using the Lobbyist Registry system; any discrepancy between the chart and Municipal Code Chapter 140, Municipal Code Chapter 140 shall govern.</i></p>
+</div>
+<div id="rst5" class="media col-xs-12 col-md-12 text-center hidden">
+    <div class="media-body">
+      <h2>The not-for-profit exemption applies to you, registration is NOT required</h2>
+    </div>
+    <p><br><br><i>Disclaimer : This chart is a guide to assist registrants using the Lobbyist Registry system; any discrepancy between the chart and Municipal Code Chapter 140, Municipal Code Chapter 140 shall govern.</i></p>
+</div>
+<div id="rst6" class="media col-xs-12 col-md-12 text-center hidden">
+    <div class="media-body">
+      <h2>The not-for-profit exemption does NOT apply to you, unless another exemption applies, you are required to register</h2>
+    </div>
+    <p><br><br><i>Disclaimer : This chart is a guide to assist registrants using the Lobbyist Registry system; any discrepancy between the chart and Municipal Code Chapter 140, Municipal Code Chapter 140 shall govern.</i></p>
+</div>
+
+<!-- END Results -->
+</div>
+<!-- cot-app:body end-->
+
+<!--
+3. FOOTER
+Everything inside the cot-app:footer tag will be loaded at the end of the page's BODY tag.
+It should contain script references that this application requires.
+-->
+<!-- cot-app:footer -->
+
+
+<!-- From here to the next endbuild tag, all the files will be concatenated into a single file called main.js: -->
+<!--@exec startBuildTagWithCacheBuster('scripts/main.js')-->
+<!-- CoreJS uses the following core:js/endinject tag to inject bower_components javascript file references: -->
+<!-- core:js -->
+<!-- endinject -->
+
+<!-- place your application script references here: -->
+<script type="text/javascript" src="<!-- @echo SRC_PATH -->/scripts/main.js"></script>
+
+<!-- endbuild -->
+
+<!--@if ENV!='prod'-->
+<!-- Here we log out some debug info for non-production builds-->
+<script type="text/javascript">
+  console.log('RP_LRFAQ running on <!--@echo ENV--> environment');
+  console.log('RP_LRFAQ qa release: <!--@echo QA_RELEASE-->');
+  console.log('RP_LRFAQ build: <!--@echo BUILD_ID-->');
+</script>
+<!--@endif-->
+
+<!-- cot-app:footer end-->
