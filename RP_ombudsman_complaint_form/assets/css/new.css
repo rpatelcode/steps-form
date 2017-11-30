@@ -1,0 +1,158 @@
+.redstar{
+    color: #e64b5f;
+}
+.button-how-complain-back {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 33px;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    background-color: #004A87;
+    width: 100%;
+    transition: 1s;}
+/*------------------------------------------------------------------
+  [Parsley]
+*/
+.parsley-errors-list.filled {
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding: 10px 20px;
+  position: relative;
+  background-color: #eb6357;
+  color: #ffffff;
+}
+.parsley-errors-list.filled:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: -6px;
+  left: 20px;
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  -moz-transform: scale(0.9999);
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #eb6357;
+}
+.parsley-errors-list.filled > li {
+  list-style: none;
+}
+/*------------------------------------------------------------------
+  [Perfect Scrollbar]
+*/
+/*Perfect Scrollbar*/
+.ps-container > .ps-scrollbar-y-rail {
+  width: 6px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+  right: 0;
+  height: 6px;
+  width: 6px;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+.ps-container > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y,
+.ps-container > .ps-scrollbar-y-rail:active > .ps-scrollbar-y {
+  width: 6px;
+}
+
+/*--Submit btn */
+.login-submit {
+  padding-top: 19px;
+  margin-bottom: 18px;
+}
+.login-submit .btn {
+  width: 100%;
+}
+.login-submit > div:first-child {
+  padding-right: 10px;
+}
+.login-submit > div:last-child {
+  padding-left: 10px;
+}
+/* form view field*/
+.fild-view {
+  width: 100%;
+  height: 48px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+  background-image: none;
+}
+/*----- Btn class */
+
+.btn {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  border-radius: 2px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.btn-primary {
+  border-color: #2a75f3;
+  color: #fff;
+  background-color: #aad145;
+  border-color: #004A87;
+}
+.btn-xl {
+  padding: 0 12px;
+  font-size: 15px;
+  line-height: 43px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+/*------------------------------------------------------------------
+  [Scroll to top button]
+*/
+.be-scroll-top {
+  cursor: pointer;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 0 14px;
+  display: none;
+  -webkit-transition: background-color 0.2s ease;
+  -o-transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
+}
+.be-scroll-top:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.be-scroll-top:hover,
+.be-scroll-top:focus {
+  color: #ffffff;
+}
+.be-scroll-top:before {
+  content: '\f2fc';
+  font-family: 'Material Icons';
+  font-size: 33px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+
