@@ -1,2 +1,2 @@
 # city_clerks_btp
-City Clerks Applications Repo
+City Clerks Application Repo
