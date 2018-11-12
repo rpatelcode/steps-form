@@ -1,13 +1,14 @@
 {
-  "name": "RP_LRFAQ",
-  "version": "0.0.0",
+  "name": "lobbyist_questionnaire",
+  "version": "1.0.1",
   "qaRelease": 0,
-  "description": "Describe this app",
-  "author": "Your name here",
+  "description": "Lobbyist Questionnaire",
+  "author": "Ramesh Patel",
   "contributors": [],
   "devDependencies": {
     "babel-preset-env": "^1.6.0",
     "babel-register": "^6.22.0",
+    "babel-polyfill": "^6.26.0",
     "browser-sync": "^2.18.7",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
@@ -20,6 +21,7 @@
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.1.1",
     "gulp-inject": "^4.2.0",
+    "gulp-inject-string": "^1.1.1",
     "gulp-notify": "^3.0.0",
     "gulp-remote-src": "^0.4.2",
     "gulp-rename": "^1.2.2",
@@ -33,6 +35,9 @@
     "node-env-file": "^0.1.8",
     "run-sequence": "^1.2.2"
   },
+  "dependencies": {
+    "core": "git+https://github.com/CityofToronto/corejs.git#9.2.2"
+  },
   "coreConfig": {
     "isEmbedded": true,
     "includeFormValidation": false,
@@ -41,18 +46,17 @@
     "includeJQueryMaskedInput": false,
     "includePlaceholders": false,
     "includeMultiSelect": false,
-    "includeOMS": false,
+    "includeMap": false,
     "includeFullCalendar": false,
     "includeDatePicker": false,
     "includeLogin": false,
     "includeRangePicker": false,
     "includeMoment": false,
     "includeModeling": true,
-    "includeWebtrends": true,
+    "includeWebtrends": false,
     "isInternetStandaloneApp": false,
-    "includeBootbox": true,
     "includeDropzone": false,
-    "includeModal" : true,
-    "includeTerms": true
+    "includeModal": true,
+    "includeTerms": false
   }
 }
