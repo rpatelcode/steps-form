@@ -13,3 +13,19 @@
 .top-buffer {
   margin-top: 35px;
 }
+.radio {
+  margin-left: 38px;
+}
+.question {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 21px;
+  line-height: inherit;
+  color: #333;
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
+  padding-inline-start: 2px;
+  padding-inline-end: 2px;
+}
