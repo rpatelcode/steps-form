@@ -2,14 +2,14 @@ const data = {
   questions: [
     {
       id: 1,
-      desc: "Answer this quick and easy interactive questionnaire to find out",
+      desc: "Answer this quick and easy interactive questionnaire to find out.",
       yes: 2,
       no: null
     },
     {
       id: 2,
       desc:
-        'Will you be directly communicating with City of Toronto Public Office Holders (POH) on subject matters listed in the definition of Lobby, <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" title="Toronto Municipal Code Chapter 140-1" target="_blank" rel="noopener noreferrer"><span class="sr-only">Toronto municipal code chapter 140-1</span> §. 140-1 <span class="sr-only">Open in New Window</span></a>, of the Lobbying By-law?',
+        'Will you be directly communicating with City of Toronto Public Office Holders (POH) on subject matters listed in the definition of Lobby, <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" title="Toronto Municipal Code Chapter 140-1"  target="_blank" rel="noopener noreferrer"><span class="sr-only">Toronto municipal code chapter</span> §. 140-1 <span class="sr-only">Open in New Window</span></a>, of the Lobbying By-law?',
       yes: 3,
       no: 9
     },
@@ -22,7 +22,40 @@ const data = {
     },
     {
       id: 4,
-      desc: "Accordions",
+      desc:
+        'Are you subject to any of the exemptions found in sections <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf"   target="_blank" title="PDF Document" rel="noopener noreferrer" > <span class="sr-only"> Toronto municipal code chapter </span> §. 140-3 <span class="sr-only">Open in New Window</span> </a> to <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf"   target="_blank" title="PDF Document" rel="noopener noreferrer" > <span class="sr-only"> Toronto municipal code chapter </span> §. 140-6 <span class="sr-only">Open in New Window</span> </a> of the Lobbying By-law?',
+      accordion: [
+        {
+          id: 51,
+          desc:
+            "You are a government or public sector official acting in your official capacity",
+          yes: 34,
+          no: null
+        },
+        {
+          id: 52,
+          desc:
+            "You are speaking during Council, Standing Committee, Public meeting, open house or media even sponsored by the City",
+          yes: 34,
+          no: null
+        },
+        { id: 53, desc: "You are requesting information", yes: 34, no: null },
+        {
+          id: 54,
+          desc:
+            "You are providing compliments or complaints about a program or service",
+          yes: 34,
+          no: null
+        },
+        {
+          id: 55,
+          desc:
+            "You are a not-for-profit subject to exceptions in § 140-4 of the Lobbying By-law",
+          yes: 21,
+          no: null
+        },
+        { id: 56, desc: "None of the above apply to me", yes: 31, no: null }
+      ],
       yes: null,
       no: null
     },
@@ -35,20 +68,86 @@ const data = {
     },
     {
       id: 6,
-      desc: "Accordions",
+      desc:
+        'Are you subject to any of the exemptions found in sections <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf"   target="_blank" title="PDF Document" rel="noopener noreferrer" > <span class="sr-only"> Toronto municipal code chapter </span> §. 140-3 <span class="sr-only">Open in New Window</span> </a> to <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf"   target="_blank" title="PDF Document" rel="noopener noreferrer" > <span class="sr-only"> Toronto municipal code chapter </span> §. 140-6 <span class="sr-only">Open in New Window</span> </a> of the Lobbying By-law?',
+      accordion: [
+        {
+          id: 51,
+          desc:
+            "You are a government or public sector official acting in your official capacity",
+          yes: 34,
+          no: null
+        },
+        {
+          id: 52,
+          desc:
+            "You are speaking during Council, Standing Committee, Public meeting, open house or media even sponsored by the City",
+          yes: 34,
+          no: null
+        },
+        { id: 53, desc: "You are requesting information", yes: 34, no: null },
+        {
+          id: 54,
+          desc:
+            "You are providing compliments or complaints about a program or service",
+          yes: 34,
+          no: null
+        },
+        {
+          id: 55,
+          desc:
+            "You are a not-for-profit subject to exceptions in § 140-4 of the Lobbying By-law",
+          yes: 21,
+          no: null
+        },
+        { id: 56, desc: "None of the above apply to me", yes: 32, no: null }
+      ],
       yes: null,
       no: null
     },
     {
       id: 7,
       desc:
-        'Does any of the following apply to you? <br/><br/><ul> <li> Are you an individual, corporation, organization or other person, or a partnership, who or that, without payment, lobbying or causing an employee to lobby a POH on behalf of or for the benefit of the interests of a for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" title="Toronto Municipal Code Chapter 140" target="_blank" rel="noopener noreferrer" >Restricted definition <span class="sr-only"> Open in New Window Toronto Municipal Code Chapter 140</span> </a>)? </li> <li> Are you a director of a for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" title="Toronto Municipal Code Chapter 140" target="_blank" rel="noopener noreferrer" >Restricted definition <span class="sr-only"> Open in New Window Toronto Municipal Code Chapter 140</span> </a>) lobbying or causing an employee to lobby a POH on behalf of, or for benefit of the interests of, the for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" title="Toronto Municipal Code Chapter 140" target="_blank" rel="noopener noreferrer" >Restricted definition <span class="sr-only"> Open in New Window Toronto Municipal Code Chapter 140</span> </a>)? </li> <li> Are you a shareholder of a for-profit entity, lobbying or causing an employee to lobby a POH on behalf of, or for benefit of the interests of, the for-profit entity? </li> </ul>',
+        'Does any of the following apply to you? <br/><br/><ul> <li> Are you an individual, corporation, organization or other person, or a partnership, who or that, without payment, lobbying or causing an employee to lobby a POH on behalf of or for the benefit of the interests of a for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" title="Toronto Municipal Code Chapter 140"   target="_blank" rel="noopener noreferrer" >Restricted definition <span class="sr-only"> Open in New Window Toronto Municipal Code Chapter 140</span> </a>)? </li> <li> Are you a director of a for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" title="Toronto Municipal Code Chapter 140"   target="_blank" rel="noopener noreferrer" >Restricted definition <span class="sr-only"> Open in New Window Toronto Municipal Code Chapter 140</span> </a>) lobbying or causing an employee to lobby a POH on behalf of, or for benefit of the interests of, the for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" title="Toronto Municipal Code Chapter 140"   target="_blank" rel="noopener noreferrer" >Restricted definition <span class="sr-only"> Open in New Window Toronto Municipal Code Chapter 140</span> </a>)? </li> <li> Are you a shareholder of a for-profit entity, lobbying or causing an employee to lobby a POH on behalf of, or for benefit of the interests of, the for-profit entity? </li> </ul>',
       yes: 8,
       no: 34
     },
     {
       id: 8,
-      desc: "Accordions",
+      desc:
+        'Are you subject to any of the exemptions found in sections <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf"   target="_blank" title="PDF Document" rel="noopener noreferrer" > <span class="sr-only"> Toronto municipal code chapter </span> §. 140-3 <span class="sr-only">Open in New Window</span> </a> to <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf"   target="_blank" title="PDF Document" rel="noopener noreferrer" > <span class="sr-only"> Toronto municipal code chapter </span> §. 140-6 <span class="sr-only">Open in New Window</span> </a> of the Lobbying By-law?',
+      accordion: [
+        {
+          id: 51,
+          desc:
+            "You are a government or public sector official acting in your official capacity",
+          yes: 34,
+          no: null
+        },
+        {
+          id: 52,
+          desc:
+            "You are speaking during Council, Standing Committee, Public meeting, open house or media even sponsored by the City",
+          yes: 34,
+          no: null
+        },
+        { id: 53, desc: "You are requesting information", yes: 34, no: null },
+        {
+          id: 54,
+          desc:
+            "You are providing compliments or complaints about a program or service",
+          yes: 34,
+          no: null
+        },
+        {
+          id: 55,
+          desc:
+            "You are a not-for-profit subject to exceptions in § 140-4 of the Lobbying By-law",
+          yes: 21,
+          no: null
+        },
+        { id: 56, desc: "None of the above apply to me", yes: 33, no: null }
+      ],
       yes: null,
       no: null
     },
@@ -76,7 +175,7 @@ const data = {
     {
       id: 12,
       desc:
-        'Does any of the following apply to you? <ul> <li> Are you an individual, corporation, organization or other person, or a partnership, who or that, without payment, lobbying or causing an employee to lobby a Public Office Holder on behalf of or for the benefit of the interests of a for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" title="Toronto Municipal Code Chapter 140" aria-describedby="pdflink" target="_blank" rel="noopener noreferrer" >Restricted definition</a>)? </li> <li> Are you a director of a for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" title="Toronto Municipal Code Chapter 140" aria-describedby="pdflink" target="_blank" rel="noopener noreferrer" >Restricted definition</a>) lobbying or causing an employee to lobby a Public Office Holder on behalf of, or for benefit of the interests of, the for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" title="Toronto Municipal Code Chapter 140" aria-describedby="pdflink" target="_blank" rel="noopener noreferrer" >Restricted definition</a>)? </li> <li> Are you a shareholder of a for-profit entity, lobbying or causing an employee to lobby a Public Office Holder on behalf of, or for benefit of the interests of, the for-profit entity? </li> </ul>',
+        'Does any of the following apply to you? <ul> <li> Are you an individual, corporation, organization or other person, or a partnership, who or that, without payment, lobbying or causing an employee to lobby a Public Office Holder on behalf of or for the benefit of the interests of a for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" title="Toronto Municipal Code Chapter 140"    target="_blank" rel="noopener noreferrer" >Restricted definition <span class="sr-only">Open in a new window Toronto Municipal Code Chapter 140, Lobbying.</span></a>)? </li> <li> Are you a director of a for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" title="Toronto Municipal Code Chapter 140"    target="_blank" rel="noopener noreferrer" >Restricted definition <span class="sr-only">Open in a new window Toronto Municipal Code Chapter 140, Lobbying.</span></a>) lobbying or causing an employee to lobby a Public Office Holder on behalf of, or for benefit of the interests of, the for-profit entity or organization (<a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" title="Toronto Municipal Code Chapter 140"    target="_blank" rel="noopener noreferrer" >Restricted definition <span class="sr-only">Open in a new window Toronto Municipal Code Chapter 140, Lobbying.</span></a>)? </li> <li> Are you a shareholder of a for-profit entity, lobbying or causing an employee to lobby a Public Office Holder on behalf of, or for benefit of the interests of, the for-profit entity? </li> </ul>',
       yes: 33,
       no: 34
     },
@@ -118,49 +217,49 @@ const data = {
     {
       id: 26,
       desc:
-        " Is the not-for-profit a “Community Services Sector” organization that is not related to professions, labour groups, business, industry or for-profit entities? ",
+        "Is the not-for-profit a “Community Services Sector” organization that is not related to professions, labour groups, business, industry or for-profit entities? ",
       yes: 35,
       no: 36
     },
     {
       id: 31,
       desc:
-        " You are required to register as an In House Lobbyist. Contact The Lobbyist Registrar's Office for more information",
+        "You are required to register as an In House Lobbyist. Contact The Lobbyist Registrar's Office for more information.",
       yes: null,
       no: null
     },
     {
       id: 32,
       desc:
-        " You are required to register as a Consultant Lobbyist. Contact The Lobbyist Registrar's Office for more information",
+        "You are required to register as a Consultant Lobbyist. Contact The Lobbyist Registrar's Office for more information.",
       yes: null,
       no: null
     },
     {
       id: 33,
       desc:
-        " You are required to register as a Voluntary Lobbyist. Contact The Lobbyist Registrar's Office for more information",
+        "You are required to register as a Voluntary Lobbyist. Contact The Lobbyist Registrar's Office for more information.",
       yes: null,
       no: null
     },
     {
       id: 34,
       desc:
-        " You are NOT a Lobbyist. Contact The Lobbyist Registrar's Office for more information",
+        "You are NOT a Lobbyist. Contact The Lobbyist Registrar's Office for more information.",
       yes: null,
       no: null
     },
     {
       id: 35,
       desc:
-        " The not-for-profit exemption applies to you, registration is NOT required",
+        "The not-for-profit exemption applies to you, registration is NOT required.",
       yes: null,
       no: null
     },
     {
       id: 36,
       desc:
-        " The not-for-profit exemption does NOT apply to you, unless another exemption applies, you are required to register",
+        "The not-for-profit exemption does NOT apply to you, unless another exemption applies, you are required to register.",
       yes: null,
       no: null
     }
