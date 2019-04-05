@@ -33,7 +33,7 @@ const App = () => {
   } = state; // Shorten state in typing.
 
   useEffect(() => {
-    console.log("useEffect Called");
+    // console.log("useEffect Called");
     switch (id) {
       case 31:
       case 32:
@@ -442,8 +442,7 @@ const App = () => {
       {questionTitleStartOver}
       <div className="row">
         <div className="media col-xs-12 col-md-12">
-          <p>Question #{id}</p>
-          {/* Uncomment to see Question # */}
+          {/* <p>Question #{id}</p>  Uncomment to see Question # */}
           <CSSTransition
             key={forward.length - 1}
             in={true}
