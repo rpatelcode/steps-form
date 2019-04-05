@@ -23,7 +23,7 @@ const data = {
     {
       id: 4,
       desc:
-        'Are you subject to any of the exemptions found in sections <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf"   target="_blank" title="PDF Document" rel="noopener noreferrer" > <span class="sr-only"> Toronto municipal code chapter </span> §. 140-3 <span class="sr-only">Open in New Window</span> </a> to <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf"   target="_blank" title="PDF Document" rel="noopener noreferrer" > <span class="sr-only"> Toronto municipal code chapter </span> §. 140-6 <span class="sr-only">Open in New Window</span> </a> of the Lobbying By-law?',
+        'Are you subject to any of the exemptions found in sections <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf" target="_blank" title="PDF Document" rel="noopener noreferrer" > <span class="sr-only"> Toronto municipal code chapter </span> §. 140-3 <span class="sr-only">Open in New Window</span> </a> to <a href="http://www.toronto.ca/legdocs/municode/1184_140.pdf"   target="_blank" title="PDF Document" rel="noopener noreferrer" > <span class="sr-only"> Toronto municipal code chapter </span> §. 140-6 <span class="sr-only">Open in New Window</span> </a> of the Lobbying By-law?',
       accordion: [
         {
           id: 51,
