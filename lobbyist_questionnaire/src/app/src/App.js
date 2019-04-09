@@ -186,7 +186,7 @@ const App = () => {
                     name="option"
                     id={id.id}
                     value={id.yes}
-                    autoFocus={v === 0 ? true : false}
+                    // autoFocus={v === 0 ? true : false}
                     key={v++}
                     checked={radioSelect === id.id}
                     onChange={e => {
@@ -212,7 +212,7 @@ const App = () => {
         <div className="row">
           <div className="col-xs-12 col-md-9" />
           <div className="col-xs-12 col-md-3">
-            <PreviousBtn autoFocus={true} onClick={previous} />{" "}
+            <PreviousBtn onClick={previous} />{" "}
             <StartOverBtn onClick={startOver} />
           </div>
         </div>
@@ -242,7 +242,7 @@ const App = () => {
                   name="option1"
                   id="yes"
                   value={yes}
-                  autoFocus
+                  // autoFocus
                   onChange={e => {
                     setstate({
                       ...state,
@@ -294,10 +294,9 @@ const App = () => {
 
   // Not to show Accordions title becuase accordions title is with in accordions
   const roleSet = (
-    <div role="application" aria-labelledby="readThisQuestion" tabIndex="-1">
+    <>
       <div role="region" aria-label="question">
         <div
-          id="readThisQuestion"
           className="question"
           dangerouslySetInnerHTML={{
             __html:
@@ -306,7 +305,7 @@ const App = () => {
         />
       </div>
       {buttons_panel}
-    </div>
+    </>
   );
 
   const plainStartBtn = (
@@ -321,10 +320,9 @@ const App = () => {
   );
 
   const roleSet_ShowPreviousNextBtn = ( // for the question 3, 7, 12 we have UL, LI tag so taking out of fieldset
-    <div role="application" aria-labelledby="readThisQuestion" tabIndex="-1">
+    <>
       <div role="region" aria-label="question">
         <div
-          id="readThisQuestion"
           className="question"
           dangerouslySetInnerHTML={{ __html: currentQuestion }}
         />
@@ -335,7 +333,7 @@ const App = () => {
         <div className="col-xs-12 col-md-8" />
         <div className="col-xs-12 col-md-4">{next_previous_startover}</div>
       </div>
-    </div>
+    </>
   );
   let chooseQuestion; // Set With Or Without HTML fieldset tag
   switch (id) {
@@ -371,6 +369,16 @@ const App = () => {
             <React.Fragment>{chooseQuestion}</React.Fragment>
           </CSSTransition>
         </div>
+      </div>
+      <div role="log" aria-live="polite" className="sr-only">
+        {id === 31 ||
+        id === 32 ||
+        id === 33 ||
+        id === 34 ||
+        id === 35 ||
+        id === 36
+          ? "The answer is. " + currentQuestion.replace(/<(?:.|\n)*?>/gm, "")
+          : currentQuestion.replace(/<(?:.|\n)*?>/gm, "")}
       </div>
     </React.Fragment>
   );
