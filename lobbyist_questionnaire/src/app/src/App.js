@@ -1,6 +1,12 @@
 import "core-js/fn/array/find";
 import React, { useState, useEffect } from "react";
 import data from "./data/data";
+import {
+  StartBtn,
+  NextBtn,
+  PreviousBtn,
+  StartOverBtn
+} from "./components/Buttons";
 import { CSSTransition } from "react-transition-group";
 import "./App.css";
 
@@ -139,76 +145,15 @@ const App = () => {
     });
   };
 
-  const StartBtn = () => (
-    <>
-      <input
-        type="submit"
-        className="btn btn-primary"
-        aria-labelledby="startf"
-        // aria-describedby="startf"
-        value="START"
-        autoFocus={focuseStartBtn === true ? true : false}
-        onClick={handleSubmit}
-      />
-      <div id="startf" className="sr-only">
-        Do I Need to Register as a Lobbyist? Answer this quick and easy
-        interactive questionnaire to find out. Press and start questionnaire.
-      </div>
-    </>
-  );
-
-  const NextBtn = () => (
-    <>
-      <input
-        type="submit"
-        className="btn btn-primary"
-        aria-describedby="nextsr"
-        value="NEXT"
-        disabled={answerSelect === answer[state.answer.length - 1]}
-        onClick={handleSubmit}
-      />
-      <div id="nextsr" className="sr-only">
-        Will take you to the next question
-      </div>
-    </>
-  );
-
-  const PreviousBtn = props => (
-    <>
-      <input
-        type="submit"
-        className="btn btn-default"
-        aria-describedby="previoussr"
-        value="PREVIOUS"
-        onClick={previous}
-        autoFocus={props.autoFocus}
-      />
-      <div id="previoussr" className="sr-only">
-        Will take you to the previous question
-      </div>
-    </>
-  );
-
-  const StartOverBtn = () => (
-    <>
-      <button
-        className="btn btn-default"
-        aria-describedby="startsr"
-        onClick={startOver}
-      >
-        START OVER
-      </button>
-      <div id="startsr" className="sr-only">
-        Will take you to the beginning of the questionnaire
-      </div>
-    </>
-  );
-
   // Render Next, Previous and StartOver Button
   let next_previous_startover = (
     <React.Fragment>
       <div className="form-group">
-        <NextBtn /> <PreviousBtn /> <StartOverBtn />
+        <NextBtn
+          disabled={answerSelect === answer[state.answer.length - 1]}
+          onClick={handleSubmit}
+        />{" "}
+        <PreviousBtn onClick={previous} /> <StartOverBtn onClick={startOver} />
       </div>
     </React.Fragment>
   );
@@ -220,7 +165,10 @@ const App = () => {
     buttons_panel = ( // this is START button comes at first question.
       <React.Fragment>
         <div className="form-group">
-          <StartBtn />
+          <StartBtn
+            autoFocus={focuseStartBtn === true ? true : false}
+            onClick={handleSubmit}
+          />
         </div>
       </React.Fragment>
     );
@@ -264,7 +212,8 @@ const App = () => {
         <div className="row">
           <div className="col-xs-12 col-md-9" />
           <div className="col-xs-12 col-md-3">
-            <PreviousBtn autoFocus={true} /> <StartOverBtn />
+            <PreviousBtn autoFocus={true} onClick={previous} />{" "}
+            <StartOverBtn onClick={startOver} />
           </div>
         </div>
         <div className="row">
@@ -342,28 +291,6 @@ const App = () => {
       </React.Fragment>
     );
   }
-  // else {
-  //   // else hide tile and show "Start Over" button
-  //   questionTitleStartOver = (
-  //     <React.Fragment>
-  //       <div className="row">
-  //         <div className="col-xs-12 col-md-9" />
-  //         <div className="col-xs-12 col-md-3">
-  //           <button
-  //             className="btn btn-default"
-  //             aria-describedby="startsr"
-  //             onClick={startOver}
-  //           >
-  //             START OVER
-  //           </button>
-  //           <div id="startsr" className="sr-only">
-  //             Will take you to the beginning of the questionnaire
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </React.Fragment>
-  //   );
-  // }
 
   // Not to show Accordions title becuase accordions title is with in accordions
   const roleSet = (
