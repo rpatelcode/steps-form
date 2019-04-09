@@ -139,41 +139,76 @@ const App = () => {
     });
   };
 
-  // Render Previous and Next button
-  let previous_next_btn = (
+  const StartBtn = () => (
+    <>
+      <input
+        type="submit"
+        className="btn btn-primary"
+        aria-labelledby="startf"
+        // aria-describedby="startf"
+        value="START"
+        autoFocus={focuseStartBtn === true ? true : false}
+        onClick={handleSubmit}
+      />
+      <div id="startf" className="sr-only">
+        Do I Need to Register as a Lobbyist? Answer this quick and easy
+        interactive questionnaire to find out. Press and start questionnaire.
+      </div>
+    </>
+  );
+
+  const NextBtn = () => (
+    <>
+      <input
+        type="submit"
+        className="btn btn-primary"
+        aria-describedby="nextsr"
+        value="NEXT"
+        disabled={answerSelect === answer[state.answer.length - 1]}
+        onClick={handleSubmit}
+      />
+      <div id="nextsr" className="sr-only">
+        Will take you to the next question
+      </div>
+    </>
+  );
+
+  const PreviousBtn = props => (
+    <>
+      <input
+        type="submit"
+        className="btn btn-default"
+        aria-describedby="previoussr"
+        value="PREVIOUS"
+        onClick={previous}
+        autoFocus={props.autoFocus}
+      />
+      <div id="previoussr" className="sr-only">
+        Will take you to the previous question
+      </div>
+    </>
+  );
+
+  const StartOverBtn = () => (
+    <>
+      <button
+        className="btn btn-default"
+        aria-describedby="startsr"
+        onClick={startOver}
+      >
+        START OVER
+      </button>
+      <div id="startsr" className="sr-only">
+        Will take you to the beginning of the questionnaire
+      </div>
+    </>
+  );
+
+  // Render Next, Previous and StartOver Button
+  let next_previous_startover = (
     <React.Fragment>
       <div className="form-group">
-        <input
-          type="submit"
-          className="btn btn-primary"
-          aria-describedby="nextsr"
-          value="NEXT"
-          disabled={answerSelect === answer[state.answer.length - 1]}
-          onClick={handleSubmit}
-        />{" "}
-        <input
-          type="submit"
-          className="btn btn-default"
-          aria-describedby="previoussr"
-          value="PREVIOUS"
-          onClick={previous}
-        />{" "}
-        <button
-          className="btn btn-default"
-          aria-describedby="startsr"
-          onClick={startOver}
-        >
-          START OVER
-        </button>
-        <div id="startsr" className="sr-only">
-          Will take you to the beginning of the questionnaire
-        </div>
-        <div id="previoussr" className="sr-only">
-          Will take you to the previous question
-        </div>
-        <div id="nextsr" className="sr-only">
-          Will take you to the next question
-        </div>
+        <NextBtn /> <PreviousBtn /> <StartOverBtn />
       </div>
     </React.Fragment>
   );
@@ -185,20 +220,7 @@ const App = () => {
     buttons_panel = ( // this is START button comes at first question.
       <React.Fragment>
         <div className="form-group">
-          <input
-            type="submit"
-            className="btn btn-primary"
-            aria-labelledby="startf"
-            // aria-describedby="startf"
-            value="START"
-            autoFocus={focuseStartBtn === true ? true : false}
-            onClick={handleSubmit}
-          />
-          <div id="startf" className="sr-only">
-            Do I Need to Register as a Lobbyist? Answer this quick and easy
-            interactive questionnaire to find out. Press and start
-            questionnaire.
-          </div>
+          <StartBtn />
         </div>
       </React.Fragment>
     );
@@ -242,38 +264,7 @@ const App = () => {
         <div className="row">
           <div className="col-xs-12 col-md-9" />
           <div className="col-xs-12 col-md-3">
-            {/* <input
-              type="submit"
-              className="btn btn-default"
-              value="PREVIOUS"
-              onClick={previous}
-              aria-labelledby="previous_q"
-              autoFocus
-            />{" "}
-            <div id="previous_q" className="sr-only">
-              Will take you to the previous question.
-            </div> */}
-            <input
-              type="submit"
-              className="btn btn-default"
-              aria-describedby="previous_q"
-              value="PREVIOUS"
-              onClick={previous}
-              autoFocus
-            />{" "}
-            <div id="previous_q" className="sr-only">
-              Will take you to the previous question.
-            </div>
-            <button
-              className="btn btn-default"
-              aria-describedby="startsr"
-              onClick={startOver}
-            >
-              START OVER
-            </button>
-            <div id="startsr" className="sr-only">
-              Will take you to the beginning of the questionnaire
-            </div>
+            <PreviousBtn autoFocus={true} /> <StartOverBtn />
           </div>
         </div>
         <div className="row">
@@ -415,7 +406,7 @@ const App = () => {
       {buttons_panel}
       <div className="row">
         <div className="col-xs-12 col-md-8" />
-        <div className="col-xs-12 col-md-4">{previous_next_btn}</div>
+        <div className="col-xs-12 col-md-4">{next_previous_startover}</div>
       </div>
     </div>
   );
