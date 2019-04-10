@@ -21,7 +21,7 @@
     "eject": "react-scripts eject",
     "postbuild": "rimraf build/**/*.map"
   },
-  "homepage": "https://delivery0.cf.wp.inter.qa-toronto.ca/resources/lobbyist_questionnaire/html",
+  "homepage": "https://contrib0.wp.intra.dev-toronto.ca/resources/lobbyist_questionnaire/html",
   "eslintConfig": {
     "extends": "react-app"
   },

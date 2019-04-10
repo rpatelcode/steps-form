@@ -295,15 +295,13 @@ const App = () => {
   // Not to show Accordions title becuase accordions title is with in accordions
   const roleSet = (
     <>
-      <div role="region" aria-label="question">
-        <div
-          className="question"
-          dangerouslySetInnerHTML={{
-            __html:
-              '<span class="sr-only" >The answer is. </span> ' + currentQuestion
-          }}
-        />
-      </div>
+      <div
+        className="question"
+        dangerouslySetInnerHTML={{
+          __html:
+            '<span class="sr-only" >The answer is. </span> ' + currentQuestion
+        }}
+      />
       {buttons_panel}
     </>
   );
@@ -321,12 +319,10 @@ const App = () => {
 
   const roleSet_ShowPreviousNextBtn = ( // for the question 3, 7, 12 we have UL, LI tag so taking out of fieldset
     <>
-      <div role="region" aria-label="question">
-        <div
-          className="question"
-          dangerouslySetInnerHTML={{ __html: currentQuestion }}
-        />
-      </div>
+      <div
+        className="question"
+        dangerouslySetInnerHTML={{ __html: currentQuestion }}
+      />
 
       {buttons_panel}
       <div className="row">
@@ -357,17 +353,19 @@ const App = () => {
       {/* Render questionary title and "Start Over" question. */}
       {questionTitleStartOver}
       <div className="row">
-        <div className="media col-xs-12 col-md-12">
-          {/* <p>Question #{id}</p>  Uncomment to see Question # */}
-          <CSSTransition
-            key={forward.length - 1}
-            in={true}
-            appear={true}
-            timeout={1000}
-            classNames="fade"
-          >
-            <React.Fragment>{chooseQuestion}</React.Fragment>
-          </CSSTransition>
+        <div role="region" aria-label="questionnaire">
+          <div className="media col-xs-12 col-md-12">
+            {/* <p>Question #{id}</p>  Uncomment to see Question # */}
+            <CSSTransition
+              key={forward.length - 1}
+              in={true}
+              appear={true}
+              timeout={1000}
+              classNames="fade"
+            >
+              <React.Fragment>{chooseQuestion}</React.Fragment>
+            </CSSTransition>
+          </div>
         </div>
       </div>
       <div role="log" aria-live="polite" className="sr-only">
