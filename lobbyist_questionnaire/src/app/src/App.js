@@ -389,27 +389,29 @@ const App = () => {
             </CSSTransition>
           </div>
           <div
-            role={
-              id === 31 ||
-              id === 32 ||
-              id === 33 ||
-              id === 34 ||
-              id === 35 ||
-              id === 36
-                ? "log"
-                : ""
-            }
+            // role={
+            //   id === 31 ||
+            //   id === 32 ||
+            //   id === 33 ||
+            //   id === 34 ||
+            //   id === 35 ||
+            //   id === 36
+            //     ? "log"
+            //     : ""
+            // }
+            role="log"
             id="pronounce"
-            aria-live={
-              id === 31 ||
-              id === 32 ||
-              id === 33 ||
-              id === 34 ||
-              id === 35 ||
-              id === 36
-                ? "polite"
-                : ""
-            }
+            // aria-live={
+            //   id === 31 ||
+            //   id === 32 ||
+            //   id === 33 ||
+            //   id === 34 ||
+            //   id === 35 ||
+            //   id === 36
+            //     ? "polite"
+            //     : ""
+            // }
+            aria-live="polite"
             className="sr-only"
           >
             {id === 31 ||
