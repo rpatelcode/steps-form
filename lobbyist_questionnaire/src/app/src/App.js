@@ -22,7 +22,8 @@ const App = () => {
     answerSelect: 2, // Select answer while click on radio button, First Start button has answer 2, Take you to question #2 at first time.
     // count: 0, // Can be use for tabIndex
     radioSelect: null, // has been used on Accordions Question case
-    focuseStartBtn: false
+    focuseStartBtn: false,
+    toggle: false
   });
 
   const {
@@ -35,7 +36,8 @@ const App = () => {
     answerSelect,
     radioSelect,
     accordion,
-    focuseStartBtn
+    focuseStartBtn,
+    toggle
   } = state; // Shorten state in typing.
 
   useEffect(() => {
@@ -83,7 +85,8 @@ const App = () => {
           yes: data.questions.find(item => item.id === lastArray).yes,
           no: data.questions.find(item => item.id === lastArray).no,
           answerSelect: answer[answer.length - 1], // now, take a last array
-          focuseStartBtn: true
+          focuseStartBtn: true,
+          toggle: true
           // radioSelect: radioSelect, // to send previous Accordions radio answare which is same.
           // count: count + 1
         });
@@ -107,7 +110,8 @@ const App = () => {
         // accordion: null, // remove accordion
         // accordion: data.questions.find(item => item.id === key).accordion,
         yes: data.questions.find(item => item.id === key).yes,
-        no: data.questions.find(item => item.id === key).no
+        no: data.questions.find(item => item.id === key).no,
+        toggle: false
         // radioSelect: null,
         // count: count + 1
       });
@@ -122,7 +126,8 @@ const App = () => {
         accordion:
           data.questions.find(item => item.id === key).accordion || null,
         yes: data.questions.find(item => item.id === key).yes,
-        no: data.questions.find(item => item.id === key).no
+        no: data.questions.find(item => item.id === key).no,
+        toggle: false
         // radioSelect: null, // becuase radioSelect is only for accordions
         // count: count + 1
       });
@@ -180,13 +185,24 @@ const App = () => {
           <div className="col-xs-12 col-md-12">
             <div className="form-group">
               {accordion.map((id, v = 0) => (
-                <label key={v + 11} className="radio" htmlFor={id.id}>
+                <label
+                  key={v + 11}
+                  className="radio"
+                  id={"r" + id.id}
+                  htmlFor={id.id}
+                >
                   <input
                     type="radio"
                     name="option"
                     id={id.id}
                     value={id.yes}
+                    autoFocus={radioSelect === id.id || v === 0 ? true : false}
                     // autoFocus={v === 0 ? true : false}
+                    aria-labelledby={
+                      radioSelect === id.id || v === 0
+                        ? "pronounce  r" + id.id
+                        : "r" + id.id
+                    }
                     key={v++}
                     checked={radioSelect === id.id}
                     onChange={e => {
@@ -236,33 +252,39 @@ const App = () => {
         <div className="row">
           <div className="col-xs-12 col-md-12">
             <div className="form-group">
-              <label htmlFor="yes" className="radio-inline">
+              <label htmlFor="yes" id="ryes" className="radio-inline">
                 <input
                   type="radio"
                   name="option1"
                   id="yes"
                   value={yes}
-                  // autoFocus
+                  // autoFocus={answerSelect === yes ? true : false}
+                  autoFocus
+                  aria-labelledby={toggle ? "" : "pronounce ryes"}
                   onChange={e => {
                     setstate({
                       ...state,
-                      answerSelect: parseInt(e.target.value)
+                      answerSelect: parseInt(e.target.value),
+                      toggle: false
                     });
                   }}
                   checked={answerSelect === yes}
                 />
                 Yes
               </label>
-              <label htmlFor="no" className="radio-inline">
+              <label htmlFor="no" id="rno" className="radio-inline">
                 <input
                   type="radio"
                   name="option1"
                   id="no"
                   value={no}
+                  autoFocus={answerSelect === no ? true : false}
+                  aria-labelledby={toggle ? "pronounce rno" : ""}
                   onChange={e => {
                     setstate({
                       ...state,
-                      answerSelect: parseInt(e.target.value)
+                      answerSelect: parseInt(e.target.value),
+                      toggle: false
                     });
                   }}
                   checked={answerSelect === no}
@@ -355,7 +377,7 @@ const App = () => {
       <div className="row">
         <div role="region" aria-label="questionnaire">
           <div className="media col-xs-12 col-md-12">
-            {/* <p>Question #{id}</p>  Uncomment to see Question # */}
+            {/* <p>Question #{id}</p> Uncomment to see Question # */}
             <CSSTransition
               key={forward.length - 1}
               in={true}
@@ -366,17 +388,41 @@ const App = () => {
               <React.Fragment>{chooseQuestion}</React.Fragment>
             </CSSTransition>
           </div>
+          <div
+            role={
+              id === 31 ||
+              id === 32 ||
+              id === 33 ||
+              id === 34 ||
+              id === 35 ||
+              id === 36
+                ? "log"
+                : ""
+            }
+            id="pronounce"
+            aria-live={
+              id === 31 ||
+              id === 32 ||
+              id === 33 ||
+              id === 34 ||
+              id === 35 ||
+              id === 36
+                ? "polite"
+                : ""
+            }
+            className="sr-only"
+          >
+            {id === 31 ||
+            id === 32 ||
+            id === 33 ||
+            id === 34 ||
+            id === 35 ||
+            id === 36
+              ? "The answer is. " +
+                currentQuestion.replace(/<(?:.|\n)*?>/gm, "")
+              : currentQuestion.replace(/<(?:.|\n)*?>/gm, "")}
+          </div>
         </div>
-      </div>
-      <div role="log" aria-live="polite" className="sr-only">
-        {id === 31 ||
-        id === 32 ||
-        id === 33 ||
-        id === 34 ||
-        id === 35 ||
-        id === 36
-          ? "The answer is. " + currentQuestion.replace(/<(?:.|\n)*?>/gm, "")
-          : currentQuestion.replace(/<(?:.|\n)*?>/gm, "")}
       </div>
     </React.Fragment>
   );
