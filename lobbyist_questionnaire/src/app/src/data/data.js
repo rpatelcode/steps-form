@@ -224,42 +224,42 @@ const data = {
     {
       id: 31,
       desc:
-        "You are required to register as an In House Lobbyist. Contact The Lobbyist Registrar's Office for more information.",
+        "You are required to register as an In House Lobbyist. Contact The Lobbyist Registrar's Office for more information",
       yes: null,
       no: null
     },
     {
       id: 32,
       desc:
-        "You are required to register as a Consultant Lobbyist. Contact The Lobbyist Registrar's Office for more information.",
+        "You are required to register as a Consultant Lobbyist. Contact The Lobbyist Registrar's Office for more information",
       yes: null,
       no: null
     },
     {
       id: 33,
       desc:
-        "You are required to register as a Voluntary Lobbyist. Contact The Lobbyist Registrar's Office for more information.",
+        "You are required to register as a Voluntary Lobbyist. Contact The Lobbyist Registrar's Office for more information",
       yes: null,
       no: null
     },
     {
       id: 34,
       desc:
-        "You are NOT a Lobbyist. Contact The Lobbyist Registrar's Office for more information.",
+        "You are NOT a Lobbyist. Contact The Lobbyist Registrar's Office for more information",
       yes: null,
       no: null
     },
     {
       id: 35,
       desc:
-        "The not-for-profit exemption applies to you, registration is NOT required.",
+        "The not-for-profit exemption applies to you, registration is NOT required",
       yes: null,
       no: null
     },
     {
       id: 36,
       desc:
-        "The not-for-profit exemption does NOT apply to you, unless another exemption applies, you are required to register.",
+        "The not-for-profit exemption does NOT apply to you, unless another exemption applies, you are required to register",
       yes: null,
       no: null
     }

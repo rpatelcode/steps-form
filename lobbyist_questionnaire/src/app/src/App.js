@@ -5,7 +5,9 @@ import {
   StartBtn,
   NextBtn,
   PreviousBtn,
-  StartOverBtn
+  Pronounce,
+  StartOverBtn,
+  PreviousAnswerBtn
 } from "./components/Buttons";
 import { CSSTransition } from "react-transition-group";
 import "./App.css";
@@ -36,12 +38,14 @@ const App = () => {
     answerSelect,
     radioSelect,
     accordion,
-    focuseStartBtn,
-    toggle
+    focuseStartBtn
   } = state; // Shorten state in typing.
 
   useEffect(() => {
-    // console.log("useEffect Called");
+    // Chose Quesiton Once
+    // ChooseQuestion();
+    // END Chose Question Once
+
     switch (id) {
       case 31:
       case 32:
@@ -67,6 +71,7 @@ const App = () => {
       setstate({ ...state, radioSelect: null });
     }
   }, [id, answerSelect]);
+
   const previous = () => {
     // Set Previous question ready
     if (forward.length) {
@@ -150,282 +155,248 @@ const App = () => {
     });
   };
 
-  // Render Next, Previous and StartOver Button
-  let next_previous_startover = (
-    <React.Fragment>
-      <div className="form-group">
-        <NextBtn
-          disabled={answerSelect === answer[state.answer.length - 1]}
-          onClick={handleSubmit}
-        />{" "}
-        <PreviousBtn onClick={previous} /> <StartOverBtn onClick={startOver} />
-      </div>
-    </React.Fragment>
-  );
-  // Control buttons
-  let buttons_panel;
-  if (
-    id === 1 // For the #1 Question to show START button
-  ) {
-    buttons_panel = ( // this is START button comes at first question.
-      <React.Fragment>
-        <div className="form-group">
-          <StartBtn
-            autoFocus={focuseStartBtn === true ? true : false}
-            onClick={handleSubmit}
-          />
-        </div>
-      </React.Fragment>
-    );
-  } else if (accordion != null) {
-    // remove button for Accordions
-    buttons_panel = (
-      <React.Fragment>
-        <div className="row">
-          <div className="col-xs-12 col-md-12">
+  const ChooseQuestion = () => {
+    switch (id) {
+      case 1:
+        return (
+          <>
+            <div className="row">
+              <div className="col-xs-12 col-md-9">
+                <h2>Do I Need to Register as a Lobbyist?</h2>
+              </div>
+              <div className="col-xs-12 col-md-3" />
+            </div>
+            <div
+              className="question"
+              dangerouslySetInnerHTML={{ __html: currentQuestion }}
+            />
             <div className="form-group">
-              {accordion.map((id, v = 0) => (
-                <label
-                  key={v + 11}
-                  className="radio"
-                  id={"r" + id.id}
-                  htmlFor={id.id}
-                >
-                  <input
-                    type="radio"
-                    name="option"
-                    id={id.id}
-                    value={id.yes}
-                    autoFocus={radioSelect === id.id || v === 0 ? true : false}
-                    // autoFocus={v === 0 ? true : false}
-                    aria-labelledby={
-                      radioSelect === id.id || v === 0
-                        ? "pronounce  r" + id.id
-                        : "r" + id.id
-                    }
-                    key={v++}
-                    checked={radioSelect === id.id}
-                    onChange={e => {
-                      setstate({
-                        ...state,
-                        answerSelect: parseInt(e.target.value),
-                        radioSelect: id.id
-                      });
-                    }}
+              <StartBtn
+                autoFocus={focuseStartBtn === true ? true : false}
+                onClick={handleSubmit}
+              />
+            </div>
+          </>
+        );
+      case 4:
+      case 6:
+      case 8:
+        return (
+          <>
+            <div
+              className="question"
+              dangerouslySetInnerHTML={{ __html: currentQuestion }}
+            />
+            <div className="row">
+              <div className="col-xs-12 col-md-12">
+                <div className="form-group">
+                  <Pronounce
+                    id={id}
+                    speekQuestion={currentQuestion.replace(
+                      /<(?:.|\n)*?>/gm,
+                      ""
+                    )}
                   />
-                  {id.desc}
-                </label>
-              ))}
+                  {accordion.map((id, v = 0) => (
+                    <label
+                      key={v + 11}
+                      className="radio"
+                      id={"r" + id.id}
+                      htmlFor={id.id}
+                    >
+                      <input
+                        type="radio"
+                        name="option"
+                        id={id.id}
+                        value={id.yes}
+                        autoFocus={
+                          radioSelect === id.id ? true : v === 0 ? true : false
+                        }
+                        // aria-labelledby={
+                        //   radioSelect === id.id
+                        //     ? "pronounce  r" + id.id
+                        //     : v === 0
+                        //     ? "pronounce  r" + id.id
+                        //     : "r" + id.id
+                        // }
+                        aria-labelledby={"pronounce  r" + id.id}
+                        key={v++}
+                        checked={radioSelect === id.id}
+                        onChange={e => {
+                          setstate({
+                            ...state,
+                            answerSelect: parseInt(e.target.value),
+                            radioSelect: id.id
+                          });
+                        }}
+                      />
+                      {id.desc}
+                    </label>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </React.Fragment>
-    );
-  } else if (yes === null && no === null) {
-    // For Last answare of questionnaire, It show PREVIOUS button
-    buttons_panel = (
-      <React.Fragment>
-        <div className="row">
-          <div className="col-xs-12 col-md-9" />
-          <div className="col-xs-12 col-md-3">
-            <PreviousBtn onClick={previous} />{" "}
-            <StartOverBtn onClick={startOver} />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-xs-12 col-md-12">
-            <div className="top-buffer">
-              <em>
-                Disclaimer: This interactive tool is a guide to assist
-                registrants using the Lobbyist Registry system; any discrepancy
-                between the chart and Municipal Code Chapter 140, Municipal Code
-                Chapter 140 shall govern.
-              </em>
+            <div className="row">
+              <div className="col-xs-12 col-md-8" />
+              <div className="col-xs-12 col-md-4">
+                <div className="form-group">
+                  <NextBtn
+                    disabled={answerSelect === answer[state.answer.length - 1]}
+                    onClick={handleSubmit}
+                  />{" "}
+                  <PreviousBtn onClick={previous} />{" "}
+                  <StartOverBtn onClick={startOver} />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </React.Fragment>
-    );
-  } else {
-    buttons_panel = ( // This is standard radio button (YES | No)
-      <React.Fragment>
-        <div className="row">
-          <div className="col-xs-12 col-md-12">
-            <div className="form-group">
-              <label htmlFor="yes" id="ryes" className="radio-inline">
-                <input
-                  type="radio"
-                  name="option1"
-                  id="yes"
-                  value={yes}
-                  // autoFocus={answerSelect === yes ? true : false}
-                  autoFocus
-                  aria-labelledby={toggle ? "" : "pronounce ryes"}
-                  onChange={e => {
-                    setstate({
-                      ...state,
-                      answerSelect: parseInt(e.target.value),
-                      toggle: false
-                    });
-                  }}
-                  checked={answerSelect === yes}
-                />
-                Yes
-              </label>
-              <label htmlFor="no" id="rno" className="radio-inline">
-                <input
-                  type="radio"
-                  name="option1"
-                  id="no"
-                  value={no}
-                  autoFocus={answerSelect === no ? true : false}
-                  aria-labelledby={toggle ? "pronounce rno" : ""}
-                  onChange={e => {
-                    setstate({
-                      ...state,
-                      answerSelect: parseInt(e.target.value),
-                      toggle: false
-                    });
-                  }}
-                  checked={answerSelect === no}
-                />
-                No
-              </label>
+          </>
+        );
+      case 31:
+      case 32:
+      case 33:
+      case 34:
+      case 35:
+      case 36:
+        return (
+          <>
+            <div
+              className="question"
+              dangerouslySetInnerHTML={{
+                __html: currentQuestion
+              }}
+            />
+            <div className="row">
+              <div className="col-xs-12 col-md-9" />
+              <div className="col-xs-12 col-md-3">
+                <PreviousAnswerBtn
+                  onClick={previous}
+                  answer={currentQuestion.replace(/<(?:.|\n)*?>/gm, "")}
+                />{" "}
+                <StartOverBtn onClick={startOver} />
+              </div>
             </div>
-          </div>
-        </div>
-      </React.Fragment>
-    );
-  }
+            <div className="row">
+              <div className="col-xs-12 col-md-12">
+                <div className="top-buffer">
+                  <em>
+                    Disclaimer: This interactive tool is a guide to assist
+                    registrants using the Lobbyist Registry system; any
+                    discrepancy between the chart and Municipal Code Chapter
+                    140, Municipal Code Chapter 140 shall govern.
+                  </em>
+                </div>
+              </div>
+            </div>
+          </>
+        );
+      default:
+        return (
+          <>
+            <div
+              className="question"
+              dangerouslySetInnerHTML={{ __html: currentQuestion }}
+            />
 
-  // Render Start Over button or title "Do I Need to Register as a Lobbyist?"
-  let questionTitleStartOver;
-  if (id === 1) {
-    // if question #1 then show title
-    questionTitleStartOver = (
-      <React.Fragment>
-        <div className="row">
-          <div className="col-xs-12 col-md-9">
-            <h2>Do I Need to Register as a Lobbyist?</h2>
-          </div>
-          <div className="col-xs-12 col-md-3" />
-        </div>
-      </React.Fragment>
-    );
-  }
+            <div className="row">
+              <div className="col-xs-12 col-md-12">
+                <div className="form-group">
+                  <Pronounce
+                    id={id}
+                    speekQuestion={currentQuestion.replace(
+                      /<(?:.|\n)*?>/gm,
+                      ""
+                    )}
+                  />
 
-  // Not to show Accordions title becuase accordions title is with in accordions
-  const roleSet = (
-    <>
-      <div
-        className="question"
-        dangerouslySetInnerHTML={{
-          __html:
-            '<span class="sr-only" >The answer is. </span> ' + currentQuestion
-        }}
-      />
-      {buttons_panel}
-    </>
-  );
+                  <label htmlFor="yes" id="ryes" className="radio-inline">
+                    <input
+                      type="radio"
+                      name="option1"
+                      id="yes"
+                      value={yes}
+                      // autoFocus={answerSelect === yes ? true : false}
+                      // autoFocus
+                      autoFocus={
+                        answerSelect === yes
+                          ? true
+                          : answerSelect === no
+                          ? false
+                          : true
+                      }
+                      aria-labelledby="pronounce ryes"
+                      onChange={e => {
+                        setstate({
+                          ...state,
+                          answerSelect: parseInt(e.target.value),
+                          toggle: false
+                        });
+                      }}
+                      checked={answerSelect === yes}
+                    />
+                    Yes
+                  </label>
+                  <label htmlFor="no" id="rno" className="radio-inline">
+                    <input
+                      type="radio"
+                      name="option1"
+                      id="no"
+                      value={no}
+                      autoFocus={answerSelect === no ? true : false}
+                      aria-labelledby="pronounce rno"
+                      onChange={e => {
+                        setstate({
+                          ...state,
+                          answerSelect: parseInt(e.target.value),
+                          toggle: false
+                        });
+                      }}
+                      checked={answerSelect === no}
+                    />
+                    No
+                  </label>
+                </div>
+              </div>
+            </div>
 
-  const plainStartBtn = (
-    <>
-      <div
-        className="question"
-        dangerouslySetInnerHTML={{ __html: currentQuestion }}
-      />
-
-      {buttons_panel}
-    </>
-  );
-
-  const roleSet_ShowPreviousNextBtn = ( // for the question 3, 7, 12 we have UL, LI tag so taking out of fieldset
-    <>
-      <div
-        className="question"
-        dangerouslySetInnerHTML={{ __html: currentQuestion }}
-      />
-
-      {buttons_panel}
-      <div className="row">
-        <div className="col-xs-12 col-md-8" />
-        <div className="col-xs-12 col-md-4">{next_previous_startover}</div>
-      </div>
-    </>
-  );
-  let chooseQuestion; // Set With Or Without HTML fieldset tag
-  switch (id) {
-    case 1:
-      chooseQuestion = plainStartBtn;
-      break;
-    case 31:
-    case 32:
-    case 33:
-    case 34:
-    case 35:
-    case 36:
-      chooseQuestion = roleSet;
-      break;
-    default:
-      chooseQuestion = roleSet_ShowPreviousNextBtn;
-  }
+            <div className="row">
+              <div className="col-xs-12 col-md-8" />
+              <div className="col-xs-12 col-md-4">
+                <div className="form-group">
+                  <NextBtn
+                    disabled={answerSelect === answer[state.answer.length - 1]}
+                    onClick={handleSubmit}
+                  />{" "}
+                  <PreviousBtn onClick={previous} />{" "}
+                  <StartOverBtn onClick={startOver} />
+                </div>
+              </div>
+            </div>
+          </>
+        );
+    }
+  };
 
   return (
     <React.Fragment>
-      {/* Render questionary title and "Start Over" question. */}
-      {questionTitleStartOver}
       <div className="row">
-        <div role="region" aria-label="questionnaire">
-          <div className="media col-xs-12 col-md-12">
-            {/* <p>Question #{id}</p> Uncomment to see Question # */}
-            <CSSTransition
-              key={forward.length - 1}
-              in={true}
-              appear={true}
-              timeout={1000}
-              classNames="fade"
-            >
-              <React.Fragment>{chooseQuestion}</React.Fragment>
-            </CSSTransition>
-          </div>
-          <div
-            // role={
-            //   id === 31 ||
-            //   id === 32 ||
-            //   id === 33 ||
-            //   id === 34 ||
-            //   id === 35 ||
-            //   id === 36
-            //     ? "log"
-            //     : ""
-            // }
-            role="log"
-            id="pronounce"
-            // aria-live={
-            //   id === 31 ||
-            //   id === 32 ||
-            //   id === 33 ||
-            //   id === 34 ||
-            //   id === 35 ||
-            //   id === 36
-            //     ? "polite"
-            //     : ""
-            // }
-            aria-live="polite"
-            className="sr-only"
+        {/* <div role="region" aria-label="questionnaire"> */}
+        <div className="media col-xs-12 col-md-12">
+          {/* <p>Question #{id}</p> */}
+
+          <CSSTransition
+            key={forward.length - 1}
+            in={true}
+            appear={true}
+            timeout={1000}
+            classNames="fade"
           >
-            {id === 31 ||
-            id === 32 ||
-            id === 33 ||
-            id === 34 ||
-            id === 35 ||
-            id === 36
-              ? "The answer is. " +
-                currentQuestion.replace(/<(?:.|\n)*?>/gm, "")
-              : currentQuestion.replace(/<(?:.|\n)*?>/gm, "")}
-          </div>
+            <React.Fragment>
+              <ChooseQuestion />
+            </React.Fragment>
+          </CSSTransition>
         </div>
       </div>
+      {/* </div> */}
     </React.Fragment>
   );
 };

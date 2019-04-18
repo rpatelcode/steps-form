@@ -33,6 +33,42 @@ const NextBtn = props => (
   </>
 );
 
+const PreviousAnswerBtn = props => (
+  <>
+    <input
+      type="submit"
+      className="btn btn-default"
+      aria-labelledby="previousanswer"
+      // aria-describedby="previoussr"
+      value="PREVIOUS"
+      autoFocus
+      onClick={props.onClick}
+    />
+    <div id="previousanswer" className="sr-only">
+      The answer is. {props.answer}. Click will take you previous question.
+    </div>
+  </>
+);
+
+const Pronounce = props => {
+  if (
+    props.id === 31 ||
+    props.id === 32 ||
+    props.id === 33 ||
+    props.id === 34 ||
+    props.id === 35 ||
+    props.id === 36
+  ) {
+    return null;
+  } else {
+    return (
+      <div id="pronounce" className="sr-only">
+        {props.speekQuestion}
+      </div>
+    );
+  }
+};
+
 const PreviousBtn = props => (
   <>
     <input
@@ -64,4 +100,11 @@ const StartOverBtn = props => (
   </>
 );
 
-export { StartBtn, NextBtn, PreviousBtn, StartOverBtn };
+export {
+  StartBtn,
+  NextBtn,
+  PreviousBtn,
+  Pronounce,
+  StartOverBtn,
+  PreviousAnswerBtn
+};
