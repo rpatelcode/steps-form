@@ -5,7 +5,6 @@ import {
   StartBtn,
   NextBtn,
   PreviousBtn,
-  Pronounce,
   StartOverBtn,
   PreviousAnswerBtn
 } from "./components/Buttons";
@@ -185,18 +184,16 @@ const App = () => {
           <>
             <div
               className="question"
+              id="questionSpeek"
               dangerouslySetInnerHTML={{ __html: currentQuestion }}
             />
             <div className="row">
               <div className="col-xs-12 col-md-12">
-                <div className="form-group">
-                  <Pronounce
-                    id={id}
-                    speekQuestion={currentQuestion.replace(
-                      /<(?:.|\n)*?>/gm,
-                      ""
-                    )}
-                  />
+                <div
+                  role="radiogroup"
+                  aria-labelledby="questionSpeek"
+                  className="form-group"
+                >
                   {accordion.map((id, v = 0) => (
                     <label
                       key={v + 11}
@@ -219,7 +216,7 @@ const App = () => {
                         //     ? "pronounce  r" + id.id
                         //     : "r" + id.id
                         // }
-                        aria-labelledby={"pronounce  r" + id.id}
+                        // aria-labelledby={"pronounce  r" + id.id}
                         key={v++}
                         checked={radioSelect === id.id}
                         onChange={e => {
@@ -294,20 +291,17 @@ const App = () => {
           <>
             <div
               className="question"
+              id="questionSpeek"
               dangerouslySetInnerHTML={{ __html: currentQuestion }}
             />
 
             <div className="row">
               <div className="col-xs-12 col-md-12">
-                <div className="form-group">
-                  <Pronounce
-                    id={id}
-                    speekQuestion={currentQuestion.replace(
-                      /<(?:.|\n)*?>/gm,
-                      ""
-                    )}
-                  />
-
+                <div
+                  role="radiogroup"
+                  aria-labelledby="questionSpeek"
+                  className="form-group"
+                >
                   <label htmlFor="yes" id="ryes" className="radio-inline">
                     <input
                       type="radio"
@@ -323,7 +317,7 @@ const App = () => {
                           ? false
                           : true
                       }
-                      aria-labelledby="pronounce ryes"
+                      // aria-labelledby="pronounce ryes"
                       onChange={e => {
                         setstate({
                           ...state,
@@ -342,7 +336,7 @@ const App = () => {
                       id="no"
                       value={no}
                       autoFocus={answerSelect === no ? true : false}
-                      aria-labelledby="pronounce rno"
+                      // aria-labelledby="pronounce rno"
                       onChange={e => {
                         setstate({
                           ...state,

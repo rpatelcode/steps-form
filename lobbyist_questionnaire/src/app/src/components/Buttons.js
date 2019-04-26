@@ -50,25 +50,6 @@ const PreviousAnswerBtn = props => (
   </>
 );
 
-const Pronounce = props => {
-  if (
-    props.id === 31 ||
-    props.id === 32 ||
-    props.id === 33 ||
-    props.id === 34 ||
-    props.id === 35 ||
-    props.id === 36
-  ) {
-    return null;
-  } else {
-    return (
-      <div id="pronounce" className="sr-only">
-        {props.speekQuestion}
-      </div>
-    );
-  }
-};
-
 const PreviousBtn = props => (
   <>
     <input
@@ -100,11 +81,4 @@ const StartOverBtn = props => (
   </>
 );
 
-export {
-  StartBtn,
-  NextBtn,
-  PreviousBtn,
-  Pronounce,
-  StartOverBtn,
-  PreviousAnswerBtn
-};
+export { StartBtn, NextBtn, PreviousBtn, StartOverBtn, PreviousAnswerBtn };
