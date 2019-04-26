@@ -24,7 +24,7 @@ const App = () => {
     // count: 0, // Can be use for tabIndex
     radioSelect: null, // has been used on Accordions Question case
     focuseStartBtn: false,
-    toggle: false
+    toggle: false // check that its coming from PREVIOUS button
   });
 
   const {
@@ -37,7 +37,8 @@ const App = () => {
     answerSelect,
     radioSelect,
     accordion,
-    focuseStartBtn
+    focuseStartBtn,
+    toggle
   } = state; // Shorten state in typing.
 
   useEffect(() => {
@@ -191,7 +192,11 @@ const App = () => {
               <div className="col-xs-12 col-md-12">
                 <div
                   role="radiogroup"
-                  aria-labelledby="questionSpeek"
+                  aria-labelledby={
+                    answerSelect === answer[state.answer.length - 1] || toggle
+                      ? "questionSpeek"
+                      : null
+                  }
                   className="form-group"
                 >
                   {accordion.map((id, v = 0) => (
@@ -209,14 +214,6 @@ const App = () => {
                         autoFocus={
                           radioSelect === id.id ? true : v === 0 ? true : false
                         }
-                        // aria-labelledby={
-                        //   radioSelect === id.id
-                        //     ? "pronounce  r" + id.id
-                        //     : v === 0
-                        //     ? "pronounce  r" + id.id
-                        //     : "r" + id.id
-                        // }
-                        // aria-labelledby={"pronounce  r" + id.id}
                         key={v++}
                         checked={radioSelect === id.id}
                         onChange={e => {
@@ -299,7 +296,11 @@ const App = () => {
               <div className="col-xs-12 col-md-12">
                 <div
                   role="radiogroup"
-                  aria-labelledby="questionSpeek"
+                  aria-labelledby={
+                    answerSelect === answer[state.answer.length - 1] || toggle
+                      ? "questionSpeek"
+                      : null
+                  }
                   className="form-group"
                 >
                   <label htmlFor="yes" id="ryes" className="radio-inline">
