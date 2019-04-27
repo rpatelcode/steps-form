@@ -42,10 +42,6 @@ const App = () => {
   } = state; // Shorten state in typing.
 
   useEffect(() => {
-    // Chose Quesiton Once
-    // ChooseQuestion();
-    // END Chose Question Once
-
     switch (id) {
       case 31:
       case 32:
@@ -215,7 +211,7 @@ const App = () => {
                           radioSelect === id.id ? true : v === 0 ? true : false
                         }
                         key={v++}
-                        checked={radioSelect === id.id}
+                        defaultChecked={radioSelect === id.id}
                         onChange={e => {
                           setstate({
                             ...state,
@@ -295,12 +291,12 @@ const App = () => {
             <div className="row">
               <div className="col-xs-12 col-md-12">
                 <div
-                  role="radiogroup"
-                  aria-labelledby={
-                    answerSelect === answer[state.answer.length - 1] || toggle
-                      ? "questionSpeek"
-                      : null
-                  }
+                  // role="radiogroup"
+                  // aria-labelledby={
+                  //   answerSelect === answer[state.answer.length - 1] || toggle
+                  //     ? "questionSpeek"
+                  //     : null
+                  // }
                   className="form-group"
                 >
                   <label htmlFor="yes" id="ryes" className="radio-inline">
@@ -311,6 +307,15 @@ const App = () => {
                       value={yes}
                       // autoFocus={answerSelect === yes ? true : false}
                       // autoFocus
+                      aria-labelledby={
+                        answerSelect === yes && toggle
+                          ? "questionSpeek"
+                          : answerSelect === yes ||
+                            answerSelect === no ||
+                            toggle
+                          ? null
+                          : "questionSpeek"
+                      }
                       autoFocus={
                         answerSelect === yes
                           ? true
@@ -319,14 +324,15 @@ const App = () => {
                           : true
                       }
                       // aria-labelledby="pronounce ryes"
-                      onChange={e => {
+
+                      onClick={e => {
                         setstate({
                           ...state,
                           answerSelect: parseInt(e.target.value),
                           toggle: false
                         });
                       }}
-                      checked={answerSelect === yes}
+                      defaultChecked={answerSelect === yes}
                     />
                     Yes
                   </label>
@@ -336,16 +342,19 @@ const App = () => {
                       name="option1"
                       id="no"
                       value={no}
+                      aria-labelledby={
+                        answerSelect === no && toggle ? "questionSpeek" : null
+                      }
                       autoFocus={answerSelect === no ? true : false}
                       // aria-labelledby="pronounce rno"
-                      onChange={e => {
+                      onClick={e => {
                         setstate({
                           ...state,
                           answerSelect: parseInt(e.target.value),
                           toggle: false
                         });
                       }}
-                      checked={answerSelect === no}
+                      defaultChecked={answerSelect === no}
                     />
                     No
                   </label>
