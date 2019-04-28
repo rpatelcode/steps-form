@@ -186,15 +186,7 @@ const App = () => {
             />
             <div className="row">
               <div className="col-xs-12 col-md-12">
-                <div
-                  role="radiogroup"
-                  aria-labelledby={
-                    answerSelect === answer[state.answer.length - 1] || toggle
-                      ? "questionSpeek"
-                      : null
-                  }
-                  className="form-group"
-                >
+                <div className="form-group">
                   {accordion.map((id, v = 0) => (
                     <label
                       key={v + 11}
@@ -207,6 +199,24 @@ const App = () => {
                         name="option"
                         id={id.id}
                         value={id.yes}
+                        aria-labelledby={
+                          toggle
+                            ? radioSelect === id.id
+                              ? "questionSpeek"
+                              : null
+                            : v === 0 && radioSelect === null
+                            ? "questionSpeek"
+                            : null
+                        }
+                        // aria-describedby={
+                        //   toggle
+                        //     ? radioSelect === id.id
+                        //       ? "r" + id.id
+                        //       : null
+                        //     : v === 0 && radioSelect === null
+                        //     ? "r" + id.id
+                        //     : null
+                        // }
                         autoFocus={
                           radioSelect === id.id ? true : v === 0 ? true : false
                         }
@@ -216,7 +226,8 @@ const App = () => {
                           setstate({
                             ...state,
                             answerSelect: parseInt(e.target.value),
-                            radioSelect: id.id
+                            radioSelect: id.id,
+                            toggle: false
                           });
                         }}
                       />
@@ -386,7 +397,6 @@ const App = () => {
         {/* <div role="region" aria-label="questionnaire"> */}
         <div className="media col-xs-12 col-md-12">
           {/* <p>Question #{id}</p> */}
-
           <CSSTransition
             key={forward.length - 1}
             in={true}
