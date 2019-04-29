@@ -158,7 +158,7 @@ const App = () => {
         <>
           <div className="row">
             <div className="col-xs-12 col-md-9">
-              <h2>Do I Need to Register as a Lobbyist?</h2>
+              <h2>Am I a lobbyist?</h2>
             </div>
             <div className="col-xs-12 col-md-3" />
           </div>
@@ -293,10 +293,10 @@ const App = () => {
     default:
       return (
         <>
-          {/* <h3>
-              id: {id}, answerSelect : {answerSelect}, yes : {yes}, no : {no}
-              {answerSelect === yes ? "Match" : "DO NOT Match"}
-            </h3> */}
+          <h3>
+            id: {id}, answerSelect : {answerSelect}, yes : {yes}, no : {no}
+            {answerSelect === yes ? " [yes] defaultChecked autoFocus" : ""}
+          </h3>
           <div
             className="question"
             id="questionSpeek"
@@ -306,12 +306,12 @@ const App = () => {
           <div className="row">
             <div className="col-xs-12 col-md-12">
               <div
-                // role="radiogroup"
-                // aria-labelledby={
-                //   answerSelect === answer[state.answer.length - 1] || toggle
-                //     ? "questionSpeek"
-                //     : null
-                // }
+                role="radiogroup"
+                aria-labelledby={
+                  answerSelect === answer[state.answer.length - 1] || toggle
+                    ? "questionSpeek"
+                    : null
+                }
                 className="form-group"
               >
                 <label htmlFor="yes" id="ryes" className="radio-inline">
@@ -320,8 +320,6 @@ const App = () => {
                     name="option1"
                     id="yes"
                     value={yes}
-                    // autoFocus={answerSelect === yes ? true : false}
-                    // autoFocus
                     aria-labelledby={
                       answerSelect === yes && toggle
                         ? "questionSpeek"
@@ -330,19 +328,18 @@ const App = () => {
                         : "questionSpeek"
                     }
                     // generate autoFocus tag
-
-                    {...(answerSelect === yes
+                    {...(toggle &&
+                    !(answerSelect === yes) &&
+                    !(answerSelect === no)
                       ? { autoFocus: true }
-                      : answerSelect === no
-                      ? {}
-                      : { autoFocus: true })}
-                    // autoFocus={
-                    //   // answerSelect === yes
-                    //   //   ? true
-                    //   //   : answerSelect === no
-                    //   //   ? false
-                    //   //   : true
-                    // }
+                      : toggle && answerSelect === yes
+                      ? { autoFocus: true }
+                      : {})}
+                    // {...(answerSelect === yes
+                    //   ? { autoFocus: true }
+                    //   : answerSelect === no
+                    //   ? {}
+                    //   : { autoFocus: true })}
 
                     onClick={e => {
                       setstate({
@@ -351,8 +348,10 @@ const App = () => {
                         toggle: false
                       });
                     }}
-                    {...(answerSelect === yes ? { defaultChecked: true } : {})}
-                    // defaultChecked={answerSelect === yes ? true : null}
+                    {...(answerSelect === yes && !(answerSelect === no)
+                      ? { defaultChecked: true }
+                      : {})}
+                    // {...(answerSelect === yes ? { defaultChecked: true } : {})}
                   />
                   Yes
                 </label>
@@ -366,9 +365,10 @@ const App = () => {
                       answerSelect === no && toggle ? "questionSpeek" : null
                     }
                     // generate autoFocus tag
-                    {...(answerSelect === no ? { autoFocus: true } : {})}
-                    // autoFocus={answerSelect === no ? true : null}
-                    // aria-labelledby="pronounce rno"
+                    {...(toggle && answerSelect === no
+                      ? { autoFocus: true }
+                      : {})}
+                    // {...(answerSelect === no ? { autoFocus: true } : {})}
                     onClick={e => {
                       setstate({
                         ...state,
@@ -376,7 +376,9 @@ const App = () => {
                         toggle: false
                       });
                     }}
-                    {...(answerSelect === no ? { defaultChecked: true } : {})}
+                    {...(answerSelect === no && !(answerSelect === yes)
+                      ? { defaultChecked: true }
+                      : {})}
 
                     // defaultChecked={answerSelect === no}
                   />
