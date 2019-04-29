@@ -151,268 +151,281 @@ const App = () => {
     });
   };
 
-  const ChooseQuestion = () => {
-    switch (id) {
-      case 1:
-        return (
-          <>
-            <div className="row">
-              <div className="col-xs-12 col-md-9">
-                <h2>Do I Need to Register as a Lobbyist?</h2>
-              </div>
-              <div className="col-xs-12 col-md-3" />
+  // const ChooseQuestion = () => {
+  switch (id) {
+    case 1:
+      return (
+        <>
+          <div className="row">
+            <div className="col-xs-12 col-md-9">
+              <h2>Do I Need to Register as a Lobbyist?</h2>
             </div>
-            <div
-              className="question"
-              dangerouslySetInnerHTML={{ __html: currentQuestion }}
+            <div className="col-xs-12 col-md-3" />
+          </div>
+          <div
+            className="question"
+            dangerouslySetInnerHTML={{ __html: currentQuestion }}
+          />
+          <div className="form-group">
+            <StartBtn
+              autoFocus={focuseStartBtn === true ? true : false}
+              onClick={handleSubmit}
             />
-            <div className="form-group">
-              <StartBtn
-                autoFocus={focuseStartBtn === true ? true : false}
-                onClick={handleSubmit}
-              />
-            </div>
-          </>
-        );
-      case 4:
-      case 6:
-      case 8:
-        return (
-          <>
-            <div
-              className="question"
-              id="questionSpeek"
-              dangerouslySetInnerHTML={{ __html: currentQuestion }}
-            />
-            <div className="row">
-              <div className="col-xs-12 col-md-12">
-                <div className="form-group">
-                  {accordion.map((id, v = 0) => (
-                    <label
-                      key={v + 11}
-                      className="radio"
-                      id={"r" + id.id}
-                      htmlFor={id.id}
-                    >
-                      <input
-                        type="radio"
-                        name="option"
-                        id={id.id}
-                        value={id.yes}
-                        aria-labelledby={
-                          toggle
-                            ? radioSelect === id.id
-                              ? "questionSpeek"
-                              : null
-                            : v === 0 && radioSelect === null
+          </div>
+        </>
+      );
+    case 4:
+    case 6:
+    case 8:
+      return (
+        <>
+          <div
+            className="question"
+            id="questionSpeek"
+            dangerouslySetInnerHTML={{ __html: currentQuestion }}
+          />
+          <div className="row">
+            <div className="col-xs-12 col-md-12">
+              <div className="form-group">
+                {accordion.map((id, v = 0) => (
+                  <label
+                    key={v + 11}
+                    className="radio"
+                    id={"r" + id.id}
+                    htmlFor={id.id}
+                  >
+                    <input
+                      type="radio"
+                      name="option"
+                      id={id.id}
+                      value={id.yes}
+                      aria-labelledby={
+                        toggle
+                          ? radioSelect === id.id
                             ? "questionSpeek"
                             : null
-                        }
-                        // aria-describedby={
-                        //   toggle
-                        //     ? radioSelect === id.id
-                        //       ? "r" + id.id
-                        //       : null
-                        //     : v === 0 && radioSelect === null
-                        //     ? "r" + id.id
-                        //     : null
-                        // }
-                        autoFocus={
-                          radioSelect === id.id ? true : v === 0 ? true : false
-                        }
-                        key={v++}
-                        defaultChecked={radioSelect === id.id}
-                        onChange={e => {
-                          setstate({
-                            ...state,
-                            answerSelect: parseInt(e.target.value),
-                            radioSelect: id.id,
-                            toggle: false
-                          });
-                        }}
-                      />
-                      {id.desc}
-                    </label>
-                  ))}
-                </div>
+                          : v === 0 && radioSelect === null
+                          ? "questionSpeek"
+                          : null
+                      }
+                      // aria-describedby={
+                      //   toggle
+                      //     ? radioSelect === id.id
+                      //       ? "r" + id.id
+                      //       : null
+                      //     : v === 0 && radioSelect === null
+                      //     ? "r" + id.id
+                      //     : null
+                      // }
+                      autoFocus={
+                        radioSelect === id.id ? true : v === 0 ? true : false
+                      }
+                      key={v++}
+                      defaultChecked={radioSelect === id.id}
+                      onChange={e => {
+                        setstate({
+                          ...state,
+                          answerSelect: parseInt(e.target.value),
+                          radioSelect: id.id,
+                          toggle: false
+                        });
+                      }}
+                    />
+                    {id.desc}
+                  </label>
+                ))}
               </div>
             </div>
-            <div className="row">
-              <div className="col-xs-12 col-md-8" />
-              <div className="col-xs-12 col-md-4">
-                <div className="form-group">
-                  <NextBtn
-                    disabled={answerSelect === answer[state.answer.length - 1]}
-                    onClick={handleSubmit}
-                  />{" "}
-                  <PreviousBtn onClick={previous} />{" "}
-                  <StartOverBtn onClick={startOver} />
-                </div>
-              </div>
-            </div>
-          </>
-        );
-      case 31:
-      case 32:
-      case 33:
-      case 34:
-      case 35:
-      case 36:
-        return (
-          <>
-            <div
-              className="question"
-              dangerouslySetInnerHTML={{
-                __html: currentQuestion
-              }}
-            />
-            <div className="row">
-              <div className="col-xs-12 col-md-9" />
-              <div className="col-xs-12 col-md-3">
-                <PreviousAnswerBtn
-                  onClick={previous}
-                  answer={currentQuestion.replace(/<(?:.|\n)*?>/gm, "")}
+          </div>
+          <div className="row">
+            <div className="col-xs-12 col-md-8" />
+            <div className="col-xs-12 col-md-4">
+              <div className="form-group">
+                <NextBtn
+                  disabled={answerSelect === answer[state.answer.length - 1]}
+                  onClick={handleSubmit}
                 />{" "}
+                <PreviousBtn onClick={previous} />{" "}
                 <StartOverBtn onClick={startOver} />
               </div>
             </div>
-            <div className="row">
-              <div className="col-xs-12 col-md-12">
-                <div className="top-buffer">
-                  <em>
-                    Disclaimer: This interactive tool is a guide to assist
-                    registrants using the Lobbyist Registry system; any
-                    discrepancy between the chart and Municipal Code Chapter
-                    140, Municipal Code Chapter 140 shall govern.
-                  </em>
-                </div>
+          </div>
+        </>
+      );
+    case 31:
+    case 32:
+    case 33:
+    case 34:
+    case 35:
+    case 36:
+      return (
+        <>
+          <div
+            className="question"
+            dangerouslySetInnerHTML={{
+              __html: currentQuestion
+            }}
+          />
+          <div className="row">
+            <div className="col-xs-12 col-md-9" />
+            <div className="col-xs-12 col-md-3">
+              <PreviousAnswerBtn
+                onClick={previous}
+                answer={currentQuestion.replace(/<(?:.|\n)*?>/gm, "")}
+              />{" "}
+              <StartOverBtn onClick={startOver} />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-xs-12 col-md-12">
+              <div className="top-buffer">
+                <em>
+                  Disclaimer: This interactive tool is a guide to assist
+                  registrants using the Lobbyist Registry system; any
+                  discrepancy between the chart and Municipal Code Chapter 140,
+                  Municipal Code Chapter 140 shall govern.
+                </em>
               </div>
             </div>
-          </>
-        );
-      default:
-        return (
-          <>
-            <div
-              className="question"
-              id="questionSpeek"
-              dangerouslySetInnerHTML={{ __html: currentQuestion }}
-            />
+          </div>
+        </>
+      );
+    default:
+      return (
+        <>
+          {/* <h3>
+              id: {id}, answerSelect : {answerSelect}, yes : {yes}, no : {no}
+              {answerSelect === yes ? "Match" : "DO NOT Match"}
+            </h3> */}
+          <div
+            className="question"
+            id="questionSpeek"
+            dangerouslySetInnerHTML={{ __html: currentQuestion }}
+          />
 
-            <div className="row">
-              <div className="col-xs-12 col-md-12">
-                <div
-                  // role="radiogroup"
-                  // aria-labelledby={
-                  //   answerSelect === answer[state.answer.length - 1] || toggle
-                  //     ? "questionSpeek"
-                  //     : null
-                  // }
-                  className="form-group"
-                >
-                  <label htmlFor="yes" id="ryes" className="radio-inline">
-                    <input
-                      type="radio"
-                      name="option1"
-                      id="yes"
-                      value={yes}
-                      // autoFocus={answerSelect === yes ? true : false}
-                      // autoFocus
-                      aria-labelledby={
-                        answerSelect === yes && toggle
-                          ? "questionSpeek"
-                          : answerSelect === yes ||
-                            answerSelect === no ||
-                            toggle
-                          ? null
-                          : "questionSpeek"
-                      }
-                      autoFocus={
-                        answerSelect === yes
-                          ? true
-                          : answerSelect === no
-                          ? false
-                          : true
-                      }
-                      // aria-labelledby="pronounce ryes"
+          <div className="row">
+            <div className="col-xs-12 col-md-12">
+              <div
+                // role="radiogroup"
+                // aria-labelledby={
+                //   answerSelect === answer[state.answer.length - 1] || toggle
+                //     ? "questionSpeek"
+                //     : null
+                // }
+                className="form-group"
+              >
+                <label htmlFor="yes" id="ryes" className="radio-inline">
+                  <input
+                    type="radio"
+                    name="option1"
+                    id="yes"
+                    value={yes}
+                    // autoFocus={answerSelect === yes ? true : false}
+                    // autoFocus
+                    aria-labelledby={
+                      answerSelect === yes && toggle
+                        ? "questionSpeek"
+                        : answerSelect === yes || answerSelect === no || toggle
+                        ? null
+                        : "questionSpeek"
+                    }
+                    // generate autoFocus tag
 
-                      onClick={e => {
-                        setstate({
-                          ...state,
-                          answerSelect: parseInt(e.target.value),
-                          toggle: false
-                        });
-                      }}
-                      defaultChecked={answerSelect === yes}
-                    />
-                    Yes
-                  </label>
-                  <label htmlFor="no" id="rno" className="radio-inline">
-                    <input
-                      type="radio"
-                      name="option1"
-                      id="no"
-                      value={no}
-                      aria-labelledby={
-                        answerSelect === no && toggle ? "questionSpeek" : null
-                      }
-                      autoFocus={answerSelect === no ? true : false}
-                      // aria-labelledby="pronounce rno"
-                      onClick={e => {
-                        setstate({
-                          ...state,
-                          answerSelect: parseInt(e.target.value),
-                          toggle: false
-                        });
-                      }}
-                      defaultChecked={answerSelect === no}
-                    />
-                    No
-                  </label>
-                </div>
+                    {...(answerSelect === yes
+                      ? { autoFocus: true }
+                      : answerSelect === no
+                      ? {}
+                      : { autoFocus: true })}
+                    // autoFocus={
+                    //   // answerSelect === yes
+                    //   //   ? true
+                    //   //   : answerSelect === no
+                    //   //   ? false
+                    //   //   : true
+                    // }
+
+                    onClick={e => {
+                      setstate({
+                        ...state,
+                        answerSelect: parseInt(e.target.value),
+                        toggle: false
+                      });
+                    }}
+                    {...(answerSelect === yes ? { defaultChecked: true } : {})}
+                    // defaultChecked={answerSelect === yes ? true : null}
+                  />
+                  Yes
+                </label>
+                <label htmlFor="no" id="rno" className="radio-inline">
+                  <input
+                    type="radio"
+                    name="option1"
+                    id="no"
+                    value={no}
+                    aria-labelledby={
+                      answerSelect === no && toggle ? "questionSpeek" : null
+                    }
+                    // generate autoFocus tag
+                    {...(answerSelect === no ? { autoFocus: true } : {})}
+                    // autoFocus={answerSelect === no ? true : null}
+                    // aria-labelledby="pronounce rno"
+                    onClick={e => {
+                      setstate({
+                        ...state,
+                        answerSelect: parseInt(e.target.value),
+                        toggle: false
+                      });
+                    }}
+                    {...(answerSelect === no ? { defaultChecked: true } : {})}
+
+                    // defaultChecked={answerSelect === no}
+                  />
+                  No
+                </label>
               </div>
             </div>
+          </div>
 
-            <div className="row">
-              <div className="col-xs-12 col-md-8" />
-              <div className="col-xs-12 col-md-4">
-                <div className="form-group">
-                  <NextBtn
-                    disabled={answerSelect === answer[state.answer.length - 1]}
-                    onClick={handleSubmit}
-                  />{" "}
-                  <PreviousBtn onClick={previous} />{" "}
-                  <StartOverBtn onClick={startOver} />
-                </div>
+          <div className="row">
+            <div className="col-xs-12 col-md-8" />
+            <div className="col-xs-12 col-md-4">
+              <div className="form-group">
+                <NextBtn
+                  disabled={answerSelect === answer[state.answer.length - 1]}
+                  onClick={handleSubmit}
+                />{" "}
+                <PreviousBtn onClick={previous} />{" "}
+                <StartOverBtn onClick={startOver} />
               </div>
             </div>
-          </>
-        );
-    }
-  };
+          </div>
+        </>
+      );
+  }
+  // };
 
-  return (
-    <React.Fragment>
-      <div className="row">
-        {/* <div role="region" aria-label="questionnaire"> */}
-        <div className="media col-xs-12 col-md-12">
-          {/* <p>Question #{id}</p> */}
-          <CSSTransition
-            key={forward.length - 1}
-            in={true}
-            appear={true}
-            timeout={1000}
-            classNames="fade"
-          >
-            <React.Fragment>
-              <ChooseQuestion />
-            </React.Fragment>
-          </CSSTransition>
-        </div>
-      </div>
-      {/* </div> */}
-    </React.Fragment>
-  );
+  // return (
+  //   <React.Fragment>
+  //     <div className="row">
+  //       {/* <div role="region" aria-label="questionnaire"> */}
+  //       <div className="media col-xs-12 col-md-12">
+  //         {/* <p>Question #{id}</p> */}
+  //         <CSSTransition
+  //           key={forward.length - 1}
+  //           in={true}
+  //           appear={true}
+  //           timeout={1000}
+  //           classNames="fade"
+  //         >
+  //           <React.Fragment>
+  //             <ChooseQuestion />
+  //           </React.Fragment>
+  //         </CSSTransition>
+  //       </div>
+  //     </div>
+  //     {/* </div> */}
+  //   </React.Fragment>
+  // );
 };
 
 export default App;
