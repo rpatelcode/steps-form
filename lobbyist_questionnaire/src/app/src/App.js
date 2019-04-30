@@ -252,45 +252,10 @@ const App = () => {
             </div>
           </>
         );
-      case 31:
-      case 32:
-      case 33:
-      case 34:
-      case 35:
-      case 36:
-        return (
-          <>
-            <div
-              className="question"
-              dangerouslySetInnerHTML={{
-                __html: currentQuestion
-              }}
-            />
-            <div className="row">
-              <div className="col-xs-12 col-md-9" />
-              <div className="col-xs-12 col-md-3">
-                <PreviousAnswerBtn
-                  onClick={previous}
-                  answer={currentQuestion.replace(/<(?:.|\n)*?>/gm, "")}
-                />{" "}
-                <StartOverBtn onClick={startOver} />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-xs-12 col-md-12">
-                <div className="top-buffer">
-                  <em>
-                    Disclaimer: This interactive tool is a guide to assist
-                    registrants using the Lobbyist Registry system; any
-                    discrepancy between the chart and Municipal Code Chapter
-                    140, Municipal Code Chapter 140 shall govern.
-                  </em>
-                </div>
-              </div>
-            </div>
-          </>
-        );
-      default:
+      // without FieldSet and Legend
+      case 2:
+      case 7:
+      case 12:
         return (
           <>
             <div
@@ -377,15 +342,144 @@ const App = () => {
             </div>
           </>
         );
+
+      case 31:
+      case 32:
+      case 33:
+      case 34:
+      case 35:
+      case 36:
+        return (
+          <>
+            <div
+              className="question"
+              dangerouslySetInnerHTML={{
+                __html: currentQuestion
+              }}
+            />
+            <div className="row">
+              <div className="col-xs-12 col-md-9" />
+              <div className="col-xs-12 col-md-3">
+                <PreviousAnswerBtn
+                  onClick={previous}
+                  answer={currentQuestion.replace(/<(?:.|\n)*?>/gm, "")}
+                />{" "}
+                <StartOverBtn onClick={startOver} />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-xs-12 col-md-12">
+                <div className="top-buffer">
+                  <em>
+                    Disclaimer: This interactive tool is a guide to assist
+                    registrants using the Lobbyist Registry system; any
+                    discrepancy between the chart and Municipal Code Chapter
+                    140, Municipal Code Chapter 140 shall govern.
+                  </em>
+                </div>
+              </div>
+            </div>
+          </>
+        );
+      // with Fieldset and legend
+      default:
+        return (
+          <>
+            <fieldset>
+              <legend
+                tabIndex="-1"
+                className="question"
+                id="questionSpeek"
+                dangerouslySetInnerHTML={{ __html: currentQuestion }}
+              />
+
+              <div className="row">
+                <div className="col-xs-12 col-md-12">
+                  <div className="form-group">
+                    <label htmlFor="yes" id="ryes" className="radio-inline">
+                      <input
+                        type="radio"
+                        name="option1"
+                        id="yes"
+                        value={yes}
+                        aria-labelledby={
+                          answerSelect === yes && toggle
+                            ? "questionSpeek ryes"
+                            : answerSelect === yes ||
+                              answerSelect === no ||
+                              toggle
+                            ? null
+                            : "questionSpeek ryes"
+                        }
+                        autoFocus={
+                          answerSelect === yes
+                            ? true
+                            : answerSelect === no
+                            ? false
+                            : true
+                        }
+                        onClick={e => {
+                          setstate({
+                            ...state,
+                            answerSelect: parseInt(e.target.value),
+                            toggle: false
+                          });
+                        }}
+                        defaultChecked={answerSelect === yes}
+                      />
+                      Yes
+                    </label>
+                    <label htmlFor="no" id="rno" className="radio-inline">
+                      <input
+                        type="radio"
+                        name="option1"
+                        id="no"
+                        value={no}
+                        aria-labelledby={
+                          answerSelect === no && toggle
+                            ? "questionSpeek rno"
+                            : null
+                        }
+                        autoFocus={answerSelect === no ? true : false}
+                        onClick={e => {
+                          setstate({
+                            ...state,
+                            answerSelect: parseInt(e.target.value),
+                            toggle: false
+                          });
+                        }}
+                        defaultChecked={answerSelect === no}
+                      />
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <div className="row">
+              <div className="col-xs-12 col-md-8" />
+              <div className="col-xs-12 col-md-4">
+                <div className="form-group">
+                  <NextBtn
+                    disabled={answerSelect === answer[state.answer.length - 1]}
+                    onClick={handleSubmit}
+                  />{" "}
+                  <PreviousBtn onClick={previous} />{" "}
+                  <StartOverBtn onClick={startOver} />
+                </div>
+              </div>
+            </div>
+          </>
+        );
     }
   };
 
   return (
     <React.Fragment>
       <div className="row">
-        {/* <div role="region" aria-label="questionnaire"> */}
         <div className="media col-xs-12 col-md-12">
-          {/* <p>Question #{id}</p> */}
+          <p>Question #{id}</p>
           <CSSTransition
             key={forward.length - 1}
             in={true}
@@ -399,7 +493,6 @@ const App = () => {
           </CSSTransition>
         </div>
       </div>
-      {/* </div> */}
     </React.Fragment>
   );
 };

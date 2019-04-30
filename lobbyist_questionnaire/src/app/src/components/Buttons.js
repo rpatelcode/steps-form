@@ -45,7 +45,7 @@ const PreviousAnswerBtn = props => (
       onClick={props.onClick}
     />
     <div id="previousanswer" className="sr-only">
-      The answer is. {props.answer}. Click will take you previous question.
+      The answer is. {props.answer} Click will take you previous question.
     </div>
   </>
 );
