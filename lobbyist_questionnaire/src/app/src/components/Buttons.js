@@ -11,8 +11,8 @@ const StartBtn = props => (
       onClick={props.onClick}
     />
     <div id="startf" className="sr-only">
-      Do I Need to Register as a Lobbyist? Answer this quick and easy
-      interactive questionnaire to find out. Press and start questionnaire.
+      Am I a lobbyist? Answer this quick and easy interactive questionnaire to
+      find out. Press and start questionnaire.
     </div>
   </>
 );
@@ -45,7 +45,9 @@ const PreviousAnswerBtn = props => (
       onClick={props.onClick}
     />
     <div id="previousanswer" className="sr-only">
-      The answer is. {props.answer} Click will take you previous question.
+      {"The answer is. " +
+        props.answer +
+        " Click will take you previous question."}
     </div>
   </>
 );
@@ -61,7 +63,7 @@ const PreviousBtn = props => (
       autoFocus={props.autoFocus}
     />
     <div id="previoussr" className="sr-only">
-      Will take you to the previous question
+      Will take you to the previous question.
     </div>
   </>
 );
@@ -76,7 +78,7 @@ const StartOverBtn = props => (
       START OVER
     </button>
     <div id="startsr" className="sr-only">
-      Will take you to the beginning of the questionnaire
+      Will take you to the beginning of the questionnaire.
     </div>
   </>
 );

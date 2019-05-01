@@ -381,13 +381,12 @@ const App = () => {
             </div>
           </>
         );
-      // with Fieldset and legend
+      // with Fieldset and legend. commented aria-labelledby
       default:
         return (
           <>
             <fieldset>
               <legend
-                tabIndex="-1"
                 className="question"
                 id="questionSpeek"
                 dangerouslySetInnerHTML={{ __html: currentQuestion }}
@@ -402,15 +401,15 @@ const App = () => {
                         name="option1"
                         id="yes"
                         value={yes}
-                        aria-labelledby={
-                          answerSelect === yes && toggle
-                            ? "questionSpeek ryes"
-                            : answerSelect === yes ||
-                              answerSelect === no ||
-                              toggle
-                            ? null
-                            : "questionSpeek ryes"
-                        }
+                        // aria-labelledby={
+                        //   answerSelect === yes && toggle
+                        //     ? "questionSpeek ryes"
+                        //     : answerSelect === yes ||
+                        //       answerSelect === no ||
+                        //       toggle
+                        //     ? null
+                        //     : "questionSpeek ryes"
+                        // }
                         autoFocus={
                           answerSelect === yes
                             ? true
@@ -435,11 +434,11 @@ const App = () => {
                         name="option1"
                         id="no"
                         value={no}
-                        aria-labelledby={
-                          answerSelect === no && toggle
-                            ? "questionSpeek rno"
-                            : null
-                        }
+                        // aria-labelledby={
+                        //   answerSelect === no && toggle
+                        //     ? "questionSpeek rno"
+                        //     : null
+                        // }
                         autoFocus={answerSelect === no ? true : false}
                         onClick={e => {
                           setstate({
@@ -479,7 +478,7 @@ const App = () => {
     <React.Fragment>
       <div className="row">
         <div className="media col-xs-12 col-md-12">
-          <p>Question #{id}</p>
+          {/* <p>Question #{id}</p> */}
           <CSSTransition
             key={forward.length - 1}
             in={true}
