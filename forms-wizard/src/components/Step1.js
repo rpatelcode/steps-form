@@ -19,19 +19,19 @@ export class Step1 extends Component {
           <Step.Group fluid>
             <Step
               icon="plane"
-              title="Shipping"
+              title="Step1"
               description="Choose your shipping options"
             />
             <Step
               active
               icon="dollar"
-              title="Billing"
+              title="Step2"
               description="Enter billing information"
             />
             <Step
               disabled
               icon="info circle"
-              title="Confirm Order"
+              title="Step3 Order"
               description="Verify order details"
             />
           </Step.Group>
