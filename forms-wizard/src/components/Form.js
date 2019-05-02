@@ -4,7 +4,7 @@ import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
 
-export class UserForm extends Component {
+export class Form extends Component {
   state = {
     step: 1,
     firstName: "",
