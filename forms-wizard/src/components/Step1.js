@@ -1,6 +1,17 @@
 import React, { Component } from "react";
-import { Button, Input, Container, Header, Step } from "semantic-ui-react";
+import {
+  Form,
+  Button,
+  Input,
+  Container,
+  Divider,
+  Header,
+  Segment,
+  Step
+} from "semantic-ui-react";
 import "../App.css";
+import Steps from "./Steps";
+// import Form from "./Form";
 
 export class Step1 extends Component {
   continue = e => {
@@ -8,74 +19,62 @@ export class Step1 extends Component {
     this.props.nextStep();
   };
 
+  // cancel button
+  cancel = e => {};
+
   render() {
     const { values, handleChange } = this.props;
 
     return (
       <Container style={{ marginTop: "3em" }}>
-        <Header as="h1" content="Enter User Details" textAlign="center" />
+        <Steps />
+        <Form>
+          <Segment>
+            <Header as="h3" textAlign="left">
+              Parent 1
+            </Header>
 
-        <Container>
-          <Step.Group fluid>
-            <Step
-              icon="plane"
-              title="Step1"
-              description="Choose your shipping options"
+            <Form.Group widths="equal">
+              <Form.Field
+                id="form-input-control-first-name"
+                control={Input}
+                label="First name"
+                placeholder="First name"
+                onChange={handleChange("firstName")}
+                defaultValue={values.firstName}
+              />
+              <Form.Field
+                id="form-input-control-last-name"
+                control={Input}
+                label="Last name"
+                placeholder="Last name"
+                onChange={handleChange("lastName")}
+                defaultValue={values.lastName}
+              />
+            </Form.Group>
+            <Form.Field
+              id="form-textarea-control-opinion"
+              control={Input}
+              label="eMail"
+              placeholder="eMail"
+              onChange={handleChange("email")}
+              defaultValue={values.email}
             />
-            <Step
-              active
-              icon="dollar"
-              title="Step2"
-              description="Enter billing information"
-            />
-            <Step
-              disabled
-              icon="info circle"
-              title="Step3 Order"
-              description="Verify order details"
-            />
-          </Step.Group>
-        </Container>
+            <div>
+              <Button content="Cancel" onClick={this.cancel} secondary />
+              <Button content="Continue" onClick={this.continue} primary />
+            </div>
 
-        <React.Fragment>
-          <Input
-            placeholder="Enter Your First Name"
-            floatingLabelText="First Name"
-            onChange={handleChange("firstName")}
-            defaultValue={values.firstName}
-          />
-          <br />
-          <Input
-            placeholder="Enter Your Last Name"
-            floatingLabelText="Last Name"
-            onChange={handleChange("lastName")}
-            defaultValue={values.lastName}
-          />
-          <br />
-          <Input
-            placeholder="Enter Your Email"
-            floatingLabelText="Email"
-            onChange={handleChange("email")}
-            defaultValue={values.email}
-          />
-          <br />
-          <Button
-            primary
-            label="Continue"
-            primary={true}
-            style={styles.button}
-            onClick={this.continue}
-          />
-        </React.Fragment>
+            <Divider section />
+
+            <Header as="h3" textAlign="left">
+              Parent 2
+            </Header>
+          </Segment>
+        </Form>
       </Container>
     );
   }
 }
-
-const styles = {
-  button: {
-    margin: 15
-  }
-};
 
 export default Step1;
