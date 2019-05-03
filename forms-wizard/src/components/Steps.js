@@ -3,11 +3,7 @@ import { Header, Container, Step } from "semantic-ui-react";
 const Steps = () => {
   return (
     <>
-      <Header
-        as="h1"
-        content="Online Marriage Licence Application"
-        textAlign="center"
-      />
+      <Header as="h1" content="Online Lorem Application" textAlign="center" />
       <Container style={{ marginBottom: "2em" }}>
         <Step.Group fluid>
           <Step title="Step 1" />

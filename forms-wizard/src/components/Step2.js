@@ -37,18 +37,24 @@ export class Step2 extends Component {
           defaultValue={values.bio}
         />
         <br />
-        <Button
-          label="Continue"
-          primary={true}
-          style={styles.button}
-          onClick={this.continue}
-        />
-        <Button
-          label="Back"
-          primary={false}
-          style={styles.button}
-          onClick={this.back}
-        />
+
+        <div>
+          <Button content="Cancel" onClick={this.cancel} secondary />
+          <Button
+            content="Back"
+            icon="left arrow"
+            labelPosition="left"
+            onClick={this.back}
+            primary
+          />
+          <Button
+            content="Next"
+            icon="right arrow"
+            labelPosition="right"
+            onClick={this.continue}
+            primary
+          />
+        </div>
       </React.Fragment>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {
   Form,
+  Grid,
   Button,
   Input,
   Container,
@@ -60,10 +61,6 @@ export class Step1 extends Component {
               onChange={handleChange("email")}
               defaultValue={values.email}
             />
-            <div>
-              <Button content="Cancel" onClick={this.cancel} secondary />
-              <Button content="Continue" onClick={this.continue} primary />
-            </div>
 
             <Divider section />
 
@@ -71,6 +68,14 @@ export class Step1 extends Component {
               Parent 2
             </Header>
           </Segment>
+          <Button content="Cancel" onClick={this.cancel} secondary />
+          <Button
+            content="Next"
+            icon="right arrow"
+            labelPosition="right"
+            onClick={this.continue}
+            primary
+          />
         </Form>
       </Container>
     );
