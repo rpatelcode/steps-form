@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { Button, Input, Container, Header, Step } from "semantic-ui-react";
+import {
+  Button,
+  Input,
+  Container,
+  Header,
+  Form,
+  Segment,
+  Divider
+} from "semantic-ui-react";
+import Steps from "./Steps";
 
 export class Step2 extends Component {
   continue = e => {
@@ -15,30 +24,47 @@ export class Step2 extends Component {
   render() {
     const { values, handleChange } = this.props;
     return (
-      <React.Fragment>
-        <Input
-          hintText="Enter Your Occupation"
-          floatingLabelText="Occupation"
-          onChange={handleChange("occupation")}
-          defaultValue={values.occupation}
-        />
-        <br />
-        <Input
-          hintText="Enter Your City"
-          floatingLabelText="City"
-          onChange={handleChange("city")}
-          defaultValue={values.city}
-        />
-        <br />
-        <Input
-          hintText="Enter Your Bio"
-          floatingLabelText="Bio"
-          onChange={handleChange("bio")}
-          defaultValue={values.bio}
-        />
-        <br />
+      <Container style={{ marginTop: "3em" }}>
+        <Steps stepNumber={2} />
+        <Form>
+          <Segment>
+            <Header as="h3" textAlign="left">
+              Parent 1
+            </Header>
 
-        <div>
+            <Form.Group widths="equal">
+              <Form.Field
+                id="form-input-control-occupation"
+                control={Input}
+                label="Occupation"
+                placeholder="Occupation"
+                onChange={handleChange("occupation")}
+                defaultValue={values.occupation}
+              />
+              <Form.Field
+                id="form-input-control-city"
+                control={Input}
+                label="City"
+                placeholder="City"
+                onChange={handleChange("city")}
+                defaultValue={values.city}
+              />
+            </Form.Group>
+            <Form.Field
+              id="form-input-control-bio"
+              control={Input}
+              label="Bio"
+              placeholder="Bio"
+              onChange={handleChange("bio")}
+              defaultValue={values.bio}
+            />
+
+            <Divider section />
+
+            <Header as="h3" textAlign="left">
+              Parent 2
+            </Header>
+          </Segment>
           <Button content="Cancel" onClick={this.cancel} secondary />
           <Button
             content="Back"
@@ -54,8 +80,8 @@ export class Step2 extends Component {
             onClick={this.continue}
             primary
           />
-        </div>
-      </React.Fragment>
+        </Form>
+      </Container>
     );
   }
 }

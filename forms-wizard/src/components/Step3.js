@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import {
-  List,
   Button,
   Input,
   Container,
   Header,
-  Step
+  Form,
+  Segment,
+  Divider
 } from "semantic-ui-react";
+import Steps from "./Steps";
 export class Step3 extends Component {
   continue = e => {
     e.preventDefault();
@@ -20,46 +22,66 @@ export class Step3 extends Component {
   };
 
   render() {
-    const {
-      values: { firstName, lastName, email, occupation, city, bio }
-    } = this.props;
+    const { values, handleChange } = this.props;
     return (
-      <React.Fragment>
-        <List>
-          <List.Item>
-            <List.Header>First Name</List.Header>
-            {firstName}
-          </List.Item>
-          <List.Item>
-            <List.Header>Last Name</List.Header> {lastName}
-          </List.Item>
-          <List.Item>
-            <List.Header>Email</List.Header> {email}
-          </List.Item>
-          <List.Item>
-            <List.Header>Occupation</List.Header> {occupation}
-          </List.Item>
-          <List.Item>
-            <List.Header>City</List.Header> {city}
-          </List.Item>
-          <List.Item>
-            <List.Header>Bio</List.Header> {bio}
-          </List.Item>
-        </List>
-        <br />
-        <Button
-          label="Confirm & Continue"
-          primary={true}
-          style={styles.button}
-          onClick={this.continue}
-        />
-        <Button
-          label="Back"
-          primary={false}
-          style={styles.button}
-          onClick={this.back}
-        />
-      </React.Fragment>
+      <Container style={{ marginTop: "3em" }}>
+        <Steps stepNumber={3} />
+        <Form>
+          <Segment>
+            <Header as="h3" textAlign="left">
+              Parent 1
+            </Header>
+
+            <Form.Group widths="equal">
+              <Form.Field
+                id="form-input-control-text1"
+                control={Input}
+                label="text1"
+                placeholder="text1"
+                onChange={handleChange("text1")}
+                defaultValue={values.text1}
+              />
+              <Form.Field
+                id="form-input-control-text2"
+                control={Input}
+                label="text2"
+                placeholder="text2"
+                onChange={handleChange("text2")}
+                defaultValue={values.text2}
+              />
+            </Form.Group>
+            <Form.Field
+              id="form-input-control-text3"
+              control={Input}
+              label="text3"
+              placeholder="text3"
+              onChange={handleChange("text3")}
+              defaultValue={values.text3}
+            />
+
+            <Divider section />
+
+            <Header as="h3" textAlign="left">
+              Parent 2
+            </Header>
+          </Segment>
+          <Button content="Cancel" onClick={this.cancel} secondary />
+          <Button
+            content="Back"
+            icon="left arrow"
+            labelPosition="left"
+            onClick={this.back}
+            primary
+          />
+          <Button
+            content="Next"
+            icon="right arrow"
+            labelPosition="right"
+            onClick={this.continue}
+            primary
+          />
+        </Form>
+      </Container>
     );
   }
 }

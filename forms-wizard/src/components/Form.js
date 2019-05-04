@@ -12,7 +12,10 @@ export class Form extends Component {
     email: "",
     occupation: "",
     city: "",
-    bio: ""
+    bio: "",
+    text1: "",
+    text2: "",
+    text3: ""
   };
 
   // Proceed to next step
@@ -37,9 +40,17 @@ export class Form extends Component {
   };
 
   render() {
-    const { step } = this.state;
-    const { firstName, lastName, email, occupation, city, bio } = this.state;
-    const values = { firstName, lastName, email, occupation, city, bio };
+    // const { step } = this.state;
+    const {
+      step,
+      firstName,
+      lastName,
+      email,
+      occupation,
+      city,
+      bio
+    } = this.state;
+    const values = { step, firstName, lastName, email, occupation, city, bio };
 
     switch (step) {
       case 1:
@@ -64,11 +75,19 @@ export class Form extends Component {
           <Step3
             nextStep={this.nextStep}
             prevStep={this.prevStep}
+            handleChange={this.handleChange}
             values={values}
           />
         );
       case 4:
-        return <Step4 />;
+        return (
+          <Step4
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        );
     }
   }
 }

@@ -28,7 +28,7 @@ export class Step1 extends Component {
 
     return (
       <Container style={{ marginTop: "3em" }}>
-        <Steps />
+        <Steps stepNumber={1} />
         <Form>
           <Segment>
             <Header as="h3" textAlign="left">
