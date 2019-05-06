@@ -20,6 +20,7 @@ export class Step2 extends Component {
     e.preventDefault();
     this.props.prevStep();
   };
+  cancel = e => {};
 
   render() {
     const { values, handleChange } = this.props;

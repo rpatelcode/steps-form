@@ -11,6 +11,7 @@ import {
   Segment
 } from "semantic-ui-react";
 import Steps from "./Steps";
+let faker = require("faker");
 
 export class Step4 extends Component {
   continue = e => {
@@ -23,6 +24,7 @@ export class Step4 extends Component {
     e.preventDefault();
     this.props.prevStep();
   };
+  cancel = e => {};
 
   render() {
     const {
@@ -38,15 +40,20 @@ export class Step4 extends Component {
               Step 1
             </Header>
 
-            <Form.Group widths="equal">
-              <List.Header>First Name</List.Header>
-              <List.Header>First Name</List.Header>
-            </Form.Group>
-            <Form.Field
-              id="form-input-control-text3"
-              label="text3"
-              placeholder="text3"
-            />
+            <Grid columns="equal">
+              <Grid.Row>
+                <Grid.Column>First Name : </Grid.Column>
+                <Grid.Column>Address :</Grid.Column>
+                <Grid.Column>eMail : </Grid.Column>
+                <Grid.Column>Computer A First</Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column>Computer B Fourth</Grid.Column>
+                <Grid.Column>Computer B Third</Grid.Column>
+                <Grid.Column>Computer B Second</Grid.Column>
+                <Grid.Column>Computer B First</Grid.Column>
+              </Grid.Row>
+            </Grid>
 
             <Divider section />
 

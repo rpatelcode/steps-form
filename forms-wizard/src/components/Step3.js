@@ -21,6 +21,8 @@ export class Step3 extends Component {
     this.props.prevStep();
   };
 
+  cancel = e => {};
+
   render() {
     const { values, handleChange } = this.props;
     return (

@@ -1,27 +1,46 @@
 import React, { Component } from "react";
 import {
   Form,
-  Grid,
+  Checkbox,
+  Select,
+  Message,
   Button,
+  Icon,
+  Modal,
   Input,
   Container,
   Divider,
   Header,
-  Segment,
-  Step
+  Segment
 } from "semantic-ui-react";
 import "../App.css";
 import Steps from "./Steps";
-// import Form from "./Form";
+
+const options = [
+  { key: "e", text: "English", value: "english" },
+  { key: "f", text: "French", value: "french" }
+];
 
 export class Step1 extends Component {
+  // state = { languageFlag: '' };
+
+  // handleOpen = e => {
+  //   console.log(e.target.value);
+  //   this.setState({ modalOpen: true });
+  // };
+
+  // handleClose = () => this.setState({ languageFlag: '' });
+
   continue = e => {
     e.preventDefault();
     this.props.nextStep();
   };
 
   // cancel button
-  cancel = e => {};
+  cancel = e => {
+    // this.setState({ ...this.state, step: 1 });
+    console.log("Clicked");
+  };
 
   render() {
     const { values, handleChange } = this.props;
@@ -29,37 +48,58 @@ export class Step1 extends Component {
     return (
       <Container style={{ marginTop: "3em" }}>
         <Steps stepNumber={1} />
-        <Form>
+        <Form onSubmit={this.handleSubmit} success>
           <Segment>
             <Header as="h3" textAlign="left">
               Parent 1
             </Header>
+            <Form.Field>
+              <Form.Field
+                control={Checkbox}
+                required
+                label={
+                  <label>
+                    Confirm the intended place of marriage is in Ontario
+                  </label>
+                }
+              />
+            </Form.Field>
 
             <Form.Group widths="equal">
               <Form.Field
-                id="form-input-control-first-name"
+                id={values.intendedPlace}
                 control={Input}
-                label="First name"
-                placeholder="First name"
-                onChange={handleChange("firstName")}
-                defaultValue={values.firstName}
+                label="City/Town"
+                placeholder="City/Town"
+                onChange={handleChange("intendedPlace")}
+                defaultValue={values.intendedPlace}
+                required
               />
               <Form.Field
-                id="form-input-control-last-name"
+                id={values.proposedDate}
                 control={Input}
-                label="Last name"
-                placeholder="Last name"
-                onChange={handleChange("lastName")}
-                defaultValue={values.lastName}
+                label="Intended Date of Marriage"
+                placeholder="DD/MM/YYYY"
+                onChange={handleChange("proposedDate")}
+                defaultValue={values.proposedDate}
+                required
+              />
+              <Form.Field
+                id={values.languageFlag}
+                control={Select}
+                label="Language for The Licence"
+                placeholder="Choose an option"
+                options={options}
+                onChange={handleChange("languageFlag")}
+                // onChange={(e, { value }) => alert(value)}
+                defaultValue={values.languageFlag}
+                required
               />
             </Form.Group>
-            <Form.Field
-              id="form-textarea-control-opinion"
-              control={Input}
-              label="eMail"
-              placeholder="eMail"
-              onChange={handleChange("email")}
-              defaultValue={values.email}
+            <Message
+              success
+              header="Language for The Licence"
+              content="This application does not provide for the translation of the web form but your marriage licence will be printed on the french version of the licence."
             />
 
             <Divider section />
