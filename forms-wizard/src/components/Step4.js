@@ -11,7 +11,6 @@ import {
   Segment
 } from "semantic-ui-react";
 import Steps from "./Steps";
-let faker = require("faker");
 
 export class Step4 extends Component {
   continue = e => {

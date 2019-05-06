@@ -42,7 +42,6 @@ const Steps = props => {
         );
       default:
         return <></>;
-        break;
     }
   };
 

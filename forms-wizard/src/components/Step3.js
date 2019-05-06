@@ -88,10 +88,4 @@ export class Step3 extends Component {
   }
 }
 
-const styles = {
-  button: {
-    margin: 15
-  }
-};
-
 export default Step3;

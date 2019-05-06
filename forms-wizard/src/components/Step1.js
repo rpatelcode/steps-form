@@ -5,8 +5,6 @@ import {
   Select,
   Message,
   Button,
-  Icon,
-  Modal,
   Input,
   Container,
   Divider,
@@ -14,8 +12,8 @@ import {
   Segment
 } from "semantic-ui-react";
 import "../App.css";
-import Steps from "./Steps";
 
+import Steps from "./Steps";
 const options = [
   { key: "e", text: "English", value: "english" },
   { key: "f", text: "French", value: "french" }
@@ -24,28 +22,18 @@ const options = [
 const Step1 = props => {
   const [message, setmessage] = useState(false);
   const { values, handleChange } = props;
-
-  // continue = e => {
-  //   e.preventDefault();
-  //   this.props.nextStep();
-  // }
+  // const errorLabel = <Label color="red" pointing />;
+  const next = e => {
+    e.preventDefault();
+    props.nextStep();
+  };
 
   // cancel button
-  // cancel = e => {
-  //   // this.setState({ ...this.state, step: 1 });
-  //   console.log("Clicked");
-  // };
-  // MessageShow = (e, { value }) => {
-  //   switch (value) {
-  //     case "english":
-  //       alert("english");
-  //       break;
-  //     case "french":
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // };
+  const cancel = e => {
+    e.preventDefault();
+    // this.setState({ ...this.state, step: 1 });
+    console.log("Cancel Clicked");
+  };
 
   const MessageShow = () => (
     <Message
@@ -58,6 +46,7 @@ const Step1 = props => {
   return (
     <Container style={{ marginTop: "3em" }}>
       <Steps stepNumber={1} />
+
       <Form success>
         <Segment>
           <Header as="h3" textAlign="left">
@@ -77,46 +66,44 @@ const Step1 = props => {
 
           <Form.Group widths="equal">
             <Form.Field
-              id={values.intendedPlace}
+              id="intendedPlace"
               control={Input}
               label="City/Town"
               placeholder="City/Town"
               onChange={handleChange("intendedPlace")}
-              defaultValue={values.intendedPlace}
+              value={values.intendedPlace}
               required
+              // validations="isWords"
+              // errorLabel={<Label color="red" pointing />}
+              // validationErrors={{
+              //   isWords: "No numbers or special characters allowed",
+              //   isDefaultRequiredValue: "First Name is Required"
+              // }}
             />
             <Form.Field
-              id={values.proposedDate}
+              id="proposedDate"
               control={Input}
               label="Intended Date of Marriage"
               placeholder="DD/MM/YYYY"
+              value={values.proposedDate}
               onChange={handleChange("proposedDate")}
-              defaultValue={values.proposedDate}
               required
             />
             <Form.Field
-              id={values.languageFlag}
+              id="languageFlag"
               control={Select}
               label="Language for The Licence"
               placeholder="Choose an option"
               options={options}
               onChange={(e, { value }) => {
-                // MessageShow(e, { value });
                 value === "french" ? setmessage(true) : setmessage(false);
                 handleChange("languageFlag");
               }}
-              // onChange={(e, { value }) => alert(value)}
-              defaultValue={values.languageFlag}
               required
             />
           </Form.Group>
           {message ? <MessageShow /> : null}
-
-          {/* <Message
-            success
-            header="Language for The Licence"
-            content="This application does not provide for the translation of the web form but your marriage licence will be printed on the french version of the licence."
-          /> */}
+          <Message success header="Required" content="City/Town required" />
 
           <Divider section />
 
@@ -124,16 +111,12 @@ const Step1 = props => {
             Parent 2
           </Header>
         </Segment>
-        <Button
-          content="Cancel"
-          // onClick={cancel}
-          secondary
-        />
+        <Button content="Cancel" onClick={cancel} secondary />
         <Button
           content="Next"
           icon="right arrow"
           labelPosition="right"
-          // onClick={continue}
+          onClick={next}
           primary
         />
       </Form>
