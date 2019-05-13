@@ -34,7 +34,6 @@ const Step1 = props => {
     // this.setState({ ...this.state, step: 1 });
     console.log("Cancel Clicked");
   };
-
   const MessageShow = () => (
     <Message
       success
@@ -88,6 +87,7 @@ const Step1 = props => {
               value={values.proposedDate}
               onChange={handleChange("proposedDate")}
               required
+              error={false}
             />
             <Form.Field
               id="languageFlag"
@@ -100,6 +100,7 @@ const Step1 = props => {
                 handleChange("languageFlag");
               }}
               required
+              error
             />
           </Form.Group>
           {message ? <MessageShow /> : null}
