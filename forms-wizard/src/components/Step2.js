@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   Button,
   Input,
@@ -10,81 +10,80 @@ import {
 } from "semantic-ui-react";
 import Steps from "./Steps";
 
-export class Step2 extends Component {
-  continue = e => {
+const Step2 = props => {
+  const continueGo = e => {
     e.preventDefault();
-    this.props.nextStep();
+    props.nextStep();
   };
 
-  back = e => {
+  const back = e => {
     e.preventDefault();
-    this.props.prevStep();
+    props.prevStep();
   };
-  cancel = e => {};
 
-  render() {
-    const { values, handleChange } = this.props;
-    return (
-      <Container style={{ marginTop: "3em" }}>
-        <Steps stepNumber={2} />
-        <Form>
-          <Segment>
-            <Header as="h3" textAlign="left">
-              Parent 1
-            </Header>
+  const cancel = e => {};
 
-            <Form.Group widths="equal">
-              <Form.Field
-                id="form-input-control-occupation"
-                control={Input}
-                label="Occupation"
-                placeholder="Occupation"
-                onChange={handleChange("occupation")}
-                defaultValue={values.occupation}
-              />
-              <Form.Field
-                id="form-input-control-city"
-                control={Input}
-                label="City"
-                placeholder="City"
-                onChange={handleChange("city")}
-                defaultValue={values.city}
-              />
-            </Form.Group>
+  const { values, handleChange } = props;
+  return (
+    <Container style={{ marginTop: "3em" }}>
+      <Steps stepNumber={2} />
+      <Form>
+        <Segment>
+          <Header as="h3" textAlign="left">
+            Parent 1
+          </Header>
+
+          <Form.Group widths="equal">
             <Form.Field
-              id="form-input-control-bio"
+              id="form-input-control-occupation"
               control={Input}
-              label="Bio"
-              placeholder="Bio"
-              onChange={handleChange("bio")}
-              defaultValue={values.bio}
+              label="Occupation"
+              placeholder="Occupation"
+              onChange={handleChange("occupation")}
+              defaultValue={values.occupation}
             />
-
-            <Divider section />
-
-            <Header as="h3" textAlign="left">
-              Parent 2
-            </Header>
-          </Segment>
-          <Button content="Cancel" onClick={this.cancel} secondary />
-          <Button
-            content="Back"
-            icon="left arrow"
-            labelPosition="left"
-            onClick={this.back}
-            primary
+            <Form.Field
+              id="form-input-control-city"
+              control={Input}
+              label="City"
+              placeholder="City"
+              onChange={handleChange("city")}
+              defaultValue={values.city}
+            />
+          </Form.Group>
+          <Form.Field
+            id="form-input-control-bio"
+            control={Input}
+            label="Bio"
+            placeholder="Bio"
+            onChange={handleChange("bio")}
+            defaultValue={values.bio}
           />
-          <Button
-            content="Next"
-            icon="right arrow"
-            labelPosition="right"
-            onClick={this.continue}
-            primary
-          />
-        </Form>
-      </Container>
-    );
-  }
-}
+
+          <Divider section />
+
+          <Header as="h3" textAlign="left">
+            Parent 2
+          </Header>
+        </Segment>
+        <Button content="Cancel" onClick={cancel} secondary />
+        <Button
+          content="Back"
+          icon="left arrow"
+          labelPosition="left"
+          onClick={back}
+          primary
+        />
+        <Button
+          content="Next"
+          icon="right arrow"
+          labelPosition="right"
+          onClick={continueGo}
+          primary
+        />
+      </Form>
+    </Container>
+  );
+};
 
 export default Step2;

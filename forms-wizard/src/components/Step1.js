@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Form,
   Checkbox,
@@ -20,7 +20,7 @@ const options = [
 ];
 
 const Step1 = props => {
-  const [message, setmessage] = useState(false);
+  const [message, setmessage] = React.useState(false);
   const { values, handleChange } = props;
   // const errorLabel = <Label color="red" pointing />;
   const next = e => {

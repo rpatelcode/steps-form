@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   Button,
   Input,
@@ -9,83 +9,81 @@ import {
   Divider
 } from "semantic-ui-react";
 import Steps from "./Steps";
-export class Step3 extends Component {
-  continue = e => {
+const Step3 = props => {
+  const continueGo = e => {
     e.preventDefault();
     // PROCESS FORM //
-    this.props.nextStep();
+    props.nextStep();
   };
 
-  back = e => {
+  const back = e => {
     e.preventDefault();
-    this.props.prevStep();
+    props.prevStep();
   };
 
-  cancel = e => {};
+  const cancel = e => {};
 
-  render() {
-    const { values, handleChange } = this.props;
-    return (
-      <Container style={{ marginTop: "3em" }}>
-        <Steps stepNumber={3} />
-        <Form>
-          <Segment>
-            <Header as="h3" textAlign="left">
-              Parent 1
-            </Header>
+  const { values, handleChange } = props;
+  return (
+    <Container style={{ marginTop: "3em" }}>
+      <Steps stepNumber={3} />
+      <Form>
+        <Segment>
+          <Header as="h3" textAlign="left">
+            Parent 1
+          </Header>
 
-            <Form.Group widths="equal">
-              <Form.Field
-                id="form-input-control-text1"
-                control={Input}
-                label="text1"
-                placeholder="text1"
-                onChange={handleChange("text1")}
-                defaultValue={values.text1}
-              />
-              <Form.Field
-                id="form-input-control-text2"
-                control={Input}
-                label="text2"
-                placeholder="text2"
-                onChange={handleChange("text2")}
-                defaultValue={values.text2}
-              />
-            </Form.Group>
+          <Form.Group widths="equal">
             <Form.Field
-              id="form-input-control-text3"
+              id="form-input-control-text1"
               control={Input}
-              label="text3"
-              placeholder="text3"
-              onChange={handleChange("text3")}
-              defaultValue={values.text3}
+              label="text1"
+              placeholder="text1"
+              onChange={handleChange("text1")}
+              defaultValue={values.text1}
             />
-
-            <Divider section />
-
-            <Header as="h3" textAlign="left">
-              Parent 2
-            </Header>
-          </Segment>
-          <Button content="Cancel" onClick={this.cancel} secondary />
-          <Button
-            content="Back"
-            icon="left arrow"
-            labelPosition="left"
-            onClick={this.back}
-            primary
+            <Form.Field
+              id="form-input-control-text2"
+              control={Input}
+              label="text2"
+              placeholder="text2"
+              onChange={handleChange("text2")}
+              defaultValue={values.text2}
+            />
+          </Form.Group>
+          <Form.Field
+            id="form-input-control-text3"
+            control={Input}
+            label="text3"
+            placeholder="text3"
+            onChange={handleChange("text3")}
+            defaultValue={values.text3}
           />
-          <Button
-            content="Next"
-            icon="right arrow"
-            labelPosition="right"
-            onClick={this.continue}
-            primary
-          />
-        </Form>
-      </Container>
-    );
-  }
-}
+
+          <Divider section />
+
+          <Header as="h3" textAlign="left">
+            Parent 2
+          </Header>
+        </Segment>
+        <Button content="Cancel" onClick={cancel} secondary />
+        <Button
+          content="Back"
+          icon="left arrow"
+          labelPosition="left"
+          onClick={back}
+          primary
+        />
+        <Button
+          content="Next"
+          icon="right arrow"
+          labelPosition="right"
+          onClick={continueGo}
+          primary
+        />
+      </Form>
+    </Container>
+  );
+};
 
 export default Step3;

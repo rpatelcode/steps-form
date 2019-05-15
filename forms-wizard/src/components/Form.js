@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
@@ -6,9 +6,9 @@ import Step4 from "./Step4";
 import moment from "moment";
 import faker from "faker/locale/en_CA";
 
-export class Form extends Component {
-  state = {
-    step: 1,
+const Form = () => {
+  const [step, setstep] = React.useState(1);
+  const [state, setState] = React.useState({
     isOntarioMarriageFlag: false,
     intendedPlace: faker.address.city(),
     proposedDate: moment(faker.date.future()).format("DD/MM/YYYY"),
@@ -95,192 +95,192 @@ export class Form extends Component {
     // text1: faker.company.companyName(),
     // text2: faker.company.catchPhrase(),
     // text3: faker.company.catchPhraseAdjective()
-  };
+  });
 
   // Proceed to next step
-  nextStep = () => {
-    const { step } = this.state;
-    this.setState({
-      step: step + 1
-    });
+  // const nextStep = () => {
+  //   const { step } = state;
+  //   setState({
+  //     step: step + 1
+  //   });
+  // };
+
+  const nextStep = () => {
+    setstep(step + 1);
   };
 
   // Go back to prev step
-  prevStep = () => {
-    const { step } = this.state;
-    this.setState({
-      step: step - 1
-    });
+  const prevStep = () => {
+    setstep(step - 1);
   };
 
   // Handle fields change
-  handleChange = input => e => {
-    this.setState({ [input]: e.target.value });
+  const handleChange = input => e => {
+    setState({ ...state, [input]: e.target.value });
   };
 
-  render() {
-    // const { step } = this.state;
-    const {
-      step,
-      isOntarioMarriageFlag,
-      intendedPlace,
-      proposedDate,
-      languageFlag,
-      app1SingleName,
-      app1LastName,
-      app1FirstMiddleName,
-      app1MaritalStatus,
-      app1Religion,
-      app1ReligionOther,
-      app1BirthDay,
-      app1BirthMonth,
-      app1BirthYear,
-      app1Age,
-      app1BirthCountry,
-      app1BirthCountryO,
-      app1BirthProvince,
-      app1FatherSingleName,
-      app1FatherLastName,
-      app1FatherFirstName,
-      app1FatherBirthCountry,
-      app1FatherBirthCountryO,
-      app1FatherBirthProvince,
-      app1MotherSingleName,
-      app1MotherLastName,
-      app1MotherFirstName,
-      app1MotherBirthCountry,
-      app1MotherBirthCountryO,
-      app1MotherBirthProvince,
-      app1Parent3SingleName,
-      app1Parent3LastName,
-      app1Parent3FirstName,
-      app1Parent3BirthCountry,
-      app1Parent3BirthCountryO,
-      app1Parent3BirthProvince,
-      app1Parent4SingleName,
-      app1Parent4LastName,
-      app1Parent4FirstName,
-      app1Parent4BirthCountry,
-      app1Parent4BirthCountryO,
-      app1Parent4BirthProvince,
-      app1ResidentStreet,
-      app1ResidentApt,
-      app1ResidentCity,
-      app1ResidentCountry,
-      app1ResidentCountryO,
-      app1ResidentProvince,
-      app1ResidentPostalCode,
-      app1ResidentPhone,
-      homeAddressFlag,
-      app1HomeStreet,
-      app1HomeApt,
-      app1HomeCity,
-      app1HomeCountry,
-      app1HomeCountryO,
-      app1HomeProvince,
-      app1HomePostalCode
-    } = this.state;
-    const values = {
-      step,
-      isOntarioMarriageFlag,
-      intendedPlace,
-      proposedDate,
-      languageFlag,
-      app1SingleName,
-      app1LastName,
-      app1FirstMiddleName,
-      app1MaritalStatus,
-      app1Religion,
-      app1ReligionOther,
-      app1BirthDay,
-      app1BirthMonth,
-      app1BirthYear,
-      app1Age,
-      app1BirthCountry,
-      app1BirthCountryO,
-      app1BirthProvince,
-      app1FatherSingleName,
-      app1FatherLastName,
-      app1FatherFirstName,
-      app1FatherBirthCountry,
-      app1FatherBirthCountryO,
-      app1FatherBirthProvince,
-      app1MotherSingleName,
-      app1MotherLastName,
-      app1MotherFirstName,
-      app1MotherBirthCountry,
-      app1MotherBirthCountryO,
-      app1MotherBirthProvince,
-      app1Parent3SingleName,
-      app1Parent3LastName,
-      app1Parent3FirstName,
-      app1Parent3BirthCountry,
-      app1Parent3BirthCountryO,
-      app1Parent3BirthProvince,
-      app1Parent4SingleName,
-      app1Parent4LastName,
-      app1Parent4FirstName,
-      app1Parent4BirthCountry,
-      app1Parent4BirthCountryO,
-      app1Parent4BirthProvince,
-      app1ResidentStreet,
-      app1ResidentApt,
-      app1ResidentCity,
-      app1ResidentCountry,
-      app1ResidentCountryO,
-      app1ResidentProvince,
-      app1ResidentPostalCode,
-      app1ResidentPhone,
-      homeAddressFlag,
-      app1HomeStreet,
-      app1HomeApt,
-      app1HomeCity,
-      app1HomeCountry,
-      app1HomeCountryO,
-      app1HomeProvince,
-      app1HomePostalCode
-    };
+  console.log(step);
+  console.log(state);
 
-    switch (step) {
-      case 1:
-        return (
-          <Step1
-            nextStep={this.nextStep}
-            handleChange={this.handleChange}
-            values={values}
-          />
-        );
-      case 2:
-        return (
-          <Step2
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleChange={this.handleChange}
-            values={values}
-          />
-        );
-      case 3:
-        return (
-          <Step3
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleChange={this.handleChange}
-            values={values}
-          />
-        );
-      case 4:
-        return (
-          <Step4
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleChange={this.handleChange}
-            values={values}
-          />
-        );
-      default:
-        return null;
-    }
+  const {
+    isOntarioMarriageFlag,
+    intendedPlace,
+    proposedDate,
+    languageFlag,
+    app1SingleName,
+    app1LastName,
+    app1FirstMiddleName,
+    app1MaritalStatus,
+    app1Religion,
+    app1ReligionOther,
+    app1BirthDay,
+    app1BirthMonth,
+    app1BirthYear,
+    app1Age,
+    app1BirthCountry,
+    app1BirthCountryO,
+    app1BirthProvince,
+    app1FatherSingleName,
+    app1FatherLastName,
+    app1FatherFirstName,
+    app1FatherBirthCountry,
+    app1FatherBirthCountryO,
+    app1FatherBirthProvince,
+    app1MotherSingleName,
+    app1MotherLastName,
+    app1MotherFirstName,
+    app1MotherBirthCountry,
+    app1MotherBirthCountryO,
+    app1MotherBirthProvince,
+    app1Parent3SingleName,
+    app1Parent3LastName,
+    app1Parent3FirstName,
+    app1Parent3BirthCountry,
+    app1Parent3BirthCountryO,
+    app1Parent3BirthProvince,
+    app1Parent4SingleName,
+    app1Parent4LastName,
+    app1Parent4FirstName,
+    app1Parent4BirthCountry,
+    app1Parent4BirthCountryO,
+    app1Parent4BirthProvince,
+    app1ResidentStreet,
+    app1ResidentApt,
+    app1ResidentCity,
+    app1ResidentCountry,
+    app1ResidentCountryO,
+    app1ResidentProvince,
+    app1ResidentPostalCode,
+    app1ResidentPhone,
+    homeAddressFlag,
+    app1HomeStreet,
+    app1HomeApt,
+    app1HomeCity,
+    app1HomeCountry,
+    app1HomeCountryO,
+    app1HomeProvince,
+    app1HomePostalCode
+  } = state;
+  const values = {
+    step,
+    isOntarioMarriageFlag,
+    intendedPlace,
+    proposedDate,
+    languageFlag,
+    app1SingleName,
+    app1LastName,
+    app1FirstMiddleName,
+    app1MaritalStatus,
+    app1Religion,
+    app1ReligionOther,
+    app1BirthDay,
+    app1BirthMonth,
+    app1BirthYear,
+    app1Age,
+    app1BirthCountry,
+    app1BirthCountryO,
+    app1BirthProvince,
+    app1FatherSingleName,
+    app1FatherLastName,
+    app1FatherFirstName,
+    app1FatherBirthCountry,
+    app1FatherBirthCountryO,
+    app1FatherBirthProvince,
+    app1MotherSingleName,
+    app1MotherLastName,
+    app1MotherFirstName,
+    app1MotherBirthCountry,
+    app1MotherBirthCountryO,
+    app1MotherBirthProvince,
+    app1Parent3SingleName,
+    app1Parent3LastName,
+    app1Parent3FirstName,
+    app1Parent3BirthCountry,
+    app1Parent3BirthCountryO,
+    app1Parent3BirthProvince,
+    app1Parent4SingleName,
+    app1Parent4LastName,
+    app1Parent4FirstName,
+    app1Parent4BirthCountry,
+    app1Parent4BirthCountryO,
+    app1Parent4BirthProvince,
+    app1ResidentStreet,
+    app1ResidentApt,
+    app1ResidentCity,
+    app1ResidentCountry,
+    app1ResidentCountryO,
+    app1ResidentProvince,
+    app1ResidentPostalCode,
+    app1ResidentPhone,
+    homeAddressFlag,
+    app1HomeStreet,
+    app1HomeApt,
+    app1HomeCity,
+    app1HomeCountry,
+    app1HomeCountryO,
+    app1HomeProvince,
+    app1HomePostalCode
+  };
+
+  switch (step) {
+    case 1:
+      return (
+        <Step1
+          nextStep={nextStep}
+          handleChange={handleChange}
+          values={values}
+        />
+      );
+    case 2:
+      return (
+        <Step2
+          nextStep={nextStep}
+          prevStep={prevStep}
+          handleChange={handleChange}
+          values={values}
+        />
+      );
+    case 3:
+      return (
+        <Step3
+          nextStep={nextStep}
+          prevStep={prevStep}
+          handleChange={handleChange}
+          values={values}
+        />
+      );
+    case 4:
+      return (
+        <Step4
+          nextStep={nextStep}
+          prevStep={prevStep}
+          handleChange={handleChange}
+          values={values}
+        />
+      );
+    default:
+      return null;
   }
-}
+};
 
 export default Form;
