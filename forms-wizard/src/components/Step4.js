@@ -143,13 +143,6 @@ const Step4 = props => {
           onClick={back}
           primary
         />
-        <Button
-          content="Next"
-          icon="right arrow"
-          labelPosition="right"
-          onClick={continueGo}
-          primary
-        />
       </Form>
 
       <Grid columns={2} stackable>

@@ -21,7 +21,15 @@ const options = [
 
 const Step1 = props => {
   const [message, setmessage] = React.useState(false);
-  const { values, handleChange } = props;
+  const {
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    values,
+    errors,
+    isSubmitting
+  } = props;
+
   // const errorLabel = <Label color="red" pointing />;
   const next = e => {
     e.preventDefault();
@@ -46,7 +54,7 @@ const Step1 = props => {
     <Container style={{ marginTop: "3em" }}>
       <Steps stepNumber={1} />
 
-      <Form success>
+      <Form onSubmit={handleSubmit} success>
         <Segment>
           <Header as="h3" textAlign="left">
             Parent 1
@@ -70,8 +78,10 @@ const Step1 = props => {
               label="City/Town"
               placeholder="City/Town"
               onChange={handleChange("intendedPlace")}
+              onBlur={handleBlur}
               value={values.intendedPlace}
               required
+              error={errors.intendedPlace ? true : false}
               // validations="isWords"
               // errorLabel={<Label color="red" pointing />}
               // validationErrors={{
@@ -119,6 +129,7 @@ const Step1 = props => {
           labelPosition="right"
           onClick={next}
           primary
+          disabled={isSubmitting}
         />
       </Form>
     </Container>
