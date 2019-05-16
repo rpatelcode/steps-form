@@ -11,9 +11,9 @@ import validateAuth from "./validateAuth";
 
 const INITIAL_STATE = {
   isOntarioMarriageFlag: false,
-  intendedPlace: faker.address.city(),
-  proposedDate: moment(faker.date.future()).format("DD/MM/YYYY"),
-  languageFlag: "English", //English, French [also popup message open]
+  intendedPlace: "", // faker.address.city(),
+  proposedDate: "", //moment(faker.date.future()).format("DD/MM/YYYY"),
+  languageFlag: "english", //English, French [also popup message open]
   app1SingleName: faker.name.findName(),
   app1LastName: faker.name.lastName(),
   app1FirstMiddleName: faker.name.lastName(),
@@ -94,7 +94,6 @@ const Form = () => {
     handleSubmit,
     handleChange,
     handleBlur,
-    toggle,
     values,
     errors,
     isSubmitting
@@ -247,7 +246,6 @@ const Form = () => {
           errors={errors}
           handleSubmit={handleSubmit}
           handleBlur={handleBlur}
-          toggle={toggle}
           isSubmitting={isSubmitting}
         />
       );

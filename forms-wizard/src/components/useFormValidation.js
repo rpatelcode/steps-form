@@ -6,6 +6,9 @@ const useFormValidation = (initialState, validate) => {
   const [isSubmitting, setSubmitting] = React.useState(false);
 
   React.useEffect(() => {
+    // const validationErrors = validate(values);
+    // setErrors(validationErrors);
+
     if (isSubmitting) {
       const noErrors = Object.keys(errors).length === 0;
       if (noErrors) {
@@ -17,51 +20,18 @@ const useFormValidation = (initialState, validate) => {
     }
   }, [errors]);
 
-  const handleChange = event => {
+  const handleChange = (e, { name, value }) => {
+    const target = e.target;
+    const val = target.type === "checkbox" ? target.checked : value;
     setValues({
       ...values,
-      [event.target.name]: event.target.value
+      [name]: val
     });
     const validationErrors = validate(values);
     setErrors(validationErrors);
+    console.log(name);
+    console.log(val);
   };
-
-  const toggle = e => {
-    switch (e.target.name) {
-      case "isOntarioMarriageFlag":
-        setValues({
-          ...values,
-          isOntarioMarriageFlag: !values.isOntarioMarriageFlag
-        });
-        console.log(
-          "values.isOntarioMarriageFlag : " +
-            values.isOntarioMarriageFlag +
-            "homeAddressFlag : " +
-            values.homeAddressFlag
-        );
-        break;
-      case "homeAddressFlag":
-        setValues({
-          ...values,
-          homeAddressFlag: !values.homeAddressFlag
-        });
-        console.log(
-          "values.isOntarioMarriageFlag : " +
-            values.isOntarioMarriageFlag +
-            "homeAddressFlag : " +
-            values.homeAddressFlag
-        );
-        break;
-
-      default:
-        break;
-    }
-    const validationErrors = validate(values);
-    setErrors(validationErrors);
-  };
-  // const handleChange = input => e => {
-  //   setValues({ ...values, [input]: e.target.value });
-  // };
 
   const handleBlur = () => {
     const validationErrors = validate(values);
@@ -79,7 +49,6 @@ const useFormValidation = (initialState, validate) => {
     handleSubmit,
     handleChange,
     handleBlur,
-    toggle,
     values,
     errors,
     isSubmitting

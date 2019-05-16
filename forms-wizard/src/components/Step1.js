@@ -3,6 +3,7 @@ import {
   Form,
   Checkbox,
   Select,
+  Dropdown,
   Message,
   Button,
   Input,
@@ -64,34 +65,18 @@ const Step1 = props => {
             <Form.Field
               id="isOntarioMarriageFlag"
               name="isOntarioMarriageFlag"
-              onChange={toggle}
+              onChange={handleChange}
+              // value={true}
               // onBlur={handleBlur}
               control={Checkbox}
               checked={values.isOntarioMarriageFlag}
               required
-              error={
-                values.isOntarioMarriageFlag && errors.isOntarioMarriageFlag
-                  ? false
-                  : true
-              }
+              error={values.isOntarioMarriageFlag ? false : true}
               label={
                 <label>
                   Confirm the intended place of marriage is in Ontario
                 </label>
               }
-            />
-            <Form.Field
-              id="homeAddressFlag"
-              name="homeAddressFlag"
-              onChange={toggle}
-              // onBlur={handleBlur}
-              control={Checkbox}
-              checked={values.homeAddressFlag}
-              required
-              error={
-                values.homeAddressFlag && errors.homeAddressFlag ? false : true
-              }
-              label={<label>homeAddressFlag</label>}
             />
           </Form.Group>
 
@@ -125,18 +110,22 @@ const Step1 = props => {
               name="languageFlag"
               control={Select}
               label="Language for The Licence"
-              placeholder="Choose an option"
+              placeholder="English"
               options={options}
               onChange={handleChange}
-              onBlur={handleBlur}
-              // value={"f"}
-              // onChange={(e, { value }) => {
-              //   value === "french" ? setmessage(true) : setmessage(false);
-              //   handleChange("languageFlag");
-              // }}
               required
               error={errors.languageFlag ? true : false}
             />
+            {/* <Form.Field>
+              <label>Language for The Licence</label>
+              <Dropdown
+                selection
+                name="languageFlag"
+                options={options}
+                placeholder="English"
+                onChange={handleChange}
+              />
+            </Form.Field> */}
           </Form.Group>
           {message ? <MessageShow /> : null}
           <Message success header="Required" content="City/Town required" />
