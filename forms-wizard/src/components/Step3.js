@@ -35,28 +35,31 @@ const Step3 = props => {
 
           <Form.Group widths="equal">
             <Form.Field
-              id="form-input-control-text1"
+              id="text1"
+              name="text1"
               control={Input}
               label="text1"
               placeholder="text1"
-              onChange={handleChange("text1")}
+              onChange={handleChange}
               defaultValue={values.text1}
             />
             <Form.Field
-              id="form-input-control-text2"
+              id="text2"
+              name="text2"
               control={Input}
               label="text2"
               placeholder="text2"
-              onChange={handleChange("text2")}
+              onChange={handleChange}
               defaultValue={values.text2}
             />
           </Form.Group>
           <Form.Field
-            id="form-input-control-text3"
+            id="text3"
+            name="text3"
             control={Input}
             label="text3"
             placeholder="text3"
-            onChange={handleChange("text3")}
+            onChange={handleChange}
             defaultValue={values.text3}
           />
 

@@ -94,6 +94,7 @@ const Form = () => {
     handleSubmit,
     handleChange,
     handleBlur,
+    toggle,
     values,
     errors,
     isSubmitting
@@ -112,8 +113,8 @@ const Form = () => {
   // const handleChange = input => e => {
   //   setState({ ...state, [input]: e.target.value });
   // };
-  console.clear();
-  console.log(step);
+  // console.clear();
+  // console.log(step);
   console.log(values);
 
   // const {
@@ -246,6 +247,7 @@ const Form = () => {
           errors={errors}
           handleSubmit={handleSubmit}
           handleBlur={handleBlur}
+          toggle={toggle}
           isSubmitting={isSubmitting}
         />
       );

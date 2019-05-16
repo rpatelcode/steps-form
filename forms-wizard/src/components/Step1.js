@@ -25,6 +25,7 @@ const Step1 = props => {
     handleSubmit,
     handleChange,
     handleBlur,
+    toggle,
     values,
     errors,
     isSubmitting
@@ -59,58 +60,82 @@ const Step1 = props => {
           <Header as="h3" textAlign="left">
             Parent 1
           </Header>
-          <Form.Field>
+          <Form.Group>
             <Form.Field
+              id="isOntarioMarriageFlag"
+              name="isOntarioMarriageFlag"
+              onChange={toggle}
+              // onBlur={handleBlur}
               control={Checkbox}
+              checked={values.isOntarioMarriageFlag}
               required
+              error={
+                values.isOntarioMarriageFlag && errors.isOntarioMarriageFlag
+                  ? false
+                  : true
+              }
               label={
                 <label>
                   Confirm the intended place of marriage is in Ontario
                 </label>
               }
             />
-          </Form.Field>
+            <Form.Field
+              id="homeAddressFlag"
+              name="homeAddressFlag"
+              onChange={toggle}
+              // onBlur={handleBlur}
+              control={Checkbox}
+              checked={values.homeAddressFlag}
+              required
+              error={
+                values.homeAddressFlag && errors.homeAddressFlag ? false : true
+              }
+              label={<label>homeAddressFlag</label>}
+            />
+          </Form.Group>
 
           <Form.Group widths="equal">
             <Form.Field
               id="intendedPlace"
+              name="intendedPlace"
               control={Input}
               label="City/Town"
               placeholder="City/Town"
-              onChange={handleChange("intendedPlace")}
-              onBlur={handleBlur}
+              onChange={handleChange}
+              // onBlur={handleBlur}
               value={values.intendedPlace}
               required
               error={errors.intendedPlace ? true : false}
-              // validations="isWords"
-              // errorLabel={<Label color="red" pointing />}
-              // validationErrors={{
-              //   isWords: "No numbers or special characters allowed",
-              //   isDefaultRequiredValue: "First Name is Required"
-              // }}
             />
             <Form.Field
               id="proposedDate"
+              name="proposedDate"
               control={Input}
               label="Intended Date of Marriage"
               placeholder="DD/MM/YYYY"
+              onChange={handleChange}
+              onBlur={handleBlur}
               value={values.proposedDate}
-              onChange={handleChange("proposedDate")}
               required
-              error={false}
+              error={errors.proposedDate ? true : false}
             />
             <Form.Field
               id="languageFlag"
+              name="languageFlag"
               control={Select}
               label="Language for The Licence"
               placeholder="Choose an option"
               options={options}
-              onChange={(e, { value }) => {
-                value === "french" ? setmessage(true) : setmessage(false);
-                handleChange("languageFlag");
-              }}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              // value={"f"}
+              // onChange={(e, { value }) => {
+              //   value === "french" ? setmessage(true) : setmessage(false);
+              //   handleChange("languageFlag");
+              // }}
               required
-              error
+              error={errors.languageFlag ? true : false}
             />
           </Form.Group>
           {message ? <MessageShow /> : null}

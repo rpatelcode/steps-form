@@ -17,16 +17,51 @@ const useFormValidation = (initialState, validate) => {
     }
   }, [errors]);
 
-  //   const handleChange = event => {
-  //     setValues({
-  //       ...values,
-  //       [event.target.name]: event.target.value
-  //     });
-  //   };
-
-  const handleChange = input => e => {
-    setValues({ ...values, [input]: e.target.value });
+  const handleChange = event => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value
+    });
+    const validationErrors = validate(values);
+    setErrors(validationErrors);
   };
+
+  const toggle = e => {
+    switch (e.target.name) {
+      case "isOntarioMarriageFlag":
+        setValues({
+          ...values,
+          isOntarioMarriageFlag: !values.isOntarioMarriageFlag
+        });
+        console.log(
+          "values.isOntarioMarriageFlag : " +
+            values.isOntarioMarriageFlag +
+            "homeAddressFlag : " +
+            values.homeAddressFlag
+        );
+        break;
+      case "homeAddressFlag":
+        setValues({
+          ...values,
+          homeAddressFlag: !values.homeAddressFlag
+        });
+        console.log(
+          "values.isOntarioMarriageFlag : " +
+            values.isOntarioMarriageFlag +
+            "homeAddressFlag : " +
+            values.homeAddressFlag
+        );
+        break;
+
+      default:
+        break;
+    }
+    const validationErrors = validate(values);
+    setErrors(validationErrors);
+  };
+  // const handleChange = input => e => {
+  //   setValues({ ...values, [input]: e.target.value });
+  // };
 
   const handleBlur = () => {
     const validationErrors = validate(values);
@@ -44,6 +79,7 @@ const useFormValidation = (initialState, validate) => {
     handleSubmit,
     handleChange,
     handleBlur,
+    toggle,
     values,
     errors,
     isSubmitting
