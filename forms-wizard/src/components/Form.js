@@ -93,7 +93,7 @@ const Form = () => {
   const {
     handleSubmit,
     handleChange,
-    handleBlur,
+    // handleBlur,
     values,
     errors,
     isSubmitting
@@ -245,7 +245,7 @@ const Form = () => {
           values={values}
           errors={errors}
           handleSubmit={handleSubmit}
-          handleBlur={handleBlur}
+          // handleBlur={handleBlur}
           isSubmitting={isSubmitting}
         />
       );
@@ -258,7 +258,7 @@ const Form = () => {
           values={values}
           errors={errors}
           handleSubmit={handleSubmit}
-          handleBlur={handleBlur}
+          // handleBlur={handleBlur}
           isSubmitting={isSubmitting}
         />
       );
@@ -271,7 +271,7 @@ const Form = () => {
           values={values}
           errors={errors}
           handleSubmit={handleSubmit}
-          handleBlur={handleBlur}
+          // handleBlur={handleBlur}
           isSubmitting={isSubmitting}
         />
       );
@@ -284,7 +284,7 @@ const Form = () => {
           values={values}
           errors={errors}
           handleSubmit={handleSubmit}
-          handleBlur={handleBlur}
+          // handleBlur={handleBlur}
           isSubmitting={isSubmitting}
         />
       );

@@ -25,7 +25,7 @@ const Step1 = props => {
   const {
     handleSubmit,
     handleChange,
-    handleBlur,
+    // handleBlur,
     toggle,
     values,
     errors,
@@ -51,7 +51,7 @@ const Step1 = props => {
       content="This application does not provide for the translation of the web form but your marriage licence will be printed on the french version of the licence."
     />
   );
-
+  console.log("isSubmitting : " + isSubmitting);
   return (
     <Container style={{ marginTop: "3em" }}>
       <Steps stepNumber={1} />
@@ -100,7 +100,7 @@ const Step1 = props => {
               label="Intended Date of Marriage"
               placeholder="DD/MM/YYYY"
               onChange={handleChange}
-              onBlur={handleBlur}
+              // onBlur={handleBlur}
               value={values.proposedDate}
               required
               error={errors.proposedDate ? true : false}

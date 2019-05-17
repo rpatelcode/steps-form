@@ -3,11 +3,12 @@ const validateAuth = values => {
 
   // #### STEP 1 ####
   //   isOntarioMarriageFlag Errors
-  // if (!values.isOntarioMarriageFlag) {
-  //   errors.isOntarioMarriageFlag = false;
-  // } else if (values.isOntarioMarriageFlag === true) {
-  //   errors.isOntarioMarriageFlag = "";
-  // }
+  if (!values.isOntarioMarriageFlag) {
+    errors.isOntarioMarriageFlag = "Required isOntarioMarriageFlag";
+  } else if (values.isOntarioMarriageFlag === true) {
+    errors.isOntarioMarriageFlag =
+      "Confirm the intended place of marriage is in Ontario";
+  }
 
   //   homeAddressFlag Errors
   // if (!values.homeAddressFlag) {
@@ -48,6 +49,8 @@ const validateAuth = values => {
   // } else if (values.password.length < 6) {
   //   errors.password = "Password must be at least 6 characters";
   // }
+  console.log("errors : ");
+  console.log(errors);
   return errors;
 };
 export default validateAuth;

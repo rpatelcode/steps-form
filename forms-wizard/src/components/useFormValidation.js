@@ -9,12 +9,18 @@ const useFormValidation = (initialState, validate) => {
     // const validationErrors = validate(values);
     // setErrors(validationErrors);
 
+    // const validationErrors = validate(values);
+    // setErrors(validationErrors);
+    // setSubmitting(true);
+
     if (isSubmitting) {
       const noErrors = Object.keys(errors).length === 0;
+
       if (noErrors) {
-        console.log("Working!", values);
+        console.log("WORKING!", values);
         setSubmitting(false);
       } else {
+        console.log("NOT WORKING!", values);
         setSubmitting(false);
       }
     }
@@ -29,14 +35,16 @@ const useFormValidation = (initialState, validate) => {
     });
     const validationErrors = validate(values);
     setErrors(validationErrors);
+    setSubmitting(true);
     console.log(name);
     console.log(val);
   };
 
-  const handleBlur = () => {
-    const validationErrors = validate(values);
-    setErrors(validationErrors);
-  };
+  // const handleBlur = () => {
+  //   const validationErrors = validate(values);
+  //   setErrors(validationErrors);
+  //   setSubmitting(true);
+  // };
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -48,7 +56,7 @@ const useFormValidation = (initialState, validate) => {
   return {
     handleSubmit,
     handleChange,
-    handleBlur,
+    // handleBlur,
     values,
     errors,
     isSubmitting
