@@ -12,7 +12,7 @@ import validateAuth from "./validateAuth";
 const INITIAL_STATE = {
   isOntarioMarriageFlag: false,
   intendedPlace: "", // faker.address.city(),
-  proposedDate: "", //moment(faker.date.future()).format("DD/MM/YYYY"),
+  proposedDate: moment(), //moment(faker.date.future()).format("DD/MM/YYYY"),
   languageFlag: "english", //English, French [also popup message open]
   app1SingleName: faker.name.findName(),
   app1LastName: faker.name.lastName(),

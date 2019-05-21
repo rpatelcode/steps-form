@@ -4,11 +4,13 @@ const validateAuth = values => {
   // #### STEP 1 ####
   //   isOntarioMarriageFlag Errors
   if (!values.isOntarioMarriageFlag) {
-    errors.isOntarioMarriageFlag = "Required isOntarioMarriageFlag";
-  } else if (values.isOntarioMarriageFlag === true) {
     errors.isOntarioMarriageFlag =
-      "Confirm the intended place of marriage is in Ontario";
+      "Please, Confirm the intended place of marriage is in Ontario?";
   }
+  // else if (values.isOntarioMarriageFlag === true) {
+  //   errors.isOntarioMarriageFlag =
+  //     "Confirm the intended place of marriage is in Ontario";
+  // }
 
   //   homeAddressFlag Errors
   // if (!values.homeAddressFlag) {
@@ -18,15 +20,15 @@ const validateAuth = values => {
   // }
   //   intendedPlace Errors
   if (!values.intendedPlace) {
-    errors.intendedPlace = "Required intendedPlace";
+    errors.intendedPlace = "Intended Place of Marriage";
   } else if (values.intendedPlace.length < 2) {
     errors.intendedPlace = "Invalid intendedPlace";
   }
   //   proposedDate Errors
   if (!values.proposedDate) {
-    errors.proposedDate = "Required proposedDate";
-  } else if (values.proposedDate.length < 2) {
-    errors.proposedDate = "Invalid proposedDate";
+    errors.proposedDate = "Intended Date of Marriage:";
+  } else if (values.proposedDate.length < 10) {
+    errors.proposedDate = "Intended Date of Marriage:";
   }
   //   languageFlag Errors
   // if (!values.languageFlag) {

@@ -13,11 +13,11 @@ import {
 import Steps from "./Steps";
 
 const Step4 = props => {
-  const continueGo = e => {
-    e.preventDefault();
-    // PROCESS FORM //
-    props.nextStep();
-  };
+  // const continueGo = e => {
+  //   e.preventDefault();
+  //   // PROCESS FORM //
+  //   props.nextStep();
+  // };
 
   const back = e => {
     e.preventDefault();

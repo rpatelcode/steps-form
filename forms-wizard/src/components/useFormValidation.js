@@ -17,28 +17,51 @@ const useFormValidation = (initialState, validate) => {
       const noErrors = Object.keys(errors).length === 0;
 
       if (noErrors) {
-        console.log("WORKING!", values);
+        console.log("No Errors!", errors);
         setSubmitting(false);
       } else {
-        console.log("NOT WORKING!", values);
-        setSubmitting(false);
+        console.log("Yes Errors!", errors);
+        setSubmitting(true);
       }
     }
-  }, [errors]);
+  }, [isSubmitting, errors]);
 
-  const handleChange = (e, { name, value }) => {
-    const target = e.target;
-    const val = target.type === "checkbox" ? target.checked : value;
-    setValues({
-      ...values,
-      [name]: val
-    });
+  // to validate form on load
+  React.useEffect(() => {
     const validationErrors = validate(values);
     setErrors(validationErrors);
     setSubmitting(true);
-    console.log(name);
-    console.log(val);
+  }, [validate, values]);
+
+  const handleChange = ({ name, value }) => {
+    setValues({
+      ...values,
+      [name]: value
+    });
   };
+
+  // ######################
+  // const handleChange = (e, { name, value }) => {
+  //   console.log(name);
+  //   console.log(value);
+  //   // e.persist();
+  //   const target = e.target;
+  //   const val =
+  //     target === null
+  //       ? value
+  //       : target.type === "checkbox"
+  //       ? target.checked
+  //       : value;
+  //   console.log("val :::::", val);
+  //   setValues({
+  //     ...values,
+  //     [name]: val
+  //   });
+
+  //   const validationErrors = validate(values);
+  //   setErrors(validationErrors);
+  //   setSubmitting(true);
+  // };
 
   // const handleBlur = () => {
   //   const validationErrors = validate(values);
