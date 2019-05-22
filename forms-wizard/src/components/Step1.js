@@ -6,9 +6,7 @@ import {
   Message,
   Button,
   Input,
-  Container,
-  Header,
-  Segment
+  Container
 } from "semantic-ui-react";
 // import { DateInput } from "semantic-ui-calendar-react";
 import "../App.css";
@@ -35,7 +33,6 @@ const Step1 = props => {
     isSubmitting
   } = props;
 
-  // const errorLabel = <Label color="red" pointing />;
   const next = e => {
     e.preventDefault();
     props.nextStep();
@@ -54,16 +51,22 @@ const Step1 = props => {
       content="This application does not provide for the translation of the web form but your marriage licence will be printed on the french version of the licence."
     />
   );
-  console.log("isSubmitting : " + isSubmitting);
+
   return (
     <Container style={{ marginTop: "3em" }}>
       <Steps stepNumber={1} />
-
-      <Form onSubmit={handleSubmit} success>
-        <Segment>
-          <Header as="h3" textAlign="left">
-            Parent 1
-          </Header>
+      <div>
+        <Message
+          attached
+          header="General Information"
+          content="Only couples planning to get married in the Province of Ontario can
+          apply for a marriage licence through this website."
+        />
+        <Form
+          className="attached fluid segment"
+          onSubmit={handleSubmit}
+          success
+        >
           <Form.Group>
             <Form.Field
               id="isOntarioMarriageFlag"
@@ -99,24 +102,10 @@ const Step1 = props => {
                   value: e.target.value
                 })
               }
-              // onBlur={handleBlur}
               value={values.intendedPlace}
               required
               error={errors.intendedPlace ? true : false}
             />
-            {/* <Form.Field
-              id="proposedDate"
-              name="proposedDate"
-              control={Input}
-              label="Intended Date of Marriage"
-              placeholder="DD/MM/YYYY"
-              onChange={handleChange}
-              // onBlur={handleBlur}
-              value={values.proposedDate}
-              required
-              error={errors.proposedDate ? true : false}
-              {...<Datepicker />}
-            /> */}{" "}
             <Form.Field required error={errors.proposedDate ? true : false}>
               <label>Intended Date of Marriage</label>
               <SingleDatePicker
@@ -124,35 +113,20 @@ const Step1 = props => {
                 numberOfMonths={1}
                 // onDateChange={date => setDate(date)}
                 onDateChange={date =>
-                  handleChange({ name: "proposedDate", value: date })
+                  handleChange({
+                    name: "proposedDate",
+                    value: date
+                  })
                 }
                 // onDateChange={date => handleChange(date)}
                 onFocusChange={({ focused }) => setFocused(focused)}
                 focused={focused}
                 // date={date}
                 date={values.proposedDate}
+                isDayHighlighted={date => date} //Highlited today date
+                isOutsideRange={() => false} // to pick all days
               />
             </Form.Field>
-            {/* <DateInput
-              name="proposedDate"
-              placeholder="Date"
-              label="proposedDate"
-              value={values.proposedDate}
-              iconPosition="left"
-              onChange={handleChange}
-            /> */}
-            {/* <Form.Field
-              id="proposedDate"
-              name="proposedDate"
-              control={Input}
-              label="Intended Date of Marriage"
-              placeholder="DD/MM/YYYY"
-              onChange={handleChange}
-              // onBlur={handleBlur}
-              value={values.proposedDate}
-              required
-              error={errors.proposedDate ? true : false}
-            /> */}
             <Form.Field
               id="languageFlag"
               name="languageFlag"
@@ -167,19 +141,7 @@ const Step1 = props => {
                   value: value
                 })
               }
-              required
-              error={errors.languageFlag ? true : false}
             />
-            {/* <Form.Field>
-              <label>Language for The Licence</label>
-              <Dropdown
-                selection
-                name="languageFlag"
-                options={options}
-                placeholder="English"
-                onChange={handleChange}
-              />
-            </Form.Field> */}
           </Form.Group>
 
           {values.languageFlag === "french" ? <MessageShow /> : null}
@@ -187,8 +149,6 @@ const Step1 = props => {
             <Message
               header="Required"
               negative
-              // content={JSON.stringify(errors, null, 4)}
-              // content={JSON.stringify(errors)}
               list={[
                 errors.isOntarioMarriageFlag,
                 errors.intendedPlace,
@@ -196,18 +156,29 @@ const Step1 = props => {
               ]}
             />
           )}
-        </Segment>
-        <Button content="Cancel" onClick={cancel} secondary />
-        <Button
-          content="Next"
-          icon="right arrow"
-          labelPosition="right"
-          onClick={next}
-          primary
-          disabled={isSubmitting}
-          // disabled={values.isOntarioMarriageFlag ? isSubmitting : true}
-        />
-      </Form>
+          <Button content="Cancel" onClick={cancel} secondary />
+          <Button
+            content="Next"
+            icon="right arrow"
+            labelPosition="right"
+            onClick={next}
+            primary
+            disabled={isSubmitting}
+            // disabled={values.isOntarioMarriageFlag ? isSubmitting : true}
+          />
+        </Form>
+        <Message attached="bottom">
+          The personal information contained on this form is collected under the
+          authority of the Marriage Act, R.S.O. 1990, c. M. 3 and will be used
+          to determine whether to issue the marriage licence, to register and
+          record the marriage, provide certified copies, extracts, certificates,
+          search notices, photocopies and for statistical, research, medical,
+          law enforcement, adoption and adoption disclosure purposes. Questions
+          about this collection should be directed to: Deputy Registrar General,
+          P.O. Box 4600 189, Red River Road, Thunder Bay, ON P7B 6L8 or at
+          1-800-461-2156 or 416-325-8305.
+        </Message>
+      </div>
     </Container>
   );
 };

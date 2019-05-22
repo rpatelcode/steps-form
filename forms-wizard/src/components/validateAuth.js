@@ -1,3 +1,5 @@
+import moment from "moment";
+
 const validateAuth = values => {
   let errors = {};
 
@@ -25,11 +27,19 @@ const validateAuth = values => {
     errors.intendedPlace = "Invalid intendedPlace";
   }
   //   proposedDate Errors
+
   if (!values.proposedDate) {
     errors.proposedDate = "Intended Date of Marriage:";
-  } else if (values.proposedDate.length < 10) {
+  } else if (!moment(values.proposedDate, "MM-DD-YYYY", true).isValid()) {
     errors.proposedDate = "Intended Date of Marriage:";
   }
+
+  // if (!values.proposedDate) {
+  //   errors.proposedDate = "Intended Date of Marriage:";
+  // } else if (values.proposedDate.length < 10) {
+  //   errors.proposedDate = "Intended Date of Marriage:";
+  // }
+
   //   languageFlag Errors
   // if (!values.languageFlag) {
   //   errors.languageFlag = "Required languageFlag";
