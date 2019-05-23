@@ -5,6 +5,7 @@ import {
   Select,
   Message,
   Button,
+  Icon,
   Input,
   Container
 } from "semantic-ui-react";
@@ -89,7 +90,7 @@ const Step1 = props => {
             />
           </Form.Group>
 
-          <Form.Group widths="equal">
+          <Form.Group>
             <Form.Field
               id="intendedPlace"
               name="intendedPlace"
@@ -108,6 +109,7 @@ const Step1 = props => {
             />
             <Form.Field required error={errors.proposedDate ? true : false}>
               <label>Intended Date of Marriage</label>
+              <Icon name="calendar alternate outline" size="large" />
               <SingleDatePicker
                 id="proposedDate"
                 numberOfMonths={1}
@@ -123,7 +125,7 @@ const Step1 = props => {
                 focused={focused}
                 // date={date}
                 date={values.proposedDate}
-                isDayHighlighted={date => date} //Highlited today date
+                // isDayHighlighted={date => date} //Highlited today date
                 isOutsideRange={() => false} // to pick all days
               />
             </Form.Field>
@@ -133,7 +135,6 @@ const Step1 = props => {
               control={Select}
               label="Language for The Licence"
               options={options}
-              // selection={values.languageFlag}
               placeholder={values.languageFlag}
               onChange={(e, { value }) =>
                 handleChange({
