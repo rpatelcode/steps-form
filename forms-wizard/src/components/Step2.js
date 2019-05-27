@@ -1,17 +1,16 @@
 import React from "react";
 import {
   Button,
-  Checkbox,
   Input,
   Icon,
   Select,
   Container,
-  Header,
   Form,
-  Message,
-  Divider
+  Message
 } from "semantic-ui-react";
 import Steps from "./Steps";
+import SingleName from "./SingleName";
+import Parent from "./Parent";
 import { SingleDatePicker } from "react-dates";
 import "./css/_datepicker.css";
 
@@ -22,14 +21,7 @@ const options = [
 
 const Step2 = props => {
   const [focused, setFocused] = React.useState(false);
-  const {
-    handleSubmit,
-    handleChange,
-    // handleBlur,
-    values,
-    errors,
-    isSubmitting
-  } = props;
+  const { handleSubmit, handleChange, values, errors, isSubmitting } = props;
 
   const continueGo = e => {
     e.preventDefault();
@@ -58,62 +50,14 @@ const Step2 = props => {
           success
         >
           <Form.Group>
-            <Form.Field
-              id="isOntarioMarriageFlag"
-              name="isOntarioMarriageFlag"
-              control={Checkbox}
-              onChange={e =>
-                handleChange({
-                  name: "isOntarioMarriageFlag",
-                  value: e.target.checked
-                })
-              }
-              checked={values.isOntarioMarriageFlag}
-              required
-              error={errors.isOntarioMarriageFlag ? true : false}
-              label={
-                <label>
-                  Please check this box if Last Name and First and Middle Name
-                  do not apply to the applicant because they have either a
-                  registered Birth Certificate or Change of Name Certificate
-                  bearing a Single Name
-                </label>
-              }
+            <SingleName
+              id={"Applicant"}
+              handleChange={handleChange}
+              values={values}
+              errors={errors}
             />
           </Form.Group>
           <Form.Group>
-            <Form.Field
-              id="intendedPlace"
-              name="intendedPlace"
-              control={Input}
-              label="Last Name"
-              placeholder="City/Town"
-              onChange={e =>
-                handleChange({
-                  name: "intendedPlace",
-                  value: e.target.value
-                })
-              }
-              value={values.intendedPlace}
-              required
-              error={errors.intendedPlace ? true : false}
-            />
-            <Form.Field
-              id="intendedPlace"
-              name="intendedPlace"
-              control={Input}
-              label="First and Middle Name:"
-              placeholder="City/Town"
-              onChange={e =>
-                handleChange({
-                  name: "intendedPlace",
-                  value: e.target.value
-                })
-              }
-              value={values.intendedPlace}
-              required
-              error={errors.intendedPlace ? true : false}
-            />
             <Form.Field required error={errors.proposedDate ? true : false}>
               <label>Date of Birth</label>
               <Icon name="calendar alternate outline" size="large" />
@@ -275,117 +219,8 @@ const Step2 = props => {
               }
             />
           </Form.Group>
+          <Parent handleChange={handleChange} values={values} errors={errors} />
 
-          <Divider section />
-
-          <Header as="h3" textAlign="left">
-            Parent 1
-          </Header>
-          <Form.Group>
-            <Form.Field
-              id="isOntarioMarriageFlag"
-              name="isOntarioMarriageFlag"
-              control={Checkbox}
-              onChange={e =>
-                handleChange({
-                  name: "isOntarioMarriageFlag",
-                  value: e.target.checked
-                })
-              }
-              checked={values.isOntarioMarriageFlag}
-              label={
-                <label>
-                  Please check this box if Last Name and First Names do not
-                  apply to the applicant's parent because they have either a
-                  registered Birth Certificate or Change of Name Certificate
-                  bearing a Single Name
-                </label>
-              }
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Field
-              id="intendedPlace"
-              name="intendedPlace"
-              control={Input}
-              label="Parent's Last Name
-              (at Birth)"
-              placeholder="City/Town"
-              onChange={e =>
-                handleChange({
-                  name: "intendedPlace",
-                  value: e.target.value
-                })
-              }
-              value={values.intendedPlace}
-              required
-              error={errors.intendedPlace ? true : false}
-            />
-            <Form.Field
-              id="intendedPlace"
-              name="intendedPlace"
-              control={Input}
-              label="Parent's First Names:"
-              placeholder="City/Town"
-              onChange={e =>
-                handleChange({
-                  name: "intendedPlace",
-                  value: e.target.value
-                })
-              }
-              value={values.intendedPlace}
-              required
-              error={errors.intendedPlace ? true : false}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Field
-              id="languageFlag"
-              name="languageFlag"
-              control={Select}
-              label="If the country is not listed, please select 'Not Listed' and type the country name in the box below"
-              options={options}
-              // selection={values.languageFlag}
-              placeholder={values.languageFlag1 || "Parent's Place of Birth"}
-              onChange={(e, { value }) =>
-                handleChange({
-                  name: "languageFlag",
-                  value: value
-                })
-              }
-            />
-            <Form.Field
-              id="intendedPlace"
-              name="intendedPlace"
-              control={Input}
-              label="Or Type"
-              placeholder="City/Town"
-              onChange={e =>
-                handleChange({
-                  name: "intendedPlace",
-                  value: e.target.value
-                })
-              }
-              value={values.intendedPlace}
-              required
-              error={errors.intendedPlace ? true : false}
-            />
-            <Form.Field
-              id="languageFlag"
-              name="languageFlag"
-              control={Select}
-              label="Province"
-              options={options}
-              // selection={values.languageFlag}
-              placeholder={values.languageFlag}
-              onChange={(e, { value }) =>
-                handleChange({
-                  name: "languageFlag",
-                  value: value
-                })
-              }
-            />
-          </Form.Group>
           <Button content="Cancel" onClick={cancel} secondary />
           <Button
             content="Back"

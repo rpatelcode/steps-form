@@ -14,9 +14,9 @@ const INITIAL_STATE = {
   intendedPlace: faker.address.city(),
   proposedDate: moment(faker.date.future()), //undefined, //moment(), //moment(faker.date.future()).format("DD/MM/YYYY"),
   languageFlag: "english", //English, French [also popup message open]
-  app1SingleName: faker.name.findName(),
-  app1LastName: faker.name.lastName(),
-  app1FirstMiddleName: faker.name.lastName(),
+  app1ApplicantSingleName: false,
+  app1ApplicantLastName: faker.name.lastName(),
+  app1ApplicantFirstName: faker.name.lastName(),
 
   app1MaritalStatus: "never", // (never,widowed,divorced,divorcedOutside)
 
@@ -32,16 +32,16 @@ const INITIAL_STATE = {
   app1BirthCountryO: faker.address.country(),
   app1BirthProvince: faker.address.county(),
 
-  app1FatherSingleName: faker.name.findName(),
+  app1FatherSingleName: true,
 
   app1FatherLastName: faker.name.lastName(),
   app1FatherFirstName: faker.name.findName(),
 
-  app1FatherBirthCountry: faker.address.country(),
-  app1FatherBirthCountryO: faker.address.country(),
-  app1FatherBirthProvince: faker.address.county(),
+  app1FatherBirthCountry: undefined,
+  app1FatherBirthCountryO: undefined,
+  app1FatherBirthProvince: "Ontario",
 
-  app1MotherSingleName: faker.name.findName(),
+  app1MotherSingleName: true,
 
   app1MotherLastName: faker.name.lastName(),
   app1MotherFirstName: faker.name.findName(),
@@ -50,7 +50,7 @@ const INITIAL_STATE = {
   app1MotherBirthCountryO: faker.address.country(),
   app1MotherBirthProvince: faker.address.county(),
 
-  app1Parent3SingleName: faker.name.findName(),
+  app1Parent3SingleName: true,
 
   app1Parent3LastName: faker.name.lastName(),
   app1Parent3FirstName: faker.name.findName(),
@@ -59,7 +59,7 @@ const INITIAL_STATE = {
   app1Parent3BirthCountryO: faker.address.country(),
   app1Parent3BirthProvince: faker.address.county(),
 
-  app1Parent4SingleName: faker.name.findName(),
+  app1Parent4SingleName: true,
 
   app1Parent4LastName: faker.name.lastName(),
   app1Parent4FirstName: faker.name.findName(),

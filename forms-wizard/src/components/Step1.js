@@ -146,7 +146,7 @@ const Step1 = props => {
           </Form.Group>
 
           {values.languageFlag === "french" ? <MessageShow /> : null}
-          {Object.keys(errors).length === 0 ? null : (
+          {/* {Object.keys(errors).length === 0 ? null : (
             <Message
               header="Required"
               negative
@@ -156,7 +156,7 @@ const Step1 = props => {
                 errors.proposedDate
               ]}
             />
-          )}
+          )} */}
           <Button content="Cancel" onClick={cancel} secondary />
           <Button
             content="Next"
@@ -164,8 +164,7 @@ const Step1 = props => {
             labelPosition="right"
             onClick={next}
             primary
-            disabled={isSubmitting}
-            // disabled={values.isOntarioMarriageFlag ? isSubmitting : true}
+            // disabled={isSubmitting}
           />
         </Form>
         <Message attached="bottom">
