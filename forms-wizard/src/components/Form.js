@@ -26,7 +26,7 @@ const INITIAL_STATE = {
   app1BirthDay: 1, // [from 1 to 31]
   app1BirthMonth: "May", //[from Jan to Dec]
   app1BirthYear: 1989, // from 2019 to 1901
-  app1Age: 25, // Calculate current age
+  app1Age: undefined, // Calculate current age
 
   app1BirthCountry: faker.address.country(),
   app1BirthCountryO: faker.address.country(),

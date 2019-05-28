@@ -1,23 +1,21 @@
 import faker from "faker";
 import _ from "lodash";
 import React from "react";
-import {
-  Input,
-  Form,
-  Header,
-  Dropdown,
-  Select,
-  Divider
-} from "semantic-ui-react";
+import { Input, Form, Header, Dropdown, Divider } from "semantic-ui-react";
 import SingleName from "./SingleName";
 import provinceOptions from "./ProvinceOptions";
 
-const countryOptions = _.map(faker.definitions.address.country, country => ({
+const obj1 = _.map(faker.definitions.address.country, country => ({
   key: country,
   text: country,
   value: country
 }));
 
+const obj2 = [{ key: "Not Listed", text: "Not Listed", value: "Not Listed" }];
+
+const countryOptions = [...obj1, ...obj2];
+
+// console.log("obj3 : " + obj3);
 const Parent = props => {
   const { id, handleChange, values, errors } = props;
 
@@ -79,20 +77,20 @@ const Parent = props => {
           />
         </Form.Field>
         <Form.Field
-          id="intendedPlace"
-          name="intendedPlace"
+          id="app1BirthCountryO"
+          name="app1BirthCountryO"
           control={Input}
           label="Or Type"
-          placeholder="City/Town"
+          placeholder="Country"
           onChange={e =>
             handleChange({
-              name: "intendedPlace",
+              name: "app1BirthCountryO",
               value: e.target.value
             })
           }
-          value={values.intendedPlace}
+          value={values.app1BirthCountryO}
           required
-          error={errors.intendedPlace ? true : false}
+          error={errors.app1BirthCountryO ? true : false}
         />
         {values.app1FatherBirthCountry === "Canada" ? (
           <Form.Field>

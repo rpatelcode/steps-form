@@ -12,6 +12,7 @@ import Steps from "./Steps";
 import SingleName from "./SingleName";
 import Parent from "./Parent";
 import { SingleDatePicker } from "react-dates";
+import moment from "moment";
 import "./css/_datepicker.css";
 
 const options = [
@@ -81,14 +82,16 @@ const Step2 = props => {
               name="app1Age"
               control={Input}
               label="Age"
-              placeholder="Age"
-              onChange={e =>
-                handleChange({
-                  name: "app1Age",
-                  value: e.target.value
-                })
+              readOnly
+              value={
+                Math.floor(
+                  moment(new Date()).diff(
+                    moment(values.proposedDate),
+                    "years",
+                    true
+                  )
+                ) + " Years"
               }
-              value={values.app1Age}
             />
           </Form.Group>
           <Form.Group inline>
