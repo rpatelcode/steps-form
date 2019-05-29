@@ -1,7 +1,7 @@
 import faker from "faker";
 import _ from "lodash";
 import React from "react";
-import { Input, Form, Header, Dropdown, Divider } from "semantic-ui-react";
+import { Input, Form, Dropdown } from "semantic-ui-react";
 import SingleName from "./SingleName";
 import provinceOptions from "./ProvinceOptions";
 
@@ -12,47 +12,41 @@ const obj1 = _.map(faker.definitions.address.country, country => ({
 }));
 
 const obj2 = [{ key: "Not Listed", text: "Not Listed", value: "Not Listed" }];
-
 const countryOptions = [...obj1, ...obj2];
 
-// console.log("obj3 : " + obj3);
 const Parent = props => {
   const { id, handleChange, values, errors } = props;
 
-  //   const singleName = "app1" + id + "SingleName";
-  //   const lastName = "app1" + id + "LastName";
-  //   const firstName = "app1" + id + "FirstName";
+  const country = "app1" + id + "BirthCountry";
+  const country0 = "app1" + id + "BirthCountry0";
+  const province = "app1" + id + "BirthProvince";
 
   // descriptor return name of values object
-  //   const descriptor1 = Object.getOwnPropertyDescriptor(values, singleName);
-  //   const singleNameValue = descriptor1.value;
+  const descriptor1 = Object.getOwnPropertyDescriptor(values, country);
+  const countryValue = descriptor1.value;
 
-  //   const descriptor2 = Object.getOwnPropertyDescriptor(values, lastName);
-  //   const lastNameValue = descriptor2.value;
+  const descriptor2 = Object.getOwnPropertyDescriptor(values, country0);
+  const country0Value = descriptor2.value;
 
-  //   const descriptor3 = Object.getOwnPropertyDescriptor(values, firstName);
-  //   const firstNameValue = descriptor3.value;
+  const descriptor3 = Object.getOwnPropertyDescriptor(values, province);
+  const provinceValue = descriptor3.value;
 
   // descriptor return name of errors object
 
-  //   const descriptor4 = Object.getOwnPropertyDescriptor(errors, singleName);
-  //   const errorsSingleNameValue = descriptor4;
+  const descriptor4 = Object.getOwnPropertyDescriptor(errors, country);
+  const errorsCountryValue = descriptor4;
 
-  //   const descriptor5 = Object.getOwnPropertyDescriptor(errors, lastName);
-  //   const errorsLastNameValue = descriptor5;
+  const descriptor5 = Object.getOwnPropertyDescriptor(errors, country0);
+  const errorsCountry0Value = descriptor5;
 
-  //   const descriptor6 = Object.getOwnPropertyDescriptor(errors, firstName);
-  //   const errorsFirstNameValue = descriptor6;
+  const descriptor6 = Object.getOwnPropertyDescriptor(errors, province);
+  const errorsProvinceValue = descriptor6;
 
   return (
     <>
-      <Divider section />
-      <Header as="h3" textAlign="left">
-        Parent 1
-      </Header>
       <Form.Group>
         <SingleName
-          id={"Father"}
+          id={id} // Father, Mother, Parent3, Parent4
           handleChange={handleChange}
           values={values}
           errors={errors}
@@ -60,49 +54,53 @@ const Parent = props => {
       </Form.Group>
       <Form.Group>
         <Form.Field>
-          <label>Select Country</label>
+          <label>
+            If the country is not listed, please select 'Not Listed' and type
+            the country name in the box below
+          </label>
           <Dropdown
             search
             selection
             options={countryOptions}
-            placeholder={
-              values.app1FatherBirthCountry || "Parent's Place of Birth"
-            }
+            placeholder={countryValue ? countryValue : id + "'s Place of Birth"}
             onChange={(e, { value }) =>
               handleChange({
-                name: "app1FatherBirthCountry",
+                name: country,
                 value: value
               })
             }
           />
         </Form.Field>
-        <Form.Field
-          id="app1BirthCountryO"
-          name="app1BirthCountryO"
-          control={Input}
-          label="Or Type"
-          placeholder="Country"
-          onChange={e =>
-            handleChange({
-              name: "app1BirthCountryO",
-              value: e.target.value
-            })
-          }
-          value={values.app1BirthCountryO}
-          required
-          error={errors.app1BirthCountryO ? true : false}
-        />
-        {values.app1FatherBirthCountry === "Canada" ? (
+        {countryValue === "Not Listed" ? (
+          <Form.Field
+            id={country0}
+            name={country0}
+            control={Input}
+            label="Or Type"
+            // placeholder="Or Type"
+            onChange={e =>
+              handleChange({
+                name: country0,
+                value: e.target.value
+              })
+            }
+            value={country0Value}
+            required
+            error={errorsCountry0Value ? true : false}
+          />
+        ) : null}
+
+        {countryValue === "Canada" ? (
           <Form.Field>
             <label> Province </label>
             <Dropdown
               search
               selection
               options={provinceOptions}
-              placeholder={values.app1FatherBirthProvince || "Ontario"}
+              placeholder={provinceValue || "Ontario"}
               onChange={(e, { value }) =>
                 handleChange({
-                  name: "app1FatherBirthProvince",
+                  name: province,
                   value: value
                 })
               }

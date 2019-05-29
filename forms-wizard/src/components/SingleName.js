@@ -68,7 +68,7 @@ const SingleName = props => {
         error={errorsLastNameValue ? true : false}
       />
 
-      {errorsSingleNameValue ? (
+      {!singleNameValue ? (
         <Form.Field
           id={firstName}
           name={firstName}

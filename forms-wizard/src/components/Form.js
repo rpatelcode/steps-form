@@ -29,50 +29,50 @@ const INITIAL_STATE = {
   app1Age: undefined, // Calculate current age
 
   app1BirthCountry: faker.address.country(),
-  app1BirthCountryO: faker.address.country(),
+  app1BirthCountry0: faker.address.country(),
   app1BirthProvince: faker.address.county(),
 
-  app1FatherSingleName: true,
+  app1FatherSingleName: false,
 
   app1FatherLastName: faker.name.lastName(),
   app1FatherFirstName: faker.name.findName(),
 
   app1FatherBirthCountry: undefined,
-  app1FatherBirthCountryO: undefined,
+  app1FatherBirthCountry0: undefined,
   app1FatherBirthProvince: "Ontario",
 
-  app1MotherSingleName: true,
+  app1MotherSingleName: false,
 
   app1MotherLastName: faker.name.lastName(),
   app1MotherFirstName: faker.name.findName(),
 
   app1MotherBirthCountry: faker.address.country(),
-  app1MotherBirthCountryO: faker.address.country(),
+  app1MotherBirthCountry0: faker.address.country(),
   app1MotherBirthProvince: faker.address.county(),
 
-  app1Parent3SingleName: true,
+  app1Parent3SingleName: false,
 
   app1Parent3LastName: faker.name.lastName(),
   app1Parent3FirstName: faker.name.findName(),
 
   app1Parent3BirthCountry: faker.address.country(),
-  app1Parent3BirthCountryO: faker.address.country(),
+  app1Parent3BirthCountry0: faker.address.country(),
   app1Parent3BirthProvince: faker.address.county(),
 
-  app1Parent4SingleName: true,
+  app1Parent4SingleName: false,
 
   app1Parent4LastName: faker.name.lastName(),
   app1Parent4FirstName: faker.name.findName(),
 
   app1Parent4BirthCountry: faker.address.country(),
-  app1Parent4BirthCountryO: faker.address.country(),
+  app1Parent4BirthCountry0: faker.address.country(),
   app1Parent4BirthProvince: faker.address.county(),
 
   app1ResidentStreet: faker.address.streetName(),
   app1ResidentApt: faker.finance.mask(),
   app1ResidentCity: faker.address.city(),
   app1ResidentCountry: faker.address.country(),
-  app1ResidentCountryO: faker.address.country(),
+  app1ResidentCountry0: faker.address.country(),
   app1ResidentProvince: faker.address.county(),
   app1ResidentPostalCode: "M1P 4T6",
   app1ResidentPhone: faker.phone.phoneNumberFormat(),
@@ -83,7 +83,7 @@ const INITIAL_STATE = {
   app1HomeApt: faker.finance.mask(),
   app1HomeCity: faker.address.city(),
   app1HomeCountry: faker.address.country(),
-  app1HomeCountryO: faker.address.country(),
+  app1HomeCountry0: faker.address.country(),
   app1HomeProvince: faker.address.county(),
   app1HomePostalCode: "S1M 6R8"
 };

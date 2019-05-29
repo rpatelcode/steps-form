@@ -3,6 +3,8 @@ import {
   Button,
   Input,
   Icon,
+  Header,
+  Divider,
   Select,
   Container,
   Form,
@@ -222,7 +224,46 @@ const Step2 = props => {
               }
             />
           </Form.Group>
-          <Parent handleChange={handleChange} values={values} errors={errors} />
+          <Divider section />
+          <Header as="h3" textAlign="left">
+            Parent 1
+          </Header>
+          <Parent
+            id={"Father"} // Father, Mother, Parent3, Parent4
+            handleChange={handleChange}
+            values={values}
+            errors={errors}
+          />
+          <Divider section />
+          <Header as="h3" textAlign="left">
+            Parent 2
+          </Header>
+          <Parent
+            id={"Mother"} // Father, Mother, Parent3, Parent4
+            handleChange={handleChange}
+            values={values}
+            errors={errors}
+          />
+          <Divider section />
+          <Header as="h3" textAlign="left">
+            Parent 3
+          </Header>
+          <Parent
+            id={"Parent3"} // Father, Mother, Parent3, Parent4
+            handleChange={handleChange}
+            values={values}
+            errors={errors}
+          />
+          <Divider section />
+          <Header as="h3" textAlign="left">
+            Parent 4
+          </Header>
+          <Parent
+            id={"Parent4"} // Father, Mother, Parent3, Parent4
+            handleChange={handleChange}
+            values={values}
+            errors={errors}
+          />
 
           <Button content="Cancel" onClick={cancel} secondary />
           <Button
