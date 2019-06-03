@@ -7,6 +7,7 @@ import {
   Divider,
   Select,
   Container,
+  Tab,
   Form,
   Message
 } from "semantic-ui-react";
@@ -25,7 +26,60 @@ const options = [
 const Step2 = props => {
   const [focused, setFocused] = React.useState(false);
   const { handleSubmit, handleChange, values, errors, isSubmitting } = props;
-
+  const panes = [
+    {
+      menuItem: "Parent 1",
+      render: () => (
+        <Tab.Pane>
+          <Parent
+            id={"Father"} // Father, Mother, Parent3, Parent4
+            handleChange={handleChange}
+            values={values}
+            errors={errors}
+          />
+        </Tab.Pane>
+      )
+    },
+    {
+      menuItem: "Parent 2",
+      render: () => (
+        <Tab.Pane>
+          <Parent
+            id={"Mother"} // Father, Mother, Parent3, Parent4
+            handleChange={handleChange}
+            values={values}
+            errors={errors}
+          />
+        </Tab.Pane>
+      )
+    },
+    {
+      menuItem: "Parent 3",
+      render: () => (
+        <Tab.Pane>
+          <Parent
+            id={"Parent3"} // Father, Mother, Parent3, Parent4
+            handleChange={handleChange}
+            values={values}
+            errors={errors}
+          />
+        </Tab.Pane>
+      )
+    },
+    {
+      menuItem: "Parent 4",
+      render: () => (
+        <Tab.Pane>
+          <Parent
+            id={"Parent4"} // Father, Mother, Parent3, Parent4
+            handleChange={handleChange}
+            values={values}
+            errors={errors}
+          />
+        </Tab.Pane>
+      )
+    }
+  ];
   const continueGo = e => {
     e.preventDefault();
     props.nextStep();
@@ -44,8 +98,7 @@ const Step2 = props => {
         <Message
           attached
           header="Applicant's Information"
-          content="Only couples planning to get married in the Province of Ontario can
-          apply for a marriage licence through this website."
+          content="This application does not provide for the translation of the web form but your licence will be printed on the french version of the licence."
         />
         <Form
           className="attached fluid segment"
@@ -224,47 +277,8 @@ const Step2 = props => {
               }
             />
           </Form.Group>
-          <Divider section />
-          <Header as="h3" textAlign="left">
-            Parent 1
-          </Header>
-          <Parent
-            id={"Father"} // Father, Mother, Parent3, Parent4
-            handleChange={handleChange}
-            values={values}
-            errors={errors}
-          />
-          <Divider section />
-          <Header as="h3" textAlign="left">
-            Parent 2
-          </Header>
-          <Parent
-            id={"Mother"} // Father, Mother, Parent3, Parent4
-            handleChange={handleChange}
-            values={values}
-            errors={errors}
-          />
-          <Divider section />
-          <Header as="h3" textAlign="left">
-            Parent 3
-          </Header>
-          <Parent
-            id={"Parent3"} // Father, Mother, Parent3, Parent4
-            handleChange={handleChange}
-            values={values}
-            errors={errors}
-          />
-          <Divider section />
-          <Header as="h3" textAlign="left">
-            Parent 4
-          </Header>
-          <Parent
-            id={"Parent4"} // Father, Mother, Parent3, Parent4
-            handleChange={handleChange}
-            values={values}
-            errors={errors}
-          />
-
+          <Tab panes={panes} />
+          <Form.Group />
           <Button content="Cancel" onClick={cancel} secondary />
           <Button
             content="Back"
@@ -283,14 +297,13 @@ const Step2 = props => {
         </Form>
         <Message attached="bottom">
           The personal information contained on this form is collected under the
-          authority of the Marriage Act, R.S.O. 1990, c. M. 3 and will be used
-          to determine whether to issue the marriage licence, to register and
-          record the marriage, provide certified copies, extracts, certificates,
-          search notices, photocopies and for statistical, research, medical,
-          law enforcement, adoption and adoption disclosure purposes. Questions
-          about this collection should be directed to: Deputy Registrar General,
-          P.O. Box 4600 189, Red River Road, Thunder Bay, ON P7B 6L8 or at
-          1-800-461-2156 or 416-325-8305.
+          authority of and will be used to determine whether to issue the, to
+          register and record the provide certified copies, extracts,
+          certificates, search notices, photocopies and for statistical,
+          research, medical, adoption and adoption disclosure purposes.
+          Questions about this collection should be directed to: Deputy
+          Registrar General, P.O. Box 46900 1899, Red River Road, Thunder Bay,
+          ON P7B 6L8 or at 1-8090-4691-21956 or 416-3295-83905.
         </Message>
       </div>
     </Container>

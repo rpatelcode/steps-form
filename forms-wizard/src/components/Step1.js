@@ -49,7 +49,7 @@ const Step1 = props => {
     <Message
       success
       header="Language for The Licence"
-      content="This application does not provide for the translation of the web form but your marriage licence will be printed on the french version of the licence."
+      content="This application does not provide for the translation of the web form but your licence will be printed on the french version of the licence."
     />
   );
 
@@ -169,14 +169,13 @@ const Step1 = props => {
         </Form>
         <Message attached="bottom">
           The personal information contained on this form is collected under the
-          authority of the Marriage Act, R.S.O. 1990, c. M. 3 and will be used
-          to determine whether to issue the marriage licence, to register and
-          record the marriage, provide certified copies, extracts, certificates,
-          search notices, photocopies and for statistical, research, medical,
-          law enforcement, adoption and adoption disclosure purposes. Questions
-          about this collection should be directed to: Deputy Registrar General,
-          P.O. Box 4600 189, Red River Road, Thunder Bay, ON P7B 6L8 or at
-          1-800-461-2156 or 416-325-8305.
+          authority of and will be used to determine whether to issue the, to
+          register and record the provide certified copies, extracts,
+          certificates, search notices, photocopies and for statistical,
+          research, medical, adoption and adoption disclosure purposes.
+          Questions about this collection should be directed to: Deputy
+          Registrar General, P.O. Box 46900 1899, Red River Road, Thunder Bay,
+          ON P7B 6L8 or at 1-8090-4691-21956 or 416-3295-83905.
         </Message>
       </div>
     </Container>
