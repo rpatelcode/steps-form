@@ -1,12 +1,12 @@
 import React from "react";
 import { Checkbox, Input, Form } from "semantic-ui-react";
 const SingleName = props => {
-  const { id, handleChange, values, errors } = props;
+  const { txt, handleChange, values, errors } = props;
 
-  const singleName = "app1" + id + "SingleName";
-  const lastName = "app1" + id + "LastName";
-  const firstName = "app1" + id + "FirstName";
-
+  const singleName = "app1" + txt + "SingleName";
+  const lastName = "app1" + txt + "LastName";
+  const firstName = "app1" + txt + "FirstName";
+  const id = txt === "" ? "Applicant" : txt;
   // descriptor return name of values object
   const descriptor1 = Object.getOwnPropertyDescriptor(values, singleName);
   const singleNameValue = descriptor1.value;

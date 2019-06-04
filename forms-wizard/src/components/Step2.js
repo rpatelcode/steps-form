@@ -16,6 +16,7 @@ import SingleName from "./SingleName";
 import Parent from "./Parent";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
+import SelectCountry from "./SelectCountry";
 import "./css/_datepicker.css";
 
 const options = [
@@ -26,7 +27,7 @@ const options = [
 const Step2 = props => {
   const [focused, setFocused] = React.useState(false);
   const { handleSubmit, handleChange, values, errors, isSubmitting } = props;
-  const panes = [
+  const tabs = [
     {
       menuItem: "Parent 1",
       render: () => (
@@ -107,7 +108,7 @@ const Step2 = props => {
         >
           <Form.Group>
             <SingleName
-              id={"Applicant"}
+              txt={""} // "" for Applicant,Father, Mother, Parent3, Parent4
               handleChange={handleChange}
               values={values}
               errors={errors}
@@ -158,7 +159,7 @@ const Step2 = props => {
               onChange={e =>
                 handleChange({
                   name: "app1MaritalStatus",
-                  value: e.target.checked
+                  value: "never"
                 })
               }
             />
@@ -169,7 +170,7 @@ const Step2 = props => {
               onChange={e =>
                 handleChange({
                   name: "app1MaritalStatus",
-                  value: e.target.checked
+                  value: "widowed"
                 })
               }
             />
@@ -180,7 +181,7 @@ const Step2 = props => {
               onChange={e =>
                 handleChange({
                   name: "app1MaritalStatus",
-                  value: e.target.checked
+                  value: "divorced"
                 })
               }
             />
@@ -191,20 +192,20 @@ const Step2 = props => {
               onChange={e =>
                 handleChange({
                   name: "app1MaritalStatus",
-                  value: e.target.checked
+                  value: "divorcedOutside"
                 })
               }
             />
           </Form.Group>
           <Form.Group>
             <Form.Field
-              id="languageFlag"
-              name="languageFlag"
+              id="app1Religion"
+              name="app1Religion"
               control={Select}
               label="If the religion is not listed, please select 'Not Listed' and type the religion name in the box below"
               options={options}
               // selection={values.languageFlag}
-              placeholder={values.languageFlag}
+              placeholder={values.app1Religion}
               onChange={(e, { value }) =>
                 handleChange({
                   name: "languageFlag",
@@ -229,55 +230,14 @@ const Step2 = props => {
               error={errors.intendedPlace ? true : false}
             />
           </Form.Group>
-          <Form.Group>
-            <Form.Field
-              id="languageFlag"
-              name="languageFlag"
-              control={Select}
-              label="If the country is not listed, please select 'Not Listed' and type the country name in the box below"
-              options={options}
-              // selection={values.languageFlag}
-              placeholder={values.languageFlag}
-              onChange={(e, { value }) =>
-                handleChange({
-                  name: "languageFlag",
-                  value: value
-                })
-              }
-            />
-            <Form.Field
-              id="intendedPlace"
-              name="intendedPlace"
-              control={Input}
-              label="Or Type"
-              placeholder="City/Town"
-              onChange={e =>
-                handleChange({
-                  name: "intendedPlace",
-                  value: e.target.value
-                })
-              }
-              value={values.intendedPlace}
-              required
-              error={errors.intendedPlace ? true : false}
-            />
-            <Form.Field
-              id="languageFlag"
-              name="languageFlag"
-              control={Select}
-              label="Province"
-              options={options}
-              // selection={values.languageFlag}
-              placeholder={values.languageFlag}
-              onChange={(e, { value }) =>
-                handleChange({
-                  name: "languageFlag",
-                  value: value
-                })
-              }
-            />
-          </Form.Group>
-          <Tab panes={panes} />
+          <SelectCountry
+            id={""} // "" for Applicant,Father, Mother, Parent3, Parent4
+            handleChange={handleChange}
+            values={values}
+            errors={errors}
+          />
+
+          <Tab panes={tabs} />
           <Form.Group />
           <Button content="Cancel" onClick={cancel} secondary />
           <Button

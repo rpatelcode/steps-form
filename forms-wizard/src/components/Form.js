@@ -14,9 +14,9 @@ const INITIAL_STATE = {
   intendedPlace: faker.address.city(),
   proposedDate: moment(faker.date.future()), //undefined, //moment(), //moment(faker.date.future()).format("DD/MM/YYYY"),
   languageFlag: "english", //English, French [also popup message open]
-  app1ApplicantSingleName: false,
-  app1ApplicantLastName: faker.name.lastName(),
-  app1ApplicantFirstName: faker.name.lastName(),
+  app1SingleName: false,
+  app1LastName: faker.name.lastName(),
+  app1FirstName: faker.name.lastName(),
 
   app1MaritalStatus: "never", // (never,widowed,divorced,divorcedOutside)
 

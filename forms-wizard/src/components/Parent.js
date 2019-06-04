@@ -3,56 +3,63 @@ import _ from "lodash";
 import React from "react";
 import { Input, Form, Dropdown } from "semantic-ui-react";
 import SingleName from "./SingleName";
-import provinceOptions from "./ProvinceOptions";
+// import provinceOptions from "./ProvinceOptions";
+import SelectCountry from "./SelectCountry";
 
-const obj1 = _.map(faker.definitions.address.country, country => ({
-  key: country,
-  text: country,
-  value: country
-}));
+// const obj1 = _.map(faker.definitions.address.country, country => ({
+//   key: country,
+//   text: country,
+//   value: country
+// }));
 
-const obj2 = [{ key: "Not Listed", text: "Not Listed", value: "Not Listed" }];
-const countryOptions = [...obj1, ...obj2];
+// const obj2 = [{ key: "Not Listed", text: "Not Listed", value: "Not Listed" }];
+// const countryOptions = [...obj1, ...obj2];
 
 const Parent = props => {
   const { id, handleChange, values, errors } = props;
 
-  const country = "app1" + id + "BirthCountry";
-  const country0 = "app1" + id + "BirthCountry0";
-  const province = "app1" + id + "BirthProvince";
+  // const country = "app1" + id + "BirthCountry";
+  // const country0 = "app1" + id + "BirthCountry0";
+  // const province = "app1" + id + "BirthProvince";
 
-  // descriptor return name of values object
-  const descriptor1 = Object.getOwnPropertyDescriptor(values, country);
-  const countryValue = descriptor1.value;
+  // // descriptor return name of values object
+  // const descriptor1 = Object.getOwnPropertyDescriptor(values, country);
+  // const countryValue = descriptor1.value;
 
-  const descriptor2 = Object.getOwnPropertyDescriptor(values, country0);
-  const country0Value = descriptor2.value;
+  // const descriptor2 = Object.getOwnPropertyDescriptor(values, country0);
+  // const country0Value = descriptor2.value;
 
-  const descriptor3 = Object.getOwnPropertyDescriptor(values, province);
-  const provinceValue = descriptor3.value;
+  // const descriptor3 = Object.getOwnPropertyDescriptor(values, province);
+  // const provinceValue = descriptor3.value;
 
-  // descriptor return name of errors object
+  // // descriptor return name of errors object
 
-  const descriptor4 = Object.getOwnPropertyDescriptor(errors, country);
-  const errorsCountryValue = descriptor4;
+  // const descriptor4 = Object.getOwnPropertyDescriptor(errors, country);
+  // const errorsCountryValue = descriptor4;
 
-  const descriptor5 = Object.getOwnPropertyDescriptor(errors, country0);
-  const errorsCountry0Value = descriptor5;
+  // const descriptor5 = Object.getOwnPropertyDescriptor(errors, country0);
+  // const errorsCountry0Value = descriptor5;
 
-  const descriptor6 = Object.getOwnPropertyDescriptor(errors, province);
-  const errorsProvinceValue = descriptor6;
+  // const descriptor6 = Object.getOwnPropertyDescriptor(errors, province);
+  // const errorsProvinceValue = descriptor6;
 
   return (
     <>
       <Form.Group>
         <SingleName
-          id={id} // Father, Mother, Parent3, Parent4
+          txt={id} // "" for Applicant,Father, Mother, Parent3, Parent4
           handleChange={handleChange}
           values={values}
           errors={errors}
         />
       </Form.Group>
-      <Form.Group>
+      <SelectCountry
+        id={id} // "" for Applicant,Father, Mother, Parent3, Parent4
+        handleChange={handleChange}
+        values={values}
+        errors={errors}
+      />
+      {/* <Form.Group>
         <Form.Field>
           <label>
             If the country is not listed, please select 'Not Listed' and type
@@ -77,7 +84,6 @@ const Parent = props => {
             name={country0}
             control={Input}
             label="Or Type"
-            // placeholder="Or Type"
             onChange={e =>
               handleChange({
                 name: country0,
@@ -107,7 +113,7 @@ const Parent = props => {
             />
           </Form.Field>
         ) : null}
-      </Form.Group>
+      </Form.Group> */}
     </>
   );
 };
