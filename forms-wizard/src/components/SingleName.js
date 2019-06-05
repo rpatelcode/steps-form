@@ -64,7 +64,12 @@ const SingleName = props => {
           })
         }
         value={lastNameValue}
-        required
+        required={
+          lastName === "app1Parent3LastName" ||
+          lastName === "app1Parent4LastName"
+            ? false
+            : true
+        }
         error={errorsLastNameValue ? true : false}
       />
 
@@ -82,7 +87,12 @@ const SingleName = props => {
             })
           }
           value={firstNameValue}
-          required
+          required={
+            firstName === "app1Parent3FirstName" ||
+            firstName === "app1Parent4FirstName"
+              ? false
+              : true
+          }
           error={errorsFirstNameValue ? true : false}
         />
       ) : null}

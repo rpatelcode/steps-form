@@ -26,7 +26,7 @@ const INITIAL_STATE = {
   app1BirthDay: 1, // [from 1 to 31]
   app1BirthMonth: "May", //[from Jan to Dec]
   app1BirthYear: 1989, // from 2019 to 1901
-  app1Age: undefined, // Calculate current age
+  app1Age: null, // Calculate current age
 
   app1BirthCountry: faker.address.country(),
   app1BirthCountry0: faker.address.country(),
@@ -37,36 +37,36 @@ const INITIAL_STATE = {
   app1FatherLastName: faker.name.lastName(),
   app1FatherFirstName: faker.name.findName(),
 
-  app1FatherBirthCountry: undefined,
-  app1FatherBirthCountry0: undefined,
-  app1FatherBirthProvince: "Ontario",
+  app1FatherBirthCountry: null,
+  app1FatherBirthCountry0: null,
+  app1FatherBirthProvince: null,
 
   app1MotherSingleName: false,
 
   app1MotherLastName: faker.name.lastName(),
   app1MotherFirstName: faker.name.findName(),
 
-  app1MotherBirthCountry: faker.address.country(),
-  app1MotherBirthCountry0: faker.address.country(),
-  app1MotherBirthProvince: faker.address.county(),
+  app1MotherBirthCountry: null,
+  app1MotherBirthCountry0: null,
+  app1MotherBirthProvince: null,
 
   app1Parent3SingleName: false,
 
   app1Parent3LastName: faker.name.lastName(),
   app1Parent3FirstName: faker.name.findName(),
 
-  app1Parent3BirthCountry: faker.address.country(),
-  app1Parent3BirthCountry0: faker.address.country(),
-  app1Parent3BirthProvince: faker.address.county(),
+  app1Parent3BirthCountry: null,
+  app1Parent3BirthCountry0: null,
+  app1Parent3BirthProvince: null,
 
   app1Parent4SingleName: false,
 
   app1Parent4LastName: faker.name.lastName(),
   app1Parent4FirstName: faker.name.findName(),
 
-  app1Parent4BirthCountry: faker.address.country(),
-  app1Parent4BirthCountry0: faker.address.country(),
-  app1Parent4BirthProvince: faker.address.county(),
+  app1Parent4BirthCountry: null,
+  app1Parent4BirthCountry0: null,
+  app1Parent4BirthProvince: null,
 
   app1ResidentStreet: faker.address.streetName(),
   app1ResidentApt: faker.finance.mask(),

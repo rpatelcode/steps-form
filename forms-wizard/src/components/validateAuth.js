@@ -25,22 +25,22 @@ const validateAuth = values => {
 
   // #### STEP 2 ####
 
-  // app1ApplicantSingleName Errors
-  if (!values.app1ApplicantSingleName) {
-    errors.app1ApplicantSingleName = false;
+  // app1SingleName Errors
+  if (!values.app1SingleName) {
+    errors.app1SingleName = false;
   }
 
-  // app1ApplicantLastName Errors
-  if (!values.app1ApplicantLastName) {
-    errors.app1ApplicantLastName = "Last Name";
-  } else if (values.app1ApplicantLastName.length < 2) {
-    errors.app1ApplicantLastName = "Last Name";
+  // app1LastName Errors
+  if (!values.app1LastName) {
+    errors.app1LastName = "Last Name";
+  } else if (values.app1LastName.length < 2) {
+    errors.app1LastName = "Last Name";
   }
   // app1ApplicantFirstName Errors
-  if (!values.app1ApplicantFirstName) {
-    errors.app1ApplicantFirstName = "First Name";
-  } else if (values.app1ApplicantFirstName.length < 2) {
-    errors.app1ApplicantFirstName = "First Name";
+  if (!values.app1FirstName) {
+    errors.app1FirstName = "First Name";
+  } else if (values.app1FirstName.length < 2) {
+    errors.app1FirstName = "First Name";
   }
   // app1MaritalStatus Errors
 
@@ -77,16 +77,29 @@ const validateAuth = values => {
   // app1FatherBirthCountryO Errors
   // app1FatherBirthProvince Errors
 
-  // #### STEP 2 ####
+  // app1MotherSingleName Errors
+  if (!values.app1MotherSingleName) {
+    errors.app1MotherSingleName = false;
+  }
 
-  // app1MotherSingleName: true,
-
-  //   app1MotherLastName Errors
-  //   app1MotherFirstName Errors
+  // app1MotherLastName Errors
+  if (!values.app1MotherLastName) {
+    errors.app1MotherLastName = "Last Name";
+  } else if (values.app1MotherLastName.length < 2) {
+    errors.app1MotherLastName = "Last Name";
+  }
+  // app1MotherFirstName Errors
+  if (!values.app1MotherFirstName) {
+    errors.app1MotherFirstName = "First Name";
+  } else if (values.app1MotherFirstName.length < 2) {
+    errors.app1MotherFirstName = "First Name";
+  }
 
   //   app1MotherBirthCountry Errors
   //   app1MotherBirthCountryO Errors
   //   app1MotherBirthProvince Errors
+
+  // #### STEP 2 ####
 
   //   app1Parent3SingleName Errors
 
