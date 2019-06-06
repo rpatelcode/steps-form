@@ -20,8 +20,8 @@ const INITIAL_STATE = {
 
   app1MaritalStatus: "never", // (never,widowed,divorced,divorcedOutside)
 
-  app1Religion: "Baptist", // [ { key: 1, text: 'One', value: 1 }, { key: 2, text: 'Two', value: 2 }, { key: 3, text: 'Three', value: 3 },]
-  app1ReligionOther: "Nothing",
+  app1Religion: null, // [ { key: 1, text: 'One', value: 1 }, { key: 2, text: 'Two', value: 2 }, { key: 3, text: 'Three', value: 3 },]
+  app1ReligionOther: null,
 
   app1BirthDay: 1, // [from 1 to 31]
   app1BirthMonth: "May", //[from Jan to Dec]

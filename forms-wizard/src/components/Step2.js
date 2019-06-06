@@ -17,6 +17,7 @@ import Parent from "./Parent";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
 import SelectCountry from "./SelectCountry";
+import SelectReligion from "./SelectReligion";
 import "./css/_datepicker.css";
 
 const options = [
@@ -197,39 +198,12 @@ const Step2 = props => {
               }
             />
           </Form.Group>
-          <Form.Group>
-            <Form.Field
-              id="app1Religion"
-              name="app1Religion"
-              control={Select}
-              label="If the religion is not listed, please select 'Not Listed' and type the religion name in the box below"
-              options={options}
-              // selection={values.languageFlag}
-              placeholder={values.app1Religion}
-              onChange={(e, { value }) =>
-                handleChange({
-                  name: "languageFlag",
-                  value: value
-                })
-              }
-            />
-            <Form.Field
-              id="intendedPlace"
-              name="intendedPlace"
-              control={Input}
-              label="Or Type"
-              placeholder="City/Town"
-              onChange={e =>
-                handleChange({
-                  name: "intendedPlace",
-                  value: e.target.value
-                })
-              }
-              value={values.intendedPlace}
-              required
-              error={errors.intendedPlace ? true : false}
-            />
-          </Form.Group>
+          <SelectReligion
+            id={"app1Religion"} // app1Religion, app2Religion
+            handleChange={handleChange}
+            values={values}
+            errors={errors}
+          />
           <SelectCountry
             id={""} // "" for Applicant,Father, Mother, Parent3, Parent4
             handleChange={handleChange}
