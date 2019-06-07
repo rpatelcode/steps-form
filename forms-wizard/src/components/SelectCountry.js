@@ -87,7 +87,7 @@ const SelectCountry = props => {
               search
               selection
               options={provinceOptions}
-              placeholder={id + "'s Province"}
+              // placeholder={id + "'s Province"}
               onChange={(e, { value }) =>
                 handleChange({
                   name: province,
