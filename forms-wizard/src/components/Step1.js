@@ -26,17 +26,19 @@ const Step1 = props => {
   const [focused, setFocused] = React.useState(false);
   // const [date, setDate] = React.useState(moment());
   const {
+    register,
     handleSubmit,
-    handleChange,
+    // handleChange,
     // handleBlur,
     values,
-    errors,
-    isSubmitting
+    errors
+    // isSubmitting
   } = props;
 
-  const next = e => {
+  const onSubmit = (e, data) => {
     e.preventDefault();
     props.nextStep();
+    console.log(data);
   };
 
   // cancel button
@@ -65,7 +67,8 @@ const Step1 = props => {
         />
         <Form
           className="attached fluid segment"
-          onSubmit={handleSubmit}
+          // onSubmit={handleSubmit}
+
           success
         >
           <Form.Group>
@@ -73,12 +76,13 @@ const Step1 = props => {
               id="isOntarioMarriageFlag"
               name="isOntarioMarriageFlag"
               control={Checkbox}
-              onChange={e =>
-                handleChange({
-                  name: "isOntarioMarriageFlag",
-                  value: e.target.checked
-                })
-              }
+              // onChange={e =>
+              //   handleChange({
+              //     name: "isOntarioMarriageFlag",
+              //     value: e.target.checked
+              //   })
+              // }
+              ref={register}
               checked={values.isOntarioMarriageFlag}
               required
               error={errors.isOntarioMarriageFlag ? true : false}
@@ -97,12 +101,13 @@ const Step1 = props => {
               control={Input}
               label="City/Town"
               placeholder="City/Town"
-              onChange={e =>
-                handleChange({
-                  name: "intendedPlace",
-                  value: e.target.value
-                })
-              }
+              // onChange={e =>
+              //   handleChange({
+              //     name: "intendedPlace",
+              //     value: e.target.value
+              //   })
+              // }
+              ref={register}
               value={values.intendedPlace}
               required
               error={errors.intendedPlace ? true : false}
@@ -114,12 +119,13 @@ const Step1 = props => {
                 id="proposedDate"
                 numberOfMonths={1}
                 // onDateChange={date => setDate(date)}
-                onDateChange={date =>
-                  handleChange({
-                    name: "proposedDate",
-                    value: date
-                  })
-                }
+                // onDateChange={date =>
+                //   handleChange({
+                //     name: "proposedDate",
+                //     value: date
+                //   })
+                // }
+                ref={register}
                 // onDateChange={date => handleChange(date)}
                 onFocusChange={({ focused }) => setFocused(focused)}
                 focused={focused}
@@ -136,12 +142,13 @@ const Step1 = props => {
               label="Language for The Licence"
               options={options}
               placeholder={values.languageFlag}
-              onChange={(e, { value }) =>
-                handleChange({
-                  name: "languageFlag",
-                  value: value
-                })
-              }
+              // onChange={(e, { value }) =>
+              //   handleChange({
+              //     name: "languageFlag",
+              //     value: value
+              //   })
+              // }
+              ref={register}
             />
           </Form.Group>
 
@@ -162,7 +169,7 @@ const Step1 = props => {
             content="Next"
             icon="right arrow"
             labelPosition="right"
-            onClick={next}
+            onClick={handleSubmit(onSubmit)}
             primary
             // disabled={isSubmitting}
           />

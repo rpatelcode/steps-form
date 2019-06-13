@@ -1,13 +1,22 @@
 import React from "react";
+import useForm from "react-hook-form";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
 import moment from "moment";
 import faker from "faker/locale/en_CA";
+import * as yup from "yup";
 
-import useFormValidation from "./useFormValidation";
-import validateAuth from "./validateAuth";
+// import useFormValidation from "./useFormValidation";
+// import validateAuth from "./validateAuth";
+
+const VALIDATION_SCHEMA = yup.object().shape({
+  isOntarioMarriageFlag: yup.boolean(),
+  intendedPlace: yup.string().required(),
+  proposedDate: yup.date(), //undefined, //moment(), //moment(faker.date.future()).format("DD/MM/YYYY"),
+  languageFlag: yup.string().required() //English, French [also popup message open]
+});
 
 const INITIAL_STATE = {
   isOntarioMarriageFlag: true,
@@ -90,14 +99,19 @@ const INITIAL_STATE = {
 
 const Form = () => {
   const [step, setstep] = React.useState(1);
-  const {
-    handleSubmit,
-    handleChange,
-    // handleBlur,
-    values,
-    errors,
-    isSubmitting
-  } = useFormValidation(INITIAL_STATE, validateAuth);
+
+  const { register, handleSubmit, errors, getValues } = useForm({
+    validationSchema: VALIDATION_SCHEMA
+  });
+
+  // const {
+  //   handleSubmit,
+  //   handleChange,
+  //   // handleBlur,
+  //   values,
+  //   errors,
+  //   isSubmitting
+  // } = useFormValidation(INITIAL_STATE, validateAuth);
 
   const nextStep = () => {
     setstep(step + 1);
@@ -114,7 +128,8 @@ const Form = () => {
   // };
   // console.clear();
   // console.log(step);
-  console.log(values);
+  // const onSubmit = data => { console.log(data); }
+  console.log(errors);
 
   // const {
   //   isOntarioMarriageFlag,
@@ -240,52 +255,56 @@ const Form = () => {
     case 1:
       return (
         <Step1
+          register={register}
           nextStep={nextStep}
-          handleChange={handleChange}
-          values={values}
+          // handleChange={handleChange}
+          values={getValues}
           errors={errors}
           handleSubmit={handleSubmit}
           // handleBlur={handleBlur}
-          isSubmitting={isSubmitting}
+          // isSubmitting={isSubmitting}
         />
       );
     case 2:
       return (
         <Step2
+          register={register}
           nextStep={nextStep}
           prevStep={prevStep}
-          handleChange={handleChange}
-          values={values}
+          // handleChange={handleChange}
+          values={getValues}
           errors={errors}
           handleSubmit={handleSubmit}
           // handleBlur={handleBlur}
-          isSubmitting={isSubmitting}
+          // isSubmitting={isSubmitting}
         />
       );
     case 3:
       return (
         <Step3
+          register={register}
           nextStep={nextStep}
           prevStep={prevStep}
-          handleChange={handleChange}
-          values={values}
+          // handleChange={handleChange}
+          values={getValues}
           errors={errors}
           handleSubmit={handleSubmit}
           // handleBlur={handleBlur}
-          isSubmitting={isSubmitting}
+          // isSubmitting={isSubmitting}
         />
       );
     case 4:
       return (
         <Step4
+          register={register}
           nextStep={nextStep}
           prevStep={prevStep}
-          handleChange={handleChange}
-          values={values}
+          // handleChange={handleChange}
+          values={getValues}
           errors={errors}
           handleSubmit={handleSubmit}
           // handleBlur={handleBlur}
-          isSubmitting={isSubmitting}
+          // isSubmitting={isSubmitting}
         />
       );
     default:
