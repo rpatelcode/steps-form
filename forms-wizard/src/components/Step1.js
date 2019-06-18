@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Form,
   Checkbox,
@@ -10,9 +10,10 @@ import {
   Container
 } from "semantic-ui-react";
 // import { DateInput } from "semantic-ui-calendar-react";
-import "../App.css";
 import "react-dates/initialize";
 import { SingleDatePicker } from "react-dates";
+import useForm from "react-hook-form";
+import "../App.css";
 import "./css/_datepicker.css";
 
 import Steps from "./Steps";
@@ -22,24 +23,41 @@ const options = [
 ];
 
 const Step1 = props => {
+  useEffect(() => {
+    register({ name: "isOntarioMarriageFlag" }, { required: true });
+    register({ name: "intendedPlace" }, { required: true });
+    register({ name: "proposedDate" }, { required: true });
+    register({ name: "languageFlag" }, { required: true });
+  }, []);
+  const {
+    register,
+    errors,
+    handleSubmit,
+    setValue,
+    getValues,
+    triggerValidation
+  } = useForm();
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+    // props.nextStep();
+    console.log("Submit event", e);
+    alert(JSON.stringify(data));
+  };
+
+  console.log(errors);
+  console.log(getValues());
+
   // const [message, setmessage] = React.useState(false);
   const [focused, setFocused] = React.useState(false);
   // const [date, setDate] = React.useState(moment());
+
   const {
-    register,
-    handleSubmit,
     // handleChange,
     // handleBlur,
-    values,
-    errors
+    // values
+    // errors
     // isSubmitting
   } = props;
-
-  const onSubmit = (e, data) => {
-    e.preventDefault();
-    props.nextStep();
-    console.log(data);
-  };
 
   // cancel button
   const cancel = e => {
@@ -67,8 +85,7 @@ const Step1 = props => {
         />
         <Form
           className="attached fluid segment"
-          // onSubmit={handleSubmit}
-
+          onSubmit={handleSubmit(onSubmit)}
           success
         >
           <Form.Group>
@@ -76,14 +93,11 @@ const Step1 = props => {
               id="isOntarioMarriageFlag"
               name="isOntarioMarriageFlag"
               control={Checkbox}
-              // onChange={e =>
-              //   handleChange({
-              //     name: "isOntarioMarriageFlag",
-              //     value: e.target.checked
-              //   })
-              // }
-              ref={register}
-              checked={values.isOntarioMarriageFlag}
+              onChange={async (e, { name, checked }) => {
+                setValue(name, checked);
+                await triggerValidation({ name });
+              }}
+              checked={getValues().isOntarioMarriageFlag}
               required
               error={errors.isOntarioMarriageFlag ? true : false}
               label={
@@ -101,14 +115,18 @@ const Step1 = props => {
               control={Input}
               label="City/Town"
               placeholder="City/Town"
+              onChange={async (e, { name, value }) => {
+                setValue(name, value);
+                await triggerValidation({ name });
+              }}
               // onChange={e =>
               //   handleChange({
               //     name: "intendedPlace",
               //     value: e.target.value
               //   })
               // }
-              ref={register}
-              value={values.intendedPlace}
+
+              value={getValues().intendedPlace}
               required
               error={errors.intendedPlace ? true : false}
             />
@@ -118,19 +136,27 @@ const Step1 = props => {
               <SingleDatePicker
                 id="proposedDate"
                 numberOfMonths={1}
+                // onDateChange={async (e, { name, date }) => {
+                //   setValue(name, date);
+                //   await triggerValidation({ name });
+                // }}
                 // onDateChange={date => setDate(date)}
+                onDateChange={async date => {
+                  let name = "proposedDate";
+                  setValue(name, date);
+                  await triggerValidation({ name });
+                }}
                 // onDateChange={date =>
                 //   handleChange({
                 //     name: "proposedDate",
                 //     value: date
                 //   })
                 // }
-                ref={register}
                 // onDateChange={date => handleChange(date)}
                 onFocusChange={({ focused }) => setFocused(focused)}
                 focused={focused}
                 // date={date}
-                date={values.proposedDate}
+                date={getValues().proposedDate}
                 // isDayHighlighted={date => date} //Highlited today date
                 isOutsideRange={() => false} // to pick all days
               />
@@ -141,18 +167,21 @@ const Step1 = props => {
               control={Select}
               label="Language for The Licence"
               options={options}
-              placeholder={values.languageFlag}
+              placeholder={getValues().languageFlag}
+              onChange={async (e, { name, value }) => {
+                setValue(name, value);
+                await triggerValidation({ name });
+              }}
               // onChange={(e, { value }) =>
               //   handleChange({
               //     name: "languageFlag",
               //     value: value
               //   })
               // }
-              ref={register}
             />
           </Form.Group>
 
-          {values.languageFlag === "french" ? <MessageShow /> : null}
+          {getValues().languageFlag === "french" ? <MessageShow /> : null}
           {/* {Object.keys(errors).length === 0 ? null : (
             <Message
               header="Required"
@@ -169,7 +198,6 @@ const Step1 = props => {
             content="Next"
             icon="right arrow"
             labelPosition="right"
-            onClick={handleSubmit(onSubmit)}
             primary
             // disabled={isSubmitting}
           />
