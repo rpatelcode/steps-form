@@ -35,8 +35,9 @@ const Step1 = props => {
     handleSubmit,
     setValue,
     getValues,
-    triggerValidation
-  } = useForm();
+    triggerValidation,
+    formState
+  } = useForm({ mode: "onChange" });
   const onSubmit = (data, e) => {
     e.preventDefault();
     // props.nextStep();
@@ -46,6 +47,7 @@ const Step1 = props => {
 
   console.log(errors);
   console.log(getValues());
+  console.log("Dirty" + formState.dirty);
 
   // const [message, setmessage] = React.useState(false);
   const [focused, setFocused] = React.useState(false);
@@ -126,7 +128,7 @@ const Step1 = props => {
               //   })
               // }
 
-              value={getValues().intendedPlace}
+              // value={getValues().intendedPlace}
               required
               error={errors.intendedPlace ? true : false}
             />
@@ -199,7 +201,9 @@ const Step1 = props => {
             icon="right arrow"
             labelPosition="right"
             primary
-            // disabled={isSubmitting}
+            disabled={
+              !formState.dirty || (formState.dirty && !formState.isValid)
+            }
           />
         </Form>
         <Message attached="bottom">
